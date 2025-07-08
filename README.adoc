@@ -1,0 +1,52 @@
+= Cite Libre
+
+**Cite Libre** is xxx.
+
+== 🚀 Key Features
+
+- ✅ **todo**: todo.
+
+== 🔧 Getting Started
+
+To quickly get started with Cite Libre
+
+== 🧩 Packaging
+
+Cite Libre provide ready to use packaging:
+
+- todo
+
+== 📖 Documentation
+
+Comprehensive documentation is available at:
+
+🌐 https://citelibre.org
+
+== 🖥️ Contributing
+
+We warmly welcome contributions!
+
+- Fork the repository
+- Submit your enhancements via pull requests
+- Create https://github.com/citelibre/packaging/issues[issues]
+- Open https://github.com/citelibre/packaging/discussions[discussions]
+
+=== Build
+
+Pre-requisite: Apache Maven >= 3.8 and Java >= 17.
+
+To build the *RendezVous* packaging, you need to run:
+
+[source,bash]
+----
+mvn clean package -Passembly,rendezvous
+----
+
+== 📜 License
+
+Cite Libre is released under the BSD 2-Clause License. See the LICENSE file for more details.
+
+== ©️ Copyright
+Copyright © 2025 CiteLibre.
+
+🌟 *xxx* 🌟

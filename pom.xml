@@ -99,7 +99,7 @@
         <apache.tomcat.version>10.1.43</apache.tomcat.version>
 
         <!-- tools -->
-        <build.config.version>1.2.1</build.config.version>
+        <build.config.version>2.0.0</build.config.version>
         <maven.lutece.plugin.version>5.0.1</maven.lutece.plugin.version>
 
         <!-- 3rd parties -->

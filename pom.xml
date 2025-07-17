@@ -96,7 +96,7 @@
         <project.build.outputTimestamp>2025-06-04T19:53:57Z</project.build.outputTimestamp>
 
         <!-- runtime -->
-        <apache.tomcat.version>10.1.43</apache.tomcat.version>
+        <apache.tomcat.version>9.0.107</apache.tomcat.version>
 
         <!-- tools -->
         <build.config.version>2.0.0</build.config.version>

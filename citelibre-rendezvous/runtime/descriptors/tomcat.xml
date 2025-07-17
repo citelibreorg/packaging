@@ -82,9 +82,9 @@
             <directoryMode>777</directoryMode>
         </fileSet>
 
-        <!-- copy config files to conf -->
+        <!-- copy tomcat config files to conf -->
         <fileSet>
-            <directory>${citelibre.packaging.base}/src/main/conf</directory>
+            <directory>${citelibre.packaging.base}/runtime/conf</directory>
             <outputDirectory>/conf</outputDirectory>
             <fileMode>0644</fileMode>
             <directoryMode>777</directoryMode>
@@ -94,6 +94,14 @@
         <fileSet>
             <directory>target/lutece</directory>
             <outputDirectory>/webapps/${citelibre.packaging.base}</outputDirectory>
+        </fileSet>
+
+        <!-- copy webapp config files to conf -->
+        <fileSet>
+            <directory>${citelibre.packaging.base}/webapp</directory>
+            <outputDirectory>/webapps/${citelibre.packaging.base}</outputDirectory>
+            <fileMode>0644</fileMode>
+            <directoryMode>777</directoryMode>
         </fileSet>
     </fileSets>
 </assembly>

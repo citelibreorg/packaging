@@ -92,16 +92,9 @@
 
         <!-- expanded Citelibre -->
         <fileSet>
-            <directory>target/lutece</directory>
+            <directory>target/${citelibre.packaging.base}</directory>
             <outputDirectory>/webapps/${citelibre.packaging.base}</outputDirectory>
         </fileSet>
 
-        <!-- copy webapp config files to conf -->
-        <fileSet>
-            <directory>${citelibre.packaging.base}/webapp</directory>
-            <outputDirectory>/webapps/${citelibre.packaging.base}</outputDirectory>
-            <fileMode>0644</fileMode>
-            <directoryMode>777</directoryMode>
-        </fileSet>
     </fileSets>
 </assembly>

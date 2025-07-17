@@ -34,6 +34,7 @@
     <artifactId>citelibre-parent</artifactId>
     <name>CiteLibre :: Parent</name>
     <version>2.0.0-SNAPSHOT</version>
+    <packaging>lutece-site</packaging>
 
     <organization>
         <name>CiteLibre</name>
@@ -98,7 +99,7 @@
         <apache.tomcat.version>10.1.43</apache.tomcat.version>
 
         <!-- tools -->
-<!--        <build.config.version>1.2.1</build.config.version>-->
+        <build.config.version>1.2.1</build.config.version>
         <maven.lutece.plugin.version>5.0.1</maven.lutece.plugin.version>
 
         <!-- 3rd parties -->
@@ -225,12 +226,12 @@
     <dependencies>
         <!-- tools -->
         <!-- TODO unusable because of no https maven repo url -->
-<!--        <dependency>-->
-<!--            <groupId>fr.paris.lutece.tools</groupId>-->
-<!--            <artifactId>build-config</artifactId>-->
-<!--            <version>${build.config.version}</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>fr.paris.lutece.tools</groupId>
+            <artifactId>build-config</artifactId>
+            <version>${build.config.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
         <!-- 3rd parties-->
         <!-- TODO check if needed -->
@@ -258,7 +259,7 @@
             <groupId>fr.paris.lutece</groupId>
             <artifactId>lutece-core</artifactId>
             <version>${lutece.core.version}</version>
-            <type>jar</type>
+            <type>lutece-core</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
@@ -339,37 +340,37 @@
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-genericattributes</artifactId>
             <version>${plugin.genericattributes.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-referencelist</artifactId>
             <version>${plugin.referencelist.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-workflow</artifactId>
             <version>${plugin.workflow.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-regularexpression</artifactId>
             <version>${plugin.regularexpression.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-rest</artifactId>
             <version>${plugin.rest.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-address</artifactId>
             <version>${plugin.address.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
             <!-- TODO check if needed -->
 <!--            <exclusions>-->
 <!--                <exclusion>-->
@@ -382,109 +383,109 @@
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-identitystore</artifactId>
             <version>${plugin.identitystore.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-filegenerator</artifactId>
             <version>${plugin.filegenerator.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-systeminfo</artifactId>
             <version>${plugin.systeminfo.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-crmclient</artifactId>
             <version>${plugin.crmclient.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-leaflet</artifactId>
             <version>${plugin.leaflet.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-captcha</artifactId>
             <version>${plugin.captcha.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-asynchronousupload</artifactId>
             <version>${plugin.asynchronousupload.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-matomo</artifactId>
             <version>${plugin.matomo.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-mermaidjs</artifactId>
             <version>${plugin.mermaidjs.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-kibana</artifactId>
             <version>${plugin.kibana.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-elasticdata</artifactId>
             <version>${plugin.elasticdata.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-solr</artifactId>
             <version>${plugin.solr.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-modulenotifygrumappingmanager</artifactId>
             <version>${plugin.modulenotifygrumappingmanager.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-grusupply</artifactId>
             <version>${plugin.grusupply.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-mylutece</artifactId>
             <version>${plugin.mylutece.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-profiles</artifactId>
             <version>${plugin.profiles.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-htmlpage</artifactId>
             <version>${plugin.htmlpage.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-oauth2</artifactId>
             <version>${plugin.oauth2.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
 
         <!-- modules -->
@@ -492,43 +493,43 @@
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>module-genericattributes-address</artifactId>
             <version>${module.genericattributes.address.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>module-workflow-rest</artifactId>
             <version>${module.workflow.rest.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>module-captcha-jcaptcha</artifactId>
             <version>${module.captcha.jcaptcha.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>module-workflow-notifygru</artifactId>
             <version>${module.workflow.notifygru.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>module-workflow-notifygru-alert</artifactId>
             <version>${module.workflow.notifygru.alert.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>module-address-autocomplete</artifactId>
             <version>${module.address.autocomplete.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>module-mylutece-oauth2</artifactId>
             <version>${module.mylutece.oauth2.version}</version>
-            <type>jar</type>
+            <type>lutece-plugin</type>
         </dependency>
     </dependencies>
 
@@ -708,25 +709,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                         <version>3.7.0</version>
                         <executions>
                             <execution>
-                                <id>unpack-lutece</id>
-                                <phase>generate-resources</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>fr.paris.lutece</groupId>
-                                            <artifactId>lutece-core</artifactId>
-                                            <version>${lutece.core.version}</version>
-                                            <classifier>webapp</classifier>
-                                            <type>zip</type>
-                                            <outputDirectory>target/lutece</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                            <execution>
                                 <id>unpack-tomcat</id>
                                 <phase>generate-resources</phase>
                                 <goals>
@@ -760,6 +742,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                                             <outputDirectory>target/tomcat/apache-tomcat-${apache.tomcat.version}/lib</outputDirectory>
                                         </artifactItem>
                                     </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>fr.paris.lutece.tools</groupId>
+                        <artifactId>lutece-maven-plugin</artifactId>
+                        <version>${maven.lutece.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>site-assembly</goal>
+                                </goals>
+                                <configuration>
+                                    <finalName>${citelibre.packaging.base}</finalName>
+                                    <defaultConfDirectory>${citelibre.packaging.base}/webapp</defaultConfDirectory>
+                                    <explodedDirectory>target/${citelibre.packaging.base}</explodedDirectory>
                                 </configuration>
                             </execution>
                         </executions>
@@ -829,25 +829,25 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-swaggerui</artifactId>
                     <version>${plugin.swaggerui.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-sitelabels</artifactId>
                     <version>${plugin.sitelabels.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-mydashboard</artifactId>
                     <version>${plugin.mydashboard.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-appointment</artifactId>
                     <version>${plugin.appointment.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
 <!--                TODO wait for stable version-->
 <!--                <dependency>-->
@@ -862,79 +862,79 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-appointment-desk</artifactId>
                     <version>${module.appointment.desk.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-genericattributes-googlemaps</artifactId>
                     <version>${module.genericattributes.googlemaps.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-appointment-solrsearchapp</artifactId>
                     <version>${module.appointment.solrsearchapp.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-appointment-solr</artifactId>
                     <version>${module.appointment.solr.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-workflow-appointment</artifactId>
                     <version>${module.workflow.appointment.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-appointment-alert</artifactId>
                     <version>${module.appointment.alert.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-appointment-filling</artifactId>
                     <version>${module.appointment.filling.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-notifygru-appointment</artifactId>
                     <version>${module.notifygru.appointment.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-elasticdata-appointment</artifactId>
                     <version>${module.elasticdata.appointment.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-appointmentgru</artifactId>
                     <version>${module.appointmentgru.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-appointment-leaflet</artifactId>
                     <version>${module.appointment.leaflet.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-appointment-mydashboard</artifactId>
                     <version>${module.appointment.mydashboard.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-appointment-management</artifactId>
                     <version>${module.appointment.management.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
             </dependencies>
         </profile>
@@ -981,115 +981,115 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-termofservice</artifactId>
                     <version>${plugin.termofservice.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-unittree</artifactId>
                     <version>${plugin.unittree.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-userassignment</artifactId>
                     <version>${plugin.userassignment.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-verifybackurl</artifactId>
                     <version>${plugin.verifybackurl.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-seo</artifactId>
                     <version>${plugin.seo.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-myluteceaccessrules</artifactId>
                     <version>${plugin.myluteceaccessrules.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-limitconnectedusers</artifactId>
                     <version>${plugin.limitconnectedusers.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-helpdesk</artifactId>
                     <version>${plugin.helpdesk.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-html</artifactId>
                     <version>${plugin.html.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-forms</artifactId>
                     <version>${plugin.forms.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-contact</artifactId>
                     <version>${plugin.contact.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-automaticroleprovider</artifactId>
                     <version>${plugin.automaticroleprovider.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-avatar</artifactId>
                     <version>${plugin.avatar.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-blobstore</artifactId>
                     <version>${plugin.blobstore.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-blobstoreclient</artifactId>
                     <version>${plugin.blobstoreclient.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-adminavatar</artifactId>
                     <version>${plugin.adminavatar.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-archive</artifactId>
                     <version>${plugin.archive.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-archive-client</artifactId>
                     <version>${plugin.archive.client.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-accesscontrol</artifactId>
                     <version>${plugin.accesscontrol.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
 
                 <!-- modules -->
@@ -1097,91 +1097,91 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-accesscontrol-forms</artifactId>
                     <version>${module.accesscontrol.forms.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-genericattributes-openstreetmap</artifactId>
                     <version>${module.genericattributes.openstreetmap.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-workflow-unittree</artifactId>
                     <version>${module.workflow.unittree.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-workflow-unittree-userassignment</artifactId>
                     <version>${module.workflow.unittree.userassignment.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-unittree-notification</artifactId>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                     <version>${module.unittree.notification.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-workflow-userassignment</artifactId>
                     <version>${module.workflow.userassignment.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-notifygru-forms</artifactId>
                     <version>${module.notifygru.forms.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-workflow-alertforms</artifactId>
                     <version>${module.workflow.alertforms.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-workflow-forms</artifactId>
                     <version>${module.workflow.forms.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-workflow-forms-automatic-assignment</artifactId>
                     <version>${module.workflow.forms.automatic.assignment.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-helpdesk-solr</artifactId>
                     <version>${module.helpdesk.solr.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-mylutece-cacheuserattribute</artifactId>
                     <version>${module.mylutece.cacheuserattribute.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-elasticdata-forms</artifactId>
                     <version>${module.elasticdata.forms.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-forms-breadcrumbaccordion</artifactId>
                     <version>${module.forms.breadcrumbaccordion.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-forms-documentproducer</artifactId>
                     <version>${module.forms.documentproducer.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                     <exclusions>
                         <exclusion>
                             <artifactId>bcprov-jdk14</artifactId>
@@ -1197,37 +1197,37 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-forms-multiviewmapleaflet</artifactId>
                     <version>${module.forms.multiviewmapleaflet.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-forms-poll</artifactId>
                     <version>${module.forms.poll.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-forms-solr</artifactId>
                     <version>${module.forms.solr.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-forms-template</artifactId>
                     <version>${module.forms.template.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-forms-unittree</artifactId>
                     <version>${module.forms.unittree.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-forms-userassignment</artifactId>
                     <version>${module.forms.userassignment.version}</version>
-                    <type>jar</type>
+                    <type>lutece-plugin</type>
                 </dependency>
             </dependencies>
         </profile>

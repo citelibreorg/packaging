@@ -1,0 +1,100 @@
+<#--   ^																	-->
+<#--  / \ 																	-->
+<#-- / ! \  WARNING ! current_step_index error						        -->
+<#-- ----- 																	-->
+<#-- Please check that the module module-forms-breadcrumbaccordion 			-->
+<#-- is installed and active. Forms with the Theme paris.fr must 			-->
+<#-- have "module-forms-breadcrumbaccordion" selected in breadcrumb type 	-->
+<#assign hasSteps=!(step.initial && step.final)>
+<#assign showTitle=!step.title?ends_with('hidden')>
+<#assign doPrevAction='' />
+<#assign doNextAction='' />
+<#assign doSaveAction='' />
+<#assign labelNextAction='' />
+<#assign labelPrevAction='' />
+<#assign labelSaveAction='' />
+<#assign doSaveForBackUpAction='' />
+<#assign labelForBackUpAction='' />
+<#assign doResetBackUpAction='' />
+<#assign labelResetBackupAction='' />
+<input name="page" value="forms" type="hidden">
+<input name="id_form" value="${step.idForm}" type="hidden">
+<input name="id_step" value="${step.id}" type="hidden">
+<input type="hidden" name="token" value = "${token}">
+<#if !step.initial >
+<#assign doPrevAction='action_doReturnStep'>
+<#assign labelPrevAction>#i18n{forms.step.previous}</#assign>
+</#if>
+<#if step.final>
+<#assign labelSaveAction>#i18n{forms.step.save}</#assign>
+<#if form.labelFinalButton?has_content>
+	<#assign labelSaveAction=form.labelFinalButton />
+</#if>
+<#if form.displaySummary>
+	<#assign doSaveAction='action_formResponseSummary' />
+	<#assign labelSaveAction>#i18n{forms.step.see.summary}</#assign>
+<#else>
+	<#assign doSaveAction='action_doSaveResponse' />
+</#if>
+<#else>
+<#assign doNextAction='action_doSaveStep' />
+<#assign labelNextAction>#i18n{forms.step.next}</#assign>
+</#if>
+<#if user?? && form.backupEnabled>
+<#assign doSaveForBackUpAction='action_doSaveForBackup' />
+<#assign doResetBackUpAction='action_doResetBackup' />
+</#if>
+<#assign stepParams></#assign>
+<#if !current_step_index??><#assign current_step_index=1></#if>
+<@cStepCurrent step=current_step_index title=step.title?replace('hidden','') showTitle=showTitle actionNextStep=doNextAction labelNextStep=labelNextAction actionPrevStep=doPrevAction labelPrevStep=labelPrevAction actionSaveStep=doSaveAction labelSaveStep=labelSaveAction actionSaveForBackUpStep=doSaveForBackUpAction labelForBackUpStep=labelForBackUpAction actionResetBackUpStep=doResetBackUpAction labelResetBackUpStep=labelResetBackUpAction showPrevStep=false hasSteps=hasSteps params=stepParams >
+${stepContent}
+<#if display_captcha>
+	<@cCol class='12' class='step-group'>
+		<@input type='hidden' name='validate_captcha' value='1' />
+		<@cRow>
+			<@cCol class='col-12 col-sm-10 offset-sm-1 col-md-6 offset-md-3'>	
+				${captcha}
+			</@cCol>
+		</@cRow>
+	</@cCol>
+</#if>
+</@cStepCurrent>
+<script>
+function stepGroupDisplay( stepGroup ){
+	const displayControls = stepGroup.querySelectorAll('[displaycontrol]').length
+	const displayControlsInvalid = stepGroup.querySelectorAll('.control_invalid[displaycontrol]').length
+	if( displayControls === displayControlsInvalid ){
+		stepGroup.classList.add('d-none');
+	} else {
+		stepGroup.classList.remove('d-none');
+	};
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+	document.querySelector('.breadcrumb-item.active').innerHTML = '${step.title?replace("- hidden","")?js_string}';
+	const noGroups = document.querySelectorAll( '.step-content > [displaycontrol].col.col-12' )
+	const lastNoGroupEl = noGroups[noGroups.length - 1]
+	if( lastNoGroupEl ){
+		lastNoGroupEl.classList.add('pb-xl');
+	}
+	const current = document.querySelector('#current_step');
+	<#if current_step_index gt 1 >
+	const y = current.offsetTop - 220;
+	window.scrollBy(0, y);
+	<#else>
+	const currentItem = document.querySelector('.breadcrumb-item.active');
+	const nbStep = currentItem.dataset.currentStep != undefined ? parseInt( currentItem.dataset.currentStep ) + 1 : 0;
+	if(  nbStep > 0 ){
+		current.querySelector('.step-title .step-number').textContent=nbStep;
+	}
+	</#if>
+
+	// Hide step groups that have no inputs
+	const stepGroups = document.querySelectorAll(".step-group");
+	if( stepGroups > 1 ){
+		stepGroups.forEach( function( stepGroup ){
+			stepGroupDisplay( stepGroup )
+		});
+	}
+});
+</script>

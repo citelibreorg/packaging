@@ -1,0 +1,115 @@
+	/* ---------------------------------------------------- */
+	/* Content rhythm 										*/
+	/* stylelint-disable-next-line -- exception for visually-hidden */
+	/* ---------------------------------------------------- */
+	:not(:where(html, body, nav, div, label, ul, ol, li, p, a, span, button))>:not(:where(link, script, .visually-hidden)) ~ * {
+		margin-block-start: var(--spacing-xs);
+	}
+
+	main :is(h1, h2, h3, h4, h5, h6) {
+		margin-block-start: var(--spacing-m);
+		margin-block-end: 0;
+	}
+	
+	main :is(h1, h2, h3, h4, h5, h6) + :is(p,article,ul,ol,div) {
+		margin-block-start: var(--spacing-sm);
+	}
+
+	div+p,p~p {
+		margin-block-start: var(--spacing-sm);
+	}
+
+	:is(ul:not( .d-flex, .d-inline, .d-inline-block ), ol:not( .d-flex, .d-inline, .d-inline-block ) ) > li {
+		margin-block-start: var(--spacing-xxs);
+	}
+
+	*+li {
+		margin-block-start: var(--spacing-xxs);
+	}
+
+	i+* {
+		margin-left: var(--spacing-xxs);
+	}
+	
+	/* Elements */
+	main article:first-of-type,
+	article + article {
+		margin-block-start: var(--spacing-m);
+	}
+	
+	/* Form */
+	form label{
+		margin-block-start: var(--spacing-m);
+	}
+
+	form input + label{
+		margin-block-start: 0;
+	}
+	
+	form fieldset{
+		margin-block-start: var(--spacing-m);
+		margin-block-end: 0;
+	}
+	
+	form .form-row + fieldset,
+	form fieldset + fieldset{
+		margin-block-start: 0;
+	}
+	
+	/* Basic container rhythm */
+	main>*+* {
+		margin-block-start: var(--spacing-m);
+	}
+
+	#main>.container {
+		margin-block-start: 0;
+	}
+
+	main :is( .alert, .card, .portlet, .accordion )  {
+		margin-block-start: var(--spacing-m);
+	}
+
+	
+	main :is( form ){
+		margin-block-start: 0;
+	}
+
+	@media (max-width: 767.98px) {
+		:not(:where(html, body, nav, div, label, ul, ol, li, p, a, span, button))>:not(:where(link, script, .visually-hidden)) ~ * {
+			margin-block-start: var(--spacing-xxs);
+		}
+
+		main :is(h1, h2, h3, h4, h5, h6) {
+			margin-block-start: var(--spacing-xxs);
+		}
+		
+		main :is(h1, h2, h3, h4, h5, h6) + :is(p,article,ul,ol,a,span,div) {
+			margin-block-start: var(--spacing-xs);
+		}
+
+		main article:first-of-type,
+		article + article {
+			margin-block-start: var(--spacing-xs);
+		}
+		
+		div+p,p+p {
+			margin-block-start: var(--spacing-xxs);
+		}
+		
+		/* Form */
+		form label{
+			margin-block-start: var(--spacing-xs);
+		}
+			
+		form fieldset{
+			margin-block-start: var(--spacing-xs);
+		}
+	
+		main>*+* {
+			margin-block-start: var( --spacing-xs );
+		}
+
+		main :is( .alert, .card, .portlet, .accordion )  {
+			margin-block-start: var(--spacing-xs);
+		}
+	}

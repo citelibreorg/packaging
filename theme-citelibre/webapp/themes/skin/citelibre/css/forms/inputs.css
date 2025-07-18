@@ -1,0 +1,332 @@
+/*** 										***/
+/*** Label + inputs							***/
+/***  										***/
+option,
+input,
+textarea {
+	color: var(--main-color) !important;
+	font-size: var( --font-m ) !important;
+	font-weight: 500 !important;
+}
+
+input:disabled + .btn,
+input:disabled + .btn:hover {
+	background-color: var( --white-color );
+	border-color: var( --main-color );
+	color: var( --main-color);
+    cursor: default;
+    opacity: .5
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+	border: .1rem solid var(--blue-color);
+}
+
+label {
+	font-size: var( --font-m );
+	font-weight: 600;
+	margin-block-end: var(--spacing-xs);
+}
+
+/* BS Overrides */
+.form-select,
+.form-control{
+	padding: calc( var(--spacing-sm) + 3.5px );
+	margin-block-start: var(--spacing-xs);
+	height: auto;
+	font-size: var( --font-m );
+	line-height: calc(var(--size-base, .4rem) * 6.25);
+	min-height: calc(var(--size-base, .4rem) * 6.25);
+	background-color: var(--white-color);
+	border-radius: 0;
+	outline: var(--blue-dark-color) solid 1px;
+	outline-offset: 0;
+	border-color:transparent !important;
+	color: var(--main-color)
+}
+
+.form-control:hover{
+	box-shadow: none;
+	outline: var(--blue-dark-color) solid 2px;
+	outline-offset: 0;
+}
+
+.form-control:focus{
+    border-color: transparent !important;
+    box-shadow: none;
+	outline: var(--main-info-color) solid 2px;
+	outline-offset: 0;
+}
+
+.form-control[readonly]{
+    outline: none;
+	padding: var(--spacing-xs) 0;
+	font-weight: bold !important;
+}
+
+.form-control[disabled]{
+    background-color: var(--white-light-color) !important;
+    outline-color: var(--blue-light);
+}
+
+/* Invalid */
+.invalid-feedback {
+	font-size: var(--font-m);
+	font-weight: 500;
+	padding-block-start: var(--spacing-xxs);
+	color: var(--main-danger-color);
+	display: block;
+}
+
+label:has( ~ .is-invalid),
+label:has( ~ .input-group ~ .is-invalid),
+label:has( ~ .input-group .is-invalid),
+legend.is-invalid,
+label:has( .is-invalid ){
+	color: var(--main-danger-color) !important
+}
+
+.form-select.is-invalid,
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+    box-shadow: none;
+	outline: var(--main-danger-color) solid 2px;
+	outline-offset: 0;
+}
+
+.form-control.is-invalid:focus {
+	box-shadow: inset 0 0 0 .2rem rgba(220,53,69,.25);
+}
+
+/* Groups and Row	 */
+form :is( 
+.row,
+.row .row,
+.row > .col,
+.row p ) {
+	margin-block: var(--spacing-xxs) 0;
+}
+
+.form-control,
+.form-control::placeholder,
+.row label,
+legend,
+.form-text,
+legend .form-text,
+.row .form-text,
+.form-select {
+	font-family: var(--font-family-list);
+	font-size: var( --font-m );
+}
+
+form .form-text{
+	display: inline-block;
+	width: 100%;
+	font-weight: 400;
+	line-height: var( --line-height-sm );
+	margin-block: calc( var( --spacing-xxs ) * 2 );
+	color: var( --blue-darker-color ) !important
+}
+
+.row label {
+	font-weight: 500;
+	color: var(--main-color);
+}
+
+.row label > abbr {
+	text-decoration: none;
+}
+
+label small {
+	line-height: var(--line-height-xs);
+}
+
+label .text-muted {
+	color: var(--gray-dark-color) !important
+}
+
+label+.form-text,
+label+.input-group .form-text,
+.row label+.form-text {
+	margin-block: 0;
+	margin-bottom: 0;
+	width: 100%;
+}
+
+.form-control::placeholder {
+	color: var(--blue-darker-color);
+	font-style: italic;
+}
+
+/*** 										***/
+/*** Input Type Number + suffix				***/
+/*** 										***/
+input[type="number"] + .input-group-append > .input-group-text {
+    border: 1px solid;
+    right: calc( var(--spacing-l) * -1 );
+    top: .25rem;
+    padding: calc( var(--spacing-sm) + .25rem) var(--spacing-xxs);
+}
+
+/*** 										***/
+/*** Input Password strength 				***/
+/*** 										***/
+.indicator {
+	font-size: var(--font-xs);
+	font-weight: 600;
+	min-height: calc(var(--size-base, .4rem) * 8.75);
+}
+
+.indicator .dot {
+	width: var(--spacing-xs);
+	height: var(--spacing-xs);
+	display: inline-block;
+	border-radius: 50%;
+	background: var(--white-color);
+}
+
+.password-refresh {
+	width: calc(var(--size-1, .4rem) * 4.5);
+	height: calc(var(--size-1, .4rem) * 4.5);
+}
+
+#form-separator {
+	height: 1px;
+	width: 200%;
+	background-color: #a8a8a8;
+}
+
+@media (max-width: 767.98px) {
+	.form-control {
+		font-size: var(--font-m)
+	}
+}
+
+/* Quantity Picker */
+/* Quantity input */
+.quantity-picker .quantity-input {
+	width: var(--spacing-xxl);
+	border: none;
+	text-align: center;
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+
+.quantity-picker .quantity-input::-webkit-outer-spin-button,
+.quantity-picker .quantity-input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.quantity-picker.is-invalid .input-group {
+	outline: var(--main-danger-color) solid 3px;
+	padding-left: 1px;
+}
+
+/* Quantity button  */
+.quantity-btn{
+	background-color: var( --white-color );
+	border-color: var( --blue-dark-color );
+	outline: var(--blue-dark-color) solid 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantity-btn .btn-label{
+	color: var(--main-color);
+	font-size: var(var(--font-l);)
+}
+
+.quantity-btn:active,
+.quantity-btn:not(.disabled):active,
+.quantity-btn:active .btn-label,
+.quantity-btn:active .paris-icon
+.quantity-btn:hover .btn-label,
+.btn:hover.quantity-btn .btn-label,
+.quantity-btn:hover,
+.quantity-btn:focus,
+.quantity-btn:not(.disabled).focus,
+.quantity-btn:not(.disabled).active,
+.quantity-btn:not(.disabled):not(.disabled).active,
+.quantity-btn:focus .btn-label{
+	color: var(--main-color) !important;
+	background-color: transparent !important;
+}
+
+.quantity-btn:disabled::before,
+.quantity-btn:disabled::after,
+.quantity-btn:disabled:hover,
+.quantity-btn:disabled:focus,
+.quantity-btn:disabled:active,
+.quantity-btn:disabled *,
+.quantity-btn:disabled *:hover,
+.quantity-btn:disabled *:focus,
+.quantity-btn:disabled *:active,
+.quantity-btn:disabled{
+	color: var( --blue-dark-color ) !important;
+	background-color: var( --white-light-color ) !important;
+	border-color: var( --white-light-color ) !important;
+	box-shadow: none !important;
+	transition: none !important;
+}
+
+.quantity-btn:disabled {
+	color: var(--gray-darklight-color );
+	cursor: not-allowed;
+}
+
+/* Time Slot polyfill */
+.form-control.time-polyfill {
+	width: 100% !important;
+	font-family: inherit;
+	background: transparent url("data:image/svg+xml,%3Csvg%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20%20width%3D%2224%22%20%20height%3D%2224%22%20%20viewBox%3D%220%200%2024%2024%22%20%20fill%3D%22none%22%20%20stroke%3D%22currentColor%22%20%20stroke-width%3D%222%22%20%20stroke-linecap%3D%22round%22%20%20stroke-linejoin%3D%22round%22%3E%3Cpath%20stroke%3D%22none%22%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M3%2012a9%209%200%201%200%2018%200a9%209%200%200%200%20-18%200%22%20%2F%3E%3Cpath%20d%3D%22M12%207v5l3%203%22%20%2F%3E%3C%2Fsvg%3E") no-repeat 90% 50%;
+	background-size: 13%;
+}
+
+input-time-polyfill {
+	color: #000;
+	text-shadow: none;
+	border: 0;
+	padding: 0;
+	height: auto;
+	width: auto;
+	line-height: normal;
+	font-family: sans-serif;
+	font-size: 14px;
+	position: absolute !important;
+	text-align: center;
+	box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.22);
+	cursor: default;
+	z-index: 1;
+	border-radius: 15px;
+}
+
+input-time-polyfill select {
+	margin-top: 0;
+	width: 60px;
+	font-family: inherit;
+}
+
+input-time-polyfill select > option {
+	text-align: center;
+	font-size: 12px;
+	font-weight: 400 !important;
+	padding: 10px 5px;
+
+}
+
+/* Hover */
+input-time-polyfill select > option:hover {
+	background-color: #B2D5FF;
+}
+
+/* TODO Selected 
+input-time-polyfill select > option.active {
+    font-weight: bold;
+	color: #fff;
+    background: #0075FF; 
+}
+*/

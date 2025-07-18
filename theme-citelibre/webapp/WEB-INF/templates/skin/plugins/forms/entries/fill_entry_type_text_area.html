@@ -1,0 +1,71 @@
+<#if !entry.onlyDisplayInBack || is_completeness_bo>
+<#assign hasError = false />
+<#assign errorMsg = ''>
+<#assign entryClass><#list entry.CSSClass?split(' ') as laClass><#if !laClass?starts_with( 'col-' )> ${laClass!}</#if></#list></#assign>
+<#if list_responses??><#list list_responses as response><#if response.entry.idEntry == entry.idEntry && response.entry.error?? && response.entry.error.isDisplayableError><#assign hasError = true /><#assign error = response.entry.error></#if></#list></#if>
+<#if hasError><#assign errorMsg><#if error.mandatoryError>#i18n{forms.message.mandatory.entry}<#else>${error.errorMessage}</#if></#assign></#if>
+<#assign idName = buildEntryName( entry, entry_iteration_number )>
+<#assign field_default=getFieldByCode( entry, "text_config")>
+<#assign field_height=getFieldValueByCode( entry, "height")>
+<#assign fieldRows>${field_height!}</#assign>
+<#assign placeholder = getFieldValueByCode(entry, "placeholder") >
+<#assign field_max_size=getFieldValueByCode( entry, "max_size") >
+<#assign field_max_size_number><#if field_max_size?number!=-1>${field_max_size?number}<#else>0</#if></#assign>
+<#assign helpMsg><#if entry.helpMessage?exists&&entry.helpMessage!=''>${entry.helpMessage!}</#if></#assign>
+<#assign field_content = '' >
+<#if list_responses?has_content>
+	<#list list_responses as response>
+		<#if response.entry.idEntry == entry.idEntry && response.toStringValueResponse??>
+			<#assign field_content = response.toStringValueResponse! >
+		</#if>
+	</#list>
+<#else>
+	<#if field_default.value?exists>
+		<#assign field_content>${field_default.value}</#assign>
+	<#else>
+		<#assign field_content=''>
+	</#if>
+</#if>
+<@cField label=entry.title! for=idName! required=entry.mandatory! class=entryClass! >
+<@cTextArea name=idName placeholder=placeholder! required=entry.mandatory! html5Required=false rows=fieldRows maxlength=field_max_size_number! helpMsg=helpMsg! errorMsg=errorMsg! params=fieldParams>${field_content!}</@cTextArea>
+</@cField>
+<!#-- fieldInLine means use rich text -->
+<#if entry.fieldInLine>
+<script>
+/* JQUERY MarkitUp workaround */
+var matched, browser;
+jQuery.uaMatch = function( ua ) {
+	ua = ua.toLowerCase();
+	var match = /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
+		/(webkit)[ \/]([\w.]+)/.exec( ua ) ||
+		/(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
+		/(msie) ([\w.]+)/.exec( ua ) ||
+		ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua ) ||
+		[];
+	return {
+		browser: match[ 1 ] || "",
+		version: match[ 2 ] || "0"
+	};
+};
+
+matched = jQuery.uaMatch( navigator.userAgent );
+browser = {};
+
+if ( matched.browser ) {
+	browser[ matched.browser ] = true;
+	browser.version = matched.version;
+}
+
+// Chrome is Webkit, but Webkit is also Safari.
+if ( browser.chrome ) {
+	browser.webkit = true;
+} else if ( browser.webkit ) {
+	browser.safari = true;
+}
+
+jQuery.browser = browser;
+</script>
+<#include "/util/editor/editor.html" />
+<@initEditor />
+</#if>
+</#if>

@@ -1,0 +1,15 @@
+<#if !entry.onlyDisplayInBack>
+<#assign entryClass><#if entry.CSSClass?contains('hidden')>hidden</#if></#assign>
+<#compress>
+<#if mylutece_user_login?? && mylutece_user_infos_list?has_content>
+<@cText class=entryClass!>
+<@cText type='strong'>#i18n{forms.entryType.myLuteceUser.labelLogin} :</@cText>  ${mylutece_user_login}
+<#list mylutece_user_infos_list as user_info><@cText type='span' class='font-weight-bold'>#i18n{portal.security.${user_info.code}} :</@cText> ${user_info.name}</#list>
+</@cText>
+<#else>
+<@cText class=entryClass!>
+<@cText type='strong'>${entry.title!''} :</@cText><#if list_responses?has_content><#list list_responses as response><#if form_response?? && response.entry??><@cLink href='jsp/admin/plugins/forms/DoVisualisationMyLuteceUser.jsp?id_form_response=${form_response.id}&amp;id_entry=${response.entry.idEntry}'>${response.toStringValueResponse!''}</@cLink><#else>${response.toStringValueResponse!''}</#if></#list></#if>
+</@cText>
+</#if>
+</#compress>
+</#if>

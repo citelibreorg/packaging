@@ -1,0 +1,27 @@
+<@cRow id="app-form-list">
+ 	<@cCol>
+		<@cContainer>
+			<@messages infos=infos errors=errors />		
+			<@cTitle level=2 class='h3'><#if title??>${title}<#else>#i18n{appointment.xpage.formList.labelFormList}</#if></@cTitle>
+			<@listGroup>
+			<#if form_list?has_content>
+				<#assign compteur=form_list?size - 1>
+				<#list 0..compteur as item>
+					<@listGroupItem class='bg-transparent mb-3 w-100'>
+						<@link class='btn btn-oultine ms-5  d-flex align-items-center ' href='jsp/site/Portal.jsp?page=appointment&view=getViewAppointmentCalendar&id_form=${form_list[item].idForm}' target='_blank' title='#i18n{portal.site.admin_page.labelShowPage}'>
+						<#if icons?? && icons[item]?? && icons[item]!='NULL'>
+							<@img url="${icons[item]}" class="icon img-fluid" alt="" />
+						<#else>
+							<@img url="images/local/skin/icon_appointment.png" class="icon img-fluid" alt="" />
+						</#if>
+						<@p class='text-white ms-5'>${form_list[item].title}</@p>
+						</@link>
+					</@listGroupItem>
+				</#list>
+				<#else>
+					#i18n{appointment.xpage.formList.noForm}
+				</#if>
+			</@listGroup>
+		</@cContainer>
+	</@cCol>
+</@cRow>

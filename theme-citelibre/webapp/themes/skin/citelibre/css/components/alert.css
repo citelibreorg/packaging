@@ -1,0 +1,194 @@
+/*** 		 						***/
+/*** 	Alert 						***/
+/*** 		 						***/
+.alert {
+    border: 0;
+    border-radius: 0;
+    padding: var(--spacing-m );
+	margin: 0;
+	display: flex;
+    justify-content: center;
+	flex-direction: column;
+}
+
+.alert .alert-header {
+    display: flex;
+    justify-content: space-between;
+	align-items: center;
+	flex: 0 1 100%;
+}
+
+.alert:not(.alert-dismissible) .alert-header{
+	justify-content: flex-start;
+}
+
+.alert .alert-header .alert-icon{
+    display: flex;
+    align-items: center;
+}
+
+.alert .alert-header .alert-icon .paris-icon{
+    transform: none;
+}
+
+.alert .alert-header .alert-text{
+	text-wrap: balance;
+	overflow-wrap: break-word;
+}
+
+.alert .alert-header .alert-text,
+.alert .alert-content{
+    width: 100%;
+    padding-inline-start: var(--spacing-xs);
+	font-family: var( --font-family-list );
+    font-weight: 400;
+	font-size: var( --font-m );
+    line-height: var(--line-height-m);
+}
+
+.alert .alert-header .alert-text a:not(.btn),
+.alert .alert-header .alert-text p{
+	padding: 0;
+	margin: 0;
+}
+
+.alert .alert-header .alert-text a,
+.alert .alert-header .alert-text .alert-title{
+	font-weight: 600;
+	font-size: var( --font-m );
+}
+
+.alert .alert-header .close {
+	flex: 1;
+	position: static;
+	border-left: calc( var(--spacing-xxs ) / 4 ) solid rgba(255, 255, 255, 0.5);
+	opacity: 1;
+	padding: 0
+}
+
+.alert .alert-header .close:hover .paris-icon{
+	stroke: var( --main-danger-color );
+	stroke-width: calc( var(--spacing-xxs ) / 2 );
+}
+
+.alert .alert-content{
+    margin-block-start: var(--spacing-xs);
+	padding-inline-start: 0;
+    color: var(--main-color);
+}
+
+.alert .alert-content:empty{
+    display: none;
+}
+
+@media (max-width: 575.98px) {
+	.alert .alert-header,
+	.alert .alert-header .alert-icon{
+		padding: 0;
+	}
+	
+	
+	.alert .alert-text, 
+	.alert .alert-content{
+		font-size: var( --font-sm );
+		word-break: break-all;
+	}
+}
+
+/* Small devices and below (small phone, 360px and below) */ 
+@media ( max-width:  358.98px ) {
+	.alert {
+		padding: var(--spacing-xs );
+	}
+	
+	.alert .alert-header .alert-text a, 
+	.alert .alert-header .alert-text .alert-title {
+		font-size: var(--font-sm);
+	}
+}
+
+
+/************************/
+/* Alert variations 	*/
+/************************/
+.alert-primary{
+	background-color: var( --main-info-color-light);
+}
+
+.alert-danger{
+	background-color: var( --main-danger-color-lightest);
+}
+
+.alert-danger .alert-title {
+	color: var( --main-danger-color-text);
+}
+
+.alert-warning{
+	background-color: var( --main-warning-color-lightest);
+}
+
+.alert-warning .alert-title {
+	color: var( --main-warning-color-text);
+}
+
+.alert-success{
+	background-color: var( --main-success-color-lightest);
+}
+
+.alert-success .alert-title {
+	color: var( --main-success-color-text);
+}
+
+/************************/
+/* Outline alert box 	*/
+/************************/
+.alert-outline{
+	background-color: var( --white-color );
+	border-left: 4px solid transparent;
+}
+
+.alert-outline.alert-danger{
+	background-color: var( --main-danger-color-lightest ) !important;
+	border-color: var( --main-danger-color-lightest ) !important;
+	border-left-color: var( --main-danger-color ) !important;
+}
+
+.alert-outline.alert-danger .alert-title{
+	color: var( --main-danger-color-text );
+}
+.alert-outline.alert-warning{
+	background-color: var( --main-warning-color-lightest ) !important;
+	border-color: var( --main-warning-color-lightest ) !important;
+	border-left-color: var( --main-warning-color ) !important;
+}
+
+.alert-outline.alert-warning .alert-title{
+	color: var( --main-warning-color-text );
+}
+
+.alert-outline.alert-primary{
+	background-color: var( --main-info-color-light ) !important;
+	border-color: var( --main-info-color-light ) !important;
+	border-left-color: var( --main-info-color ) !important;
+}
+
+.alert-outline.alert-primary .alert-title{
+	color: var( --main-info-color-text );
+}
+
+.alert-outline.alert-success{
+	background-color: var( --main-success-color-lightest) !important;
+	border-color: var( --main-success-color-lightest ) !important;
+	border-left-color: var( --main-success-color ) !important;
+}
+
+.alert-outline.alert-success .alert-title{
+	color: var( --main-success-color-text );
+}
+
+.alert-outline .close .paris-icon{
+	fill: var( --main-danger-color );
+	color: var( --main-danger-color );
+	transform: translate(15px,0);
+}
+

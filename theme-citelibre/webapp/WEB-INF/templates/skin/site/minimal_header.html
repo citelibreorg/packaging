@@ -1,0 +1,28 @@
+<#include "../themes/theme_citelibre_commons.html">
+<#if lutece_name??><#assign favourite=lutece_name!'LUTECE' /><#else><#assign favourite='LUTECE'></#if>
+<!DOCTYPE html>
+<html lang="${user_context_language!'fr'}">
+<head>
+<title>${page_title!}</title>
+<base href="${base_url}">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="${encoding!'UTF-8'}">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<!-- Le style -->
+<!-- Theme CSS include -->
+<#if themeCSSLinks?? >
+<@themeCSSLinks />
+</#if>
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+<link rel="manifest" href="./site.webmanifest">
+<link rel="mask-icon" href="./safari-pinned-tab.svg" color="#071f32">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body data-bs-theme="light">
+<!-- Accessibility Skip Nav Menu-->
+<@skipNav skipMenu=false target='main'  />
+<@cMainNav title=lutece_name!'LUTECE' class='minimal' hasMenu=false isFixed=false isSidebar=false hasLogin=false mainClass='minimal' />

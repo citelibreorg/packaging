@@ -1,0 +1,32 @@
+<@cContainer hasHeader=false>
+    <@cRow>
+        <@cCol cols='12 col-md-8 col-lg-10'>
+            ${page_content_col1}
+        </@cCol>
+		 <@cCol cols='12 col-md-4 col-lg-2'>
+            ${page_content_col2}
+        </@cCol>
+    </@cRow>
+    <@cRow>
+        <@cCol>
+            ${page_content_col3}
+        </@cCol>
+    </@cRow>
+</@cContainer>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+	const video = document.querySelector('video')
+	if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
+	  // The video element will autoplay with audio.
+	  console.log('allowed')
+	} else if (navigator.getAutoplayPolicy("mediaelement") === "allowed-muted") {
+	  // Mute audio on video
+	  // video.muted = true; 
+	  console.log('allowed-muted')
+	} else if (navigator.getAutoplayPolicy("mediaelement") === "disallowed") {
+	  // Set a default placeholder image.
+	  console.log('disallowed')
+	  // video.poster = "http://example.com/poster_image_url";
+	}
+})
+</script>

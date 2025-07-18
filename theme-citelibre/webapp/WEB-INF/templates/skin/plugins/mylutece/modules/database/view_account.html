@@ -1,0 +1,48 @@
+<@cContainer>
+    <@cRow>
+        <@cCol>
+            <@cTitle>#i18n{module.mylutece.database.xpage.view_account.pageTitle}</@cTitle>
+            <!-- Form container -->
+            <@cSection class="form-container">
+                <!-- Form -->
+                <@cForm  name="modifyAccount" action='jsp/site/Portal.jsp?page=mylutecedatabase&amp;action=changePassword' >   
+                <#if show_input_login>
+                    <@cField>
+                        <@cInput readonly=true name='login' value='${user.login}' />
+                        <@cLabel for='login'>#i18n{module.mylutece.database.xpage.view_account.login}</@cLabel>
+                    </@cField>
+                </#if>
+                <@cField>
+                    <@cInput readonly=true name='email' value='${user.email}' />
+                    <@cLabel for="email">#i18n{module.mylutece.database.xpage.view_account.eMail}</@cLabel>
+                </@cField>
+                <@cField>
+                    <@cInput readonly=true name="last_name" value="${user.lastName}" />
+                    <@cLabel for="last_name">#i18n{module.mylutece.database.xpage.view_account.lastName} </@cLabel>
+                </@cField>
+                <@cField>
+                <@cInput readonly=true name="first_name" value="${user.firstName}" />
+                    <@cLabel for="first_name">#i18n{module.mylutece.database.xpage.view_account.firstName}</@cLabel>
+                </@cField>
+                <@cField>
+                    <a class="btn-outline-sm" href="jsp/site/Portal.jsp?page=mylutecedatabase&action=modifyAccount">
+                        <i class="fas fa-user-edit"></i> #i18n{module.mylutece.database.xpage.view_account.btnModifyAccount}
+                    </a>
+                    <button class="btn-outline-sm" id="button-subscribe" type="submit" name="changePasswordBtn">
+                        <i class="fas fa-key"></i> #i18n{module.mylutece.database.xpage.view_account.btnChangePassword}
+                    </button>
+                </@cField>
+                <@cField>
+                    <a class="btn-outline-danger" href="jsp/site/Portal.jsp?page=mylutecedatabase&action=delete">
+                        <i class="fas fa-trash"></i> #i18n{module.mylutece.database.xpage.view_account.btnDeleteAccount}
+                    </a>
+                </@cField>
+                </@cForm>     
+                <!-- end of form -->
+            </@cSection> 
+            <!-- end of form container -->
+        </@cCol> <!-- end of col -->
+    </@cRow> <!-- end of row -->
+</@cContainer> 
+<!-- end of container -->
+<script>$(function(){ $('.ex-header').hide()});</script>

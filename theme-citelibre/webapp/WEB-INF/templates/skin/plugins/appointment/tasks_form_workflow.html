@@ -1,0 +1,19 @@
+<@cContainer>
+	<@cRow>
+		<@cCol>
+			<@cForm action='jsp/site/Portal.jsp?page=appointment' params='enctype="multipart/form-data"'>
+				<@cFieldset legend='#i18n{appointment.taskFormWorkflow.pageTitle}'>
+					<@messages infos=infos errors=errors/>
+					<@cInput type='hidden' name='action' value='doProcessWorkflowAction' />
+					<@cInput type='hidden' name='id_action' value='${id_action}' />
+					<@cInput type='hidden' name='refAppointment' value='${refAppointment}' />
+					${tasks_form}
+					<@formGroup>
+						<@button type='submit' name='save' buttonIcon='check' title='#i18n{workflow.tasks_form_test_workflow.button_save}' />
+						<@button type='submit' name='back' value='back' buttonIcon='times' title='#i18n{workflow.tasks_form_test_workflow.button_cancel}' color='btn-default' />
+					</@formGroup>
+				</@cFieldset>
+		    </@cForm>
+		</@cCol>
+ 	</@cRow>
+ </@cContainer>

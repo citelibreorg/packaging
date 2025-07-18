@@ -1,0 +1,76 @@
+<#if !entry.onlyDisplayInBack || is_completeness_bo>
+<#assign hasError = false />
+<#assign hasTitle=true>
+<#assign legendClass='inputs'>
+<#assign checkImg=''>
+<#assign idName = buildEntryName( entry, entry_iteration_number )>
+<#assign inLine = entry.fieldInLine>
+<#if list_responses??>
+<#list list_responses as response>
+<#if response.entry.idEntry == entry.idEntry && response.entry.error?? && response.entry.error.isDisplayableError>
+<#assign hasError = true />
+<#assign error = response.entry.error>
+<#assign legendClass +=' is-invalid'>
+</#if>
+</#list>
+</#if>
+<#list entry.fields as field><#if field.noDisplayTitle><#assign hasTitle=false><#assign legendClass+=' visually-hidden'></#if></#list>
+<@cFieldset id='${entry.idEntry}' legend=entry.title legendClass=legendClass class=entry.CSSClass! required=entry.mandatory >
+	<#if entry.helpMessage?exists&&entry.helpMessage!=''><@cFormHelp id=idName! label=entry.helpMessage! /></#if>
+	<#list entry.fields as field>
+		<#assign isChecked=false >
+		<#if field.code == 'answer_choice'>
+			<#assign idName = buildEntryName( entry, entry_iteration_number )>
+			<#assign title><#if hasTitle>${field.title}<#else>${entry.title}</#if></#assign>
+			<#assign labelClass><#if field.noDisplayTitle && hasTitle=true>visually-hidden-focusable</#if></#assign>
+			<#if list_responses?? && list_responses?has_content>
+				<#list list_responses as response>
+					<#if response.entry.idEntry == entry.idEntry && response.field??>
+						<#if response.field.idField == field.idField><#assign isChecked=true><#break></#if>
+					</#if>
+					<#if response.field??  && response.field.fileImage.url??><#assign checkImg><@cImg src=response.field.fileImage.url alt=response.field.title labelDescribedBy=response.field.title showLabelDescribedBy=true  params=' height="80"' /></#assign></#if>
+				</#list>
+			<#else>
+				<#if field.defaultValue><#assign isChecked=true></#if>
+			</#if> 
+			<#assign fieldParams><#if field.comment?? && field.comment != ''>title="${field.comment}"</#if><#if field.conditionalQuestions?exists&&field.conditionalQuestions?size!=0><#assign idName='div'><#if entry_iteration_number?has_content ><#assign idName = 'div_nIt' + entry_iteration_number + '_'></#if><#assign idConditional = idName + field.idField> onclick="doCheckboxEffect(this.checked,${idConditional}.id);"</#if></#assign>
+			<#if checkImg != ''>${checkImg!}</#if>
+			<#assign isRequiredLabel=(!hasTitle && entry.mandatory) >
+			<@cCheckbox name=idName! label=title labelClass=labelClass id='${idName}_${field.idField}' value='${field.idField!}' inline=entry.fieldInLine! checked=isChecked required=entry.mandatory! html5Required=false showRequiredLabel=isRequiredLabel params=fieldParams />
+		</#if>
+	</#list>
+	<#if hasError>
+	<#assign errorMsg><#if error.mandatoryError>#i18n{forms.message.mandatory.entry}<#else>${error.errorMessage}</#if></#assign>
+	<@cFormError id=idName label=errorMsg />
+	</#if>
+	<#if inLine><#if list_entry_children??><#list list_entry_children as children><#if children.conditionalEntries??>${children.conditionalEntries}</#if></#list></#if></#if>
+</@cFieldset>
+<#if list_responses??>
+<#list list_responses as response>
+<script>
+<#if entry_iteration_number?has_content >idName = '_nIt' + ${entry_iteration_number} + '_';<#else>let idName = '';</#if>
+<#if response.entry.idEntry == entry.idEntry && response.field??>
+const baliseId${response.field.idField} = "div" + idName + ${response.field.idField};
+if(document.getElementById && document.getElementById(baliseId) != null){
+	document.getElementById(baliseId).style.visibility='visible';
+	document.getElementById(baliseId).style.display='block';
+}
+</#if>
+</script>
+</#list>
+<#else>
+<#list entry.fields as field>
+<#if field.defaultValue && field.conditionalQuestions?exists && field.conditionalQuestions?size != 0>
+<script>
+var idName = '';
+<#if entry_iteration_number?has_content >idName = '_nIt' + ${entry_iteration_number} + '_';</#if>
+var baliseId = "div" + idName + ${field.idField};
+if(document.getElementById && document.getElementById(baliseId) != null){
+	document.getElementById(baliseId).style.visibility='visible';
+	document.getElementById(baliseId).style.display='block';
+}
+</script>
+</#if>
+</#list>
+</#if>
+</#if>

@@ -1,0 +1,75 @@
+/*** 										***/
+/*** Utils 									***/
+/*** 										***/
+/* Helper classes 							 */
+.img-home {
+	background-size: contain;
+	width: 20rem;
+}
+
+.hidden {
+	display: none !important;
+}
+
+/* Thumbnails */
+.img-thumbnail-xs {
+    max-width: 15% !important;
+}
+
+.img-thumbnail-sm {
+    max-width: 25% !important;
+}
+
+.img-thumbnail-md {
+    max-width: 50% !important;
+}
+
+.img-thumbnail-lg {
+    max-width: 75% !important;
+}
+
+/* Remove shadow on card... 		*/
+.no-shadow {
+	box-shadow: none !important;
+}
+
+.vh-50{ 
+	height:50vh; 
+}
+
+/* TODO TO REMOVE ASAP IF BS 5 */
+.flex-1 {
+	flex: 1
+}
+
+.z-1{
+	z-index: 1;
+}
+
+/* Go to Top */
+.btn-gototop {
+	position: fixed !important;
+	bottom: 3rem !important;      
+	right: 1.5rem !important; 
+}
+
+@media (max-width: 992px) {
+	 .btn-gototop {
+		right: .25rem !important; 
+		padding: var(--spacing-xxs) var(--spacing-xs) !important;      
+		font-size: var(--font-xl) !important;      
+	} 
+	
+	.btn-gototop > .btn-label{
+		display: none;      
+	}
+}
+
+@media (prefers-reduced-motion) {
+	*, *::before, *::after {
+	  animation-duration: 0s !important;
+	  /* additional recommendation */
+	  transition: none !important;
+	  scroll-behavior: auto !important;
+	}
+}

@@ -1,0 +1,14 @@
+
+		<h2>#i18n{module.mylutece.cacheuserattribute.publicdashboard.title}</h2>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<tbody>
+					<#list userInformations_publicdashboard?keys as key>
+						<tr>
+							<td>${key}</td>
+							<td>${userInformations_publicdashboard[key]}</td>
+						</tr>
+					</#list>
+				</tbody>
+			</table>
+		</div>

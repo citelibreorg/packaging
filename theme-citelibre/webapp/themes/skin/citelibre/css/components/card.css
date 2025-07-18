@@ -1,0 +1,163 @@
+/*** 								***/
+/*** Card							***/
+/***  								***/
+.card{
+	background: var(--white-light-color) 0% 0% no-repeat padding-box;
+	border: 0;
+	border-radius: 0;
+	container-type: inline-size;
+}
+
+.card.secondary {
+	background: var( --white-color ) 0% 0% no-repeat padding-box;
+	border: 3px solid var(--blue-light);
+}
+
+.card .card-body{
+	padding : var(--spacing-m);
+}
+
+.card.card-floating .card-body{
+	padding : var(--spacing-ml)
+}
+
+.card .card-title, .card .card-text {
+	font-size: var(--font-m);
+	font-weight: 600;
+	line-height: var(--line-height-sm);
+	color: var(--main-color);
+}
+
+.card .card-title {
+	margin-block: 0;
+	font-weight: 600;
+}
+
+.card .card-title + .card-subtitle {
+	margin: 0;
+}
+
+.card .card-text {
+	margin-block-end: 0;
+	font-weight: 400;
+	display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-title-link {
+	font-weight: 800;
+	font-size: 1.8rem;
+	color: var(--main-color);
+	text-decoration: none;
+}
+
+/* Bullet Card Header Info 		*/
+.card.bullet .card-header:before{
+	position: absolute;
+	content: attr("data-bullet");
+}
+
+/* Header with img */
+.card-header.card-header-img{ 
+	min-height: 30rem; 
+	max-width: 100%; 
+	background-repeat: no-repeat; 
+	background-size: contain; 
+	background-position: center; 
+}
+
+/* Image wrapper */
+.card .card-figure{
+	overflow: hidden;
+	width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.card .card-img-top {
+	object-fit: cover;
+    height: 100%;
+}
+
+/* Floating card */
+.card-floating{
+	display: none;
+	position: absolute;
+	top: 1rem;
+	width: 100%;
+}
+
+.card-floating .card-header:hover{
+	cursor: pointer;
+}
+
+.card-floating .card-title-container {
+	width: 100%;
+    border-bottom: 0.6rem solid var(--white-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-block-end: var(--spacing-sm);
+	padding-block-end: var(--spacing-xs);
+}
+
+.card-floating.secondary .card-title-container {
+	border-color: var(--white-light-color);
+}
+
+.card-floating .close .paris-icon{
+	fill: var( --black-color );
+}
+
+.card-floating .card-title{
+	color: var(--main-color);
+	font-size: var(--font-l);
+	font-weight: 800;
+	line-height: 28px;
+}
+
+/* Card groups */
+.card-group .card, .card-deck .card {
+	height: 100%
+}
+
+/* Hover with effect */
+a:hover .card .card-figure .card-img-top{
+	transform: scale( 1.15 );
+}
+
+/* Media */
+.card .media .media-heading{
+	margin-block-start: 0;
+}
+
+@media (max-width: 575.98px) {
+	.card-header :is( h3, h4, h5, h6) {
+		margin-block-start:0;
+	}
+	
+	/* Help card         */
+	.card.info .card-header-separator, .card-header-separator + .btn.btn-link{
+		display: none;
+	}
+
+	.card.info .card-footer {
+		padding: 0 1.25rem;
+		border-top-color: var( --white-color );
+	}
+	
+}
+
+@media (max-width: 767.98px) {
+	.card .card-text {
+		margin-block-start: var(--spacing-xs);
+		font-size: var(--font-sm);
+	}
+
+	/* Floating card         */
+	.card-floating {
+		margin: 0 2rem 0 : var(--spacing-l);
+	}
+}

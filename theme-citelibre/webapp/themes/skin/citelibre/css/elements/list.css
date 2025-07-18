@@ -1,0 +1,48 @@
+ul,
+ol,
+li {
+	font-family: var(--font-family-list);
+	font-weight: 400;
+	line-height: var(--line-height-m);
+	font-size: var(--font-m);
+}
+
+/* Small devices and below (small phone, 360px and below) */ 
+@media ( max-width:  358.98px ) {
+	ul,
+	ol,
+	li{
+		font-size: var( --font-sm );
+		line-height: var( --line-height-sm );
+	}
+}
+
+ol li::marker {
+	font-weight: 600;
+}
+
+ol li::marker::after {
+	content: '.';
+}
+
+ul > li > ul:first-of-type,
+ol > li > ol:first-of-type{
+	margin-block-start: var( --spacing-xs );
+}
+/* 
+ul{
+	padding-inline-start: 0;
+} */
+
+/* Jquery Ui - Ovverides - REMOVE ASAP */
+.ui-menu-item > a{
+	color: var(--main-color);
+	padding: var(--spacing-xs);
+	text-decoration: none;
+	border-radius: 0;
+}
+
+.ui-menu-item:hover > a{
+	color: var(--white-color);
+	background-color: var(--main-color);
+}

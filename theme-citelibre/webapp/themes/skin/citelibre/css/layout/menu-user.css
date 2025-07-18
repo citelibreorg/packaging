@@ -1,0 +1,197 @@
+/*** 										***/
+/*** 	Menus User -mylutece 				***/
+/*** 										***/
+/*mylutece 					*/
+.main-header .navbar-nav.mylutece>.nav-item {
+	margin-right: 0;
+	width: 100%
+}
+
+.main-header .navbar-nav.mylutece .nav-link,
+.main-header .navbar-nav.mylutece .nav-link:hover,
+.main-header .navbar-nav.mylutece .dropdown .nav-link:hover .dropdown-item {
+	color: var(--main-info-color);
+	border: 0;
+}
+
+.main-header .navbar-nav.mylutece .user-name {
+	color: var(--main-info-color);
+	font-size: 1.8rem;
+	margin-inline: var(--spacing-xs)
+}
+
+.main-header .navbar-nav.mylutece .user-initials {
+	font-size: 1rem;
+	line-height: 1.2rem;
+	font-weight: 600;
+	padding: .5rem 0 0;
+	color: var(--white-color);
+	background-color: var(--main-info-color);
+	border-radius: 50%;
+	display: inline-block;
+	width: 2.4rem;
+	height: 2.4rem;
+	text-align: center;
+	letter-spacing: .1rem;
+}
+
+.main-header .navbar-nav.mylutece .nav-link .paris-icon-user {
+	height: 2.8rem;
+	width: 2.8rem;
+	fill: var(--main-info-color);
+	transition: none;
+	margin: 0;
+	translate: -1.5rem;
+}
+
+/* Dropdown Menumylutece				*/
+.main-header .navbar-nav.mylutece .dropdown {
+	height: 100%;
+	position: static;
+}
+
+.main-header .navbar-nav.mylutece .dropdown-menu{
+	max-height: fit-content;
+	max-height: -moz-fit-content;
+	background-color: var(--white-color);
+	max-width: 38rem;
+	left: auto;
+	right: var(--spacing-xl);
+	margin-top: var(--spacing-sm);
+	padding: var(--spacing-ml);
+	border: var(--spacing-xxs) solid var(--gray-color) !important;
+}
+
+.main-header .navbar-nav.mylutece .dropdown-menu::before {
+	content: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2251%22%20height%3D%2217%22%20viewBox%3D%220%200%2051%2017%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M25.5%200L3.8147e-06%2017H51L25.5%200Z%22%20fill%3D%22%23C3C3C3%22%2F%3E%3C%2Fsvg%3E');
+	position: absolute;
+	top: var(--menu-user-monparis-top);
+	right: var(--spacing-sm)
+}
+
+.main-header .navbar-nav.mylutece .dropdown-menu .dropdown-content{
+	text-align: center;
+}
+
+.main-header .navbar-nav.mylutece .dropdown-menu .dropdown-content p {
+	font-size: var(--font-sm);
+}
+
+.main-header .navbar-nav.mylutece .dropdown-menu .dropdown-content .dropdown-item span {
+	padding: 0;
+	border-left: 0;
+}
+
+/* Database user menu */
+.main-header.is-sidebar .navbar-nav.mylutece.db .dropdown-menu{
+	width: fit-content;
+}
+
+.main-header.is-sidebar .navbar-nav.mylutece.db .dropdown-menu.show {
+	padding-inline-start: 0%;
+}
+
+/* mylutece User - Sub Menu */
+.main-header .navbar-nav.mylutece .dropdown-menu .dropdown-content .navbar-nav.my-apps {
+	display: block;
+	color: var(--main-info-color);
+	height: auto;
+}
+
+.main-header .navbar-nav.mylutece .dropdown.show .nav-item.active .nav-link::before,
+.main-header .navbar-nav.mylutece .dropdown.show .nav-link:focus::before,
+.main-header .navbar-nav.mylutece .dropdown.show .nav-link:hover::before {
+	display: none;
+}
+
+.main-header .navbar-nav.mylutece .dropdown-item,
+.main-header .navbar-nav.mylutece .dropdown-item span,
+.main-header .navbar-nav.mylutece .dropdown-item:focus,
+.main-header .navbar-nav.mylutece .dropdown-item:hover {
+	width: auto;
+	background-color: var(--white-color);
+	font-size: var(--font-m);
+	font-weight: 600;
+	padding: 2rem 0;
+}
+
+.main-header.is-sidebar .navbar-nav.mylutece #monparis-apps,
+.main-header.is-sidebar .navbar-nav.mylutece #monparis-favs{
+	gap: var(--spacing-xxs);
+}
+
+@media (max-width: 767.98px) {
+	.main-header.is-sidebar .navbar.navbar-paris #main-site-menu #monparis-wrapper #dropdownMenuMonParisUser,
+	.main-header.is-sidebar .navbar.navbar-paris #main-site-menu #monparis-wrapper #dropdownMenuMonParisUser + .dropdown-menu .dropdown-content p:not(.show){
+		display: none !important;
+	}
+
+	.main-header.is-sidebar .navbar-paris #navbarMainMenu.open #main-site-menu .navbar-nav.mylutece{
+		padding-inline: var(--spacing-xs);
+		margin-block-start: calc( -1 * var(--spacing-xxl) );
+	}
+
+	.main-header.is-sidebar .navbar.navbar-paris #main-site-menu #monparis-wrapper #dropdownMenuMonParisUser + .dropdown-menu .dropdown-content #myluteceusername {
+		order: 1;
+		text-transform: capitalize;
+		font-size: var(--font-l);
+		border-block-end: 1px solid var(--white-color);
+		padding-block-end: var(--spacing-m);
+		width: 90%;
+		padding-inline-start: var(--spacing-xs);
+	}
+
+	.main-header.is-sidebar .navbar.navbar-paris #main-site-menu #monparis-wrapper #dropdownMenuMonParisUser + .dropdown-menu .dropdown-content #myluteceusername::before {
+		content: "Connexion";
+		display: block;
+		text-align: left;
+		position: relative;
+		left: calc( -1 * var(--spacing-m) );
+		font-weight: 700;
+		text-transform: uppercase;
+		font-size: var(--font-sm);
+		background-image: url('data:image/svg+xml,%3Csvg%20class%3D%22paris-icon%20paris-icon-user%20user-logo%22%20focusable%3D%22false%22%3E%3Cuse%20xlink%3Ahref%3D%22%23paris-icon-user%22%3E%3C%2Fuse%3E%3C%2Fsvg%3E'); 
+	}
+
+	.main-header.is-sidebar .navbar.navbar-paris #main-site-menu #monparis-wrapper #dropdownMenuMonParisUser + .dropdown-menu .dropdown-content .show.services{
+		align-self: flex-start;
+		text-transform: uppercase;
+	}
+	
+	.main-header.is-sidebar .navbar.navbar-paris #main-site-menu #monparis-wrapper #dropdownMenuMonParisUser + .dropdown-menu .dropdown-content .show:has( .btn.btn-link-primary ){
+		order: 2;
+		background-color: var(--main-danger-color);
+		margin-block-start: var(--spacing-m);
+	}
+
+	.main-header.is-sidebar .navbar-nav.mylutece #monparis-apps:not(:empty),
+	.main-header.is-sidebar .navbar-nav.mylutece #monparis-favs:not(:empty){
+		padding-block: var(--spacing-m);
+		gap: var(--spacing-xs);
+	}
+
+	.main-header.is-sidebar.menu-info .navbar-nav.mylutece #monparis-favs > .btn {
+		background-color: var(--white-color);
+		color: var(--main-info-color)
+	}
+
+	.main-header.is-sidebar.menu-info .navbar-nav.mylutece .nav-link .user-logo{
+		background-color: var(--white-color);
+		border-radius: 50%;
+	}
+
+	.main-header.is-sidebar .navbar-nav.mylutece .dropdown-menu {
+		border: 0 !important;
+	}
+
+	.main-header.is-sidebar.menu-info .navbar-nav.mylutece .nav-link,
+	.main-header.is-sidebar.menu-info .navbar-nav.mylutece .nav-link:hover,
+	.main-header.is-sidebar.menu-info .navbar-nav.mylutece .dropdown .nav-link:hover .dropdown-item,
+	.main-header.is-sidebar.menu-info .navbar-nav.mylutece .dropdown-content .h3,
+	.main-header.is-sidebar.menu-info .navbar-nav.mylutece .dropdown-content p,
+	.main-header.is-sidebar.menu-info .navbar-nav.mylutece .dropdown-content .btn-link-primary,
+	/* .main-header.is-sidebar.menu-info .navbar-nav.mylutece .dropdown-content .btn-outline-primary, */
+	.main-header.is-sidebar.menu-info .navbar-nav.mylutece .user-name {
+		color: var(--white-color)  !important;
+	}
+}

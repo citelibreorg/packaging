@@ -1,0 +1,248 @@
+/*** 										***/
+/*** 	Footer 								***/
+/*** 										***/
+footer {
+	background-color: var(--white-light-color);
+	color: var(--main-color);
+	padding-block-start: 1.2rem;
+	position: relative;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: 0;
+	font-size: var(--font-m);
+}
+
+#main.minimal + footer{
+	position: fixed;
+}
+
+/* Menu Service 								*/
+.main-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.main-footer img {
+	background-size: contain;
+	height: 4rem;
+}
+
+.main-footer a {
+    flex: 1;
+    font-family: var(--font-family-list);
+    font-size: var(--font-l);
+    padding-left: 2.4rem;
+    font-weight: 800;
+    line-height: 28px;
+}
+
+.main-footer .logo {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+	max-width: none;
+	width: 15rem;
+	flex-shrink: 0;
+}
+
+.main-footer .site {
+	text-transform: initial;
+}
+
+.main-footer hr {
+	width: .3rem;
+	height: 4.5rem;
+	background-color: var(--main-color);
+	margin-inline-start: 2.5rem;
+}
+
+/* Main menu in footer		*/
+.navbar-menu-footer,
+.social .navbar-menu-footer {
+	margin-block-start: 0;
+	margin-block-end: 2rem;
+}
+
+/* Footer links Menu 		*/
+footer .nav {
+	padding-block:var( --spacing-m );
+	border-block-start: var(--border-normal) solid var(--blue-light);
+}
+
+footer a,
+footer .nav-link {
+	color: var(--main-color);
+	font-size: 1rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	text-decoration: none;
+	letter-spacing: .1rem;
+	padding-block: 0;
+}
+
+footer a:hover,
+footer .nav-link:hover,
+footer a:active,
+footer .nav-link:active,
+footer a:focus,
+footer .nav-link:focus {
+	color: var(--main-color);
+	text-decoration: underline;
+}
+
+/* Footer Social Links 		*/
+footer.social {
+	padding-block-start: 0;
+}
+
+footer.social .col {
+	padding: 0;
+}
+
+footer.social .main-footer {
+	height: auto;
+}
+
+footer.social .main-footer .site {
+	flex: 1;
+	padding-inline-start: 1.75rem;
+}
+
+footer.social .main-footer .logo {
+	margin-inline-end: 2.5rem;
+	padding-inline-start: 0;
+	flex: 0
+}
+
+footer.social .main-footer hr {
+	margin-inline-start: 0;
+}
+
+footer.social .main-footer .navbar {
+	padding: 3rem 0;
+}
+
+footer.social .main-footer .navbar .nav {
+	margin: 0;
+}
+
+footer.social .navbar .nav-link {
+	padding: 1rem;
+	font-size: 1rem;
+	line-height: 1.3rem;
+	font-weight: 600;
+	transition: color .3s ease;
+}
+
+.social-links {
+	margin: 4rem auto;
+}
+
+.paris-footer-social-title {
+	color: var(--white-color);
+	font-size: 1.3rem;
+	margin-block-end: 1.5rem;
+	width: 100%
+}
+
+/* Social toolbar */
+.social-link {
+	display: block;
+}
+
+/* Sidebar  + Footer */
+#layout-sidebar-wrapper+.social .main-footer {
+	justify-content: flex-start !important;
+	padding-inline-start: 1rem;
+  }
+  
+
+@media (max-width: 354.8px) {
+	/* Footer				 */
+	.main-footer a {
+		font-size: 1rem;
+		padding-inline-start: 1.4rem;
+	}
+
+	.main-footer hr {
+		margin-inline-start: 1.5rem;
+	}
+
+	.main-footer img {
+		height: 40%;
+	}
+}
+
+@media (max-width: 575.98px) {	
+	footer {
+		position: relative;
+		margin-block-start: var(--spacing-m);
+	}
+
+	footer .nav {
+		flex-wrap: wrap;
+		justify-content: center;
+		flex-direction: row;
+		flex-basis: 100%;
+	}
+
+	footer .navbar {
+		display: block;
+		padding-inline: 0;
+	}
+
+	footer .navbar .navbar-brand,
+	footer .nav .nav-item .nav-link {
+		text-align: center;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	footer .nav-link:hover {
+		border-block-end: none;
+		padding-block-end: 0.5rem;
+		text-decoration: underline
+	}
+
+	footer.social .main-footer {
+		margin-block-start: 0;
+	}
+	
+	.main-footer a {
+    	font-size: var(--font-sm);
+	}
+}
+
+@media (max-width: 767.98px) {
+	footer.social .navbar .nav {
+		flex-wrap: wrap;
+	}
+	footer.social .main-footer .logo {
+	 flex: 1;
+	} 
+}
+
+/* FOOTER Specific */
+@media (max-width: 1899.98px) {
+	footer.social .row .main-footer {
+		margin: 0;
+	}
+
+	footer.social .main-footer .logo {
+		margin-inline-start: 0;
+	}
+
+	footer.social .navbar {
+		padding-inline-start: 0;
+		margin-block-end: 2rem;
+	}
+
+	footer.social .social-links {
+		width: 100%;
+	}
+}

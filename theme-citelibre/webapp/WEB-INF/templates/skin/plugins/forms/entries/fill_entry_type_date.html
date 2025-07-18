@@ -1,0 +1,16 @@
+<#if !entry.onlyDisplayInBack || is_completeness_bo>
+<#assign default = ''>
+<#assign hasError = false />
+<#if getError( list_responses, entry )?? ><#assign error = getError( list_responses, entry ) ></#if>
+<#if list_responses??><#list list_responses as response><#if response.entry.idEntry == entry.idEntry && response.entry.error?? && response.entry.error.isDisplayableError><#assign hasError = true /><#assign error = response.entry.error><#assign errorMsg><#if error.mandatoryError>#i18n{forms.message.mandatory.entry}<#else>${error.errorMessage}</#if></#assign></#if></#list></#if>
+<#assign helpMsg><#if entry.helpMessage?exists && entry.helpMessage!=''>${entry.helpMessage}</#if></#assign>
+<#assign entryClass><#list entry.CSSClass?split(' ') as laClass><#if !laClass?starts_with( 'col-' )>${laClass!}</#if></#list></#assign>
+<#if getResponse( list_responses, entry )?? > <#assign response = getResponse( list_responses, entry ) ></#if>
+<#assign idName = buildEntryName( entry, entry_iteration_number ) >
+<#assign placeholder = getFieldValueByCode(entry, "placeholder") >
+<#assign field = getFieldByCode( entry, "default_date_value" ) >
+<#if response?? && response.responseValue??><#assign default=response.responseValue?number?number_to_date?iso_local><#elseif field.valueTypeDate?? ><#assign default=field.valueTypeDate?iso_local></#if>
+<@cField label=entry.title! for=idName! required=entry.mandatory! class=entryClass! > 
+<@cInputDate name=idName options={} value=default! placeholder=placeholder! autocomplete='off' required=entry.mandatory! html5Required=false helpMsg=entry.helpMessage! errorMsg=errorMsg! />
+</@cField>
+</#if>

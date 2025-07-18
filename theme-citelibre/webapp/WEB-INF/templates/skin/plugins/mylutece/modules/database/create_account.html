@@ -1,0 +1,123 @@
+<@cContainer>
+    <@cRow>
+        <@cCol>
+            <@cTitle>#i18n{module.mylutece.database.xpage.create_account.pageTitle}</@cTitle>
+            <@cText>Fill out the form below to sign up for City Pack. Already signed up? Then just <a class="white" href="jsp/site/Portal.jsp?page=mylutece&action=login">Log In</a></@cText> 
+            <!-- Sign Up Form -->
+            <@cSection class="form-container">
+                <#if error_code?has_content >
+                    <#assign typeClass = "class=\"error\"" />
+                    <#if error_code = "error_mandatory_fields">
+                        <div class="alert alert-danger">#i18n{module.mylutece.database.message.account.errorMandatoryFields}</div>
+                    <#if !(user.login?has_content)>
+                        <#assign classLogin = typeClass />
+                    </#if>
+                    <#if !(user.password?has_content)>
+                        <#assign classPassword = typeClass />
+                    </#if>
+                    <#if !(user.confirmation?has_content)>
+                        <#assign classConfirmation = typeClass />
+                    </#if>
+                    <#if !(user.lastName?has_content)>
+                        <#assign classLastName = typeClass />
+                    </#if>
+                    <#if !(user.firstName?has_content)>
+                        <#assign classFirstName = typeClass />
+                    </#if>
+                    <#if !(user.email?has_content)>
+                        <#assign classEmail = typeClass />
+                    </#if>
+                </#if>
+                <#if error_code = "error_confirmation_password">
+                    <div class="alert alert-danger">#i18n{module.mylutece.database.message.account.errorConfirmation}</div>
+                    <#assign classPassword = typeClass />
+                    <#assign classConfirmation = typeClass />
+                </#if>
+                <#if error_code = "error_login_already_exists">
+                    <div class="alert alert-danger">#i18n{module.mylutece.database.message.create_account.errorLogin}</div>
+                    <#assign classLogin = typeClass />
+                </#if>
+                <#if error_code = "error_syntax_email">
+                    <div class="alert alert-danger">#i18n{module.mylutece.database.message.account.errorBadEmail}</div>
+                    <#assign classEmail = typeClass />
+                </#if>
+                <#if error_code = "error_sending_email">
+                    <div class="alert alert-danger">#i18n{module.mylutece.database.message.create_account.errorSendingEmail}</div>
+                    </#if>
+                    <#if error_code = "error_captcha">
+                    <div class="alert alert-danger">#i18n{module.mylutece.database.message.create_account.errorCaptcha}</div>
+                </#if>
+                <#if error_code = "password_minimum_length">
+                    <div class="alert alert-danger">${password_minimum_length!}</div>
+                    <#assign classPassword = typeClass />
+                    <#assign classConfirmation = typeClass />
+                </#if>
+                <#if error_code = "password_format">
+                    <div class="alert alert-danger">${password_format_message!!}</div>
+                    <#assign classPassword = typeClass />
+                    <#assign classConfirmation = typeClass />
+                </#if>
+            </#if>
+            <#if action_successful?has_content>
+                <form role="form" id="createAccount" name="createAccount" action="${action_successful}" method="post">
+                    <p class="text-black">#i18n{module.mylutece.database.message.create_account.success}</p>
+                    <button class="btn-outline-sm" id="button-return" type="submit" name="BtnBack" >
+						#i18n{module.mylutece.database.xpage.account.btnBack}
+					</button>
+                </form>
+            <#elseif action_validation_email?has_content>
+                <form role="form" id="createAccount" name="createAccount" action="${action_validation_email}" method="post">
+                    <p class="text-black">#i18n{module.mylutece.database.message.create_account.validation.email}</p>
+					<button class="btn-outline-sm" id="button-return" type="submit" name="BtnBack" >
+						#i18n{module.mylutece.database.xpage.account.btnBack}
+					</button>                
+				</form>
+            <#elseif action_validation_success?has_content>
+                <form role="form" id="createAccount" name="createAccount" action="${action_validation_success}" method="post">
+                    <p class="text-black">#i18n{module.mylutece.database.message.create_account.validation.success}</p>
+                    <button class="btn-outline-sm" id="button-return" type="submit" name="BtnBack" >
+						#i18n{module.mylutece.database.xpage.account.btnBack}
+					</button>    
+                </form>
+            <#else>
+                <@cForm name='createAccount' action='jsp/site/plugins/mylutece/modules/database/DoCreateAccount.jsp'>
+                    <@input type='hidden' name='plugin_name' value='${plugin_name}' />
+                    <#if show_input_login>
+                        <@cField>
+                            <@cInput name='login' value='${(user.login)?if_exists}' />
+                            <@cLabel for='login'>#i18n{module.mylutece.database.xpage.create_account.login}</@cLabel>
+                        </@cField>
+                    </#if>
+                    <@cField>
+                        <@cInput name='email' value='${(user.email)?if_exists}' />
+                        <@cLabel for='email'>#i18n{module.mylutece.database.xpage.create_account.eMail}</@cLabel>
+                    </@cField>
+                    <@cField>
+                        <@cInput type='password' name='password' />
+                        <@cLabel for='password'>#i18n{module.mylutece.database.xpage.create_account.password}</@cLabel>
+                    </@cField>
+                    <@cField>
+                        <@cInput type='password' name='confirmation_password' />
+                        <@cLabel for='confirmation_password'>#i18n{module.mylutece.database.xpage.create_account.confirmation}</@cLabel>
+                    </@cField>
+                    <@cField>
+                        <@cInput name='first_name' value='' />
+                        <@cLabel for='first_name'>#i18n{module.mylutece.database.xpage.create_account.firstName}</@cLabel>
+                    </@cField>
+                    <@cField>
+                        <@cInput name='last_name' value='' />
+                        <@cLabel for='last_name'>#i18n{module.mylutece.database.xpage.create_account.lastName}</@cLabel>
+                    </@cField>
+                    <#if jcaptcha?exists><@cField>${jcaptcha}</@cField></#if>		
+                    <@cField>
+                        <@cBtn label='#i18n{module.mylutece.database.xpage.create_account.btnCreateAccount}' class='form-control-submit-button' type="submit" params='name="createAccountBtn"' />
+                    </@cField>
+                </@cForm>
+            </#if>
+            </@cSection> <!-- end of form container -->
+            <!-- end of sign up form -->
+        </@cCol> <!-- end of col -->
+    </@cRow> <!-- end of row -->
+</@cContainer> <!-- end of container -->
+<!-- end of header -->
+<script>$(function(){ $('.ex-header').hide()});</script>

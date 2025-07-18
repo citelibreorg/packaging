@@ -1,0 +1,13 @@
+<#if blog??>
+<@cContainer>
+	<@cRow>
+		<@cCol>
+			<#assign blogTitle><#if portlet_name??>${portlet_name!}<#else>${blog.contentLabel}</#if></#assign>
+			<@cArticle title=blogTitle>
+				${blog.description!}
+				${blog.htmlContent}
+			</@cArticle>
+		</@cCol>
+	</@cRow>
+</@cContainer>
+</#if>

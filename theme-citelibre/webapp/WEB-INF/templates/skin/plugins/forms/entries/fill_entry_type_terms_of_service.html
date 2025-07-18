@@ -1,0 +1,18 @@
+<#assign errorMsg=''>
+<#assign labelClass=''>
+<#if getError( list_responses, entry )?? ><#assign error = getError( list_responses, entry ) ></#if> 
+<#if error?? && error.isDisplayableError><#assign errorMsg><#if error.mandatoryError>#i18n{forms.message.mandatory.entry}<#else>${error.errorMessage}</#if></#assign></#if>    
+<#assign name = buildEntryName( entry, entry_iteration_number )>
+<#assign fieldAgreement = getFieldByCode( entry, "agreement" ) >
+<#if list_responses?? && getResponseContainingTheFieldWithCode( list_responses, "agreement" )?? ><#assign responseAgreement = getResponseContainingTheFieldWithCode( list_responses, "agreement" ) ></#if>
+<#list entry.fields as field> <#assign idName = buildEntryName( entry, entry_iteration_number )></#list>  
+<#assign fieldLink = getFieldByCode( entry, "link" ) >
+<#assign helpMsg><#if entry.helpMessage?exists&&entry.helpMessage!=''><@cFormHelp id=idName! label=entry.helpMessage! /></#if></#assign>
+<#if errorMsg?has_content && errorMsg!=''><#assign labelClass='is-invalid'></#if>
+<@cBlock class='d-flex align-items-baseline ${labelClass!}'>
+    <@cCheckbox name=name! label=entry.title! id='${name}_${fieldAgreement.idField}' value='${fieldAgreement.idField!}' labelClass='custom-tos ${labelClass}' inline=entry.fieldInLine! checked=(responseAgreement?? && responseAgreement.toStringValueResponse="true") helpMsg=helpMsg required=true html5Required=false />
+    <@cLink label=fieldLink.value class='ms-sm mt-sm' href='jsp/site/RunStandaloneApp.jsp?page=formsTermsOfService&id_entry=${entry.idEntry}' target='_blank'  params='onclick="javascript:openFormsTermsOfService(this.href); return false;" rel="noopener"'>
+        <@cInline class='visually-hidden visually-hidden-focusable'>[#i18n{portal.site.portal_footer.newWindow}]</@cInline>
+    </@cLink>
+</@cBlock>
+<#if errorMsg?has_content && errorMsg!=''><@cFormError id='${name}_${fieldAgreement.idField}_error' label=errorMsg /></#if>

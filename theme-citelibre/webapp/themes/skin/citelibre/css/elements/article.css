@@ -1,0 +1,121 @@
+/***  										***/
+/*** Article 								***/
+/***  										***/
+/* Title For Article  */
+article > h1:first-of-type,
+article > .h1:first-of-type,
+article header > .h1:first-of-type {
+	color: inherit;
+}
+
+article > .h1::after, 
+article > header>.h1::after {
+    content: "";
+    border-block-end: inherit;
+	display: inherit;
+    margin-block-start: inherit;
+}
+
+article > h2:first-of-type,
+article header > h2:first-of-type {
+	color: var(--main-danger-color);
+	margin-block-start: 0;
+}
+
+article h2::after, 
+article header > h2::after {
+    content: "";
+    border-block-end: calc( var(--size-base) * 1.5 ) solid var(--gray-color);
+    display: block;
+    margin-block-start: var( --spacing-sm );
+}
+
+article .article-content h3+p~h3::before {
+    content: "";
+    border-block-start: calc( var(--size-base) * 1.5 ) solid var(--gray-color);
+	padding-block-start: var(--spacing-m);
+    display: block;
+}
+
+/* Utilities 	*/
+.article-standfirst {
+	font-weight: 600;
+	font-size: var( --font-l );
+	color: var(--main-info-color);
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+	.article-standfirst {
+		font-size: var(--font-ml);
+	}
+}
+
+article img {
+	max-width: 100%;
+}
+
+article table {
+	max-width: 95%;
+}
+
+article .article-content p {
+	padding-inline-end: var( --spacing-m );
+	padding-inline-start: 0;
+}
+
+article .article-content .info-box,
+article .info-box,
+.info-box {
+	background-color: var(--white-light-color );
+	font-weight: 600;
+	font-size: var(--font-sm);
+	padding: var(--spacing-sm) var(--spacing-ml);
+	display: flex;
+	justify-content: space-evenly;
+}
+
+article .article-content .content-frame p,
+.content-frame p {
+	padding: 0;
+}
+
+/* X Small devices - IPhone 5 */
+@media (max-width: 767.98px) {
+	p,
+	article h2,
+	article h3,
+	article li{
+		text-wrap: balance;
+		text-wrap: pretty;
+		overflow-wrap: break-word;
+	}
+
+	.article-standfirst {
+		font-size: var(--font-m)
+	}
+
+	article{
+		padding-inline: var(--spacing-sm);
+	}
+
+	article h2~* {
+		margin-left: 0;
+	}
+
+	article h2,
+	article header>h2 {
+		padding-block-end: 0;
+	}
+
+	article h3,
+	article header>h3 {
+		padding: 1rem 0;
+		margin-left: 0;
+	}
+
+	
+	article .article-content p {
+		padding-inline-end: 0;
+	}
+
+}

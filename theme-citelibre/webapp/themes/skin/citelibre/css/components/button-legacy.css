@@ -1,0 +1,116 @@
+/* Btn action 					*/
+.btn-action{
+	background-color: var( --main-info-color );
+	border-color: var( --main-info-color );
+	color: var( --white-color );
+}
+
+.btn-action:active,
+.btn-action:not(.disabled):active,
+.btn-action:active .btn-label,
+.btn-action:active .paris-icon
+.btn-action:hover .btn-label,
+.btn:hover.btn-action .btn-label,
+.btn-action:hover,
+.btn-action:hover .paris-icon,
+.btn-action:focus,
+.btn-action:not(.disabled).focus,
+.btn-action:focus .btn-label,
+.btn-action:focus .paris-icon{
+	color: var( --main-info-color ) !important;
+	background-color: var(--white-color) !important;
+	fill: var( --main-info-color );
+	border-color: var( --main-info-color );
+}
+
+.btn-action:focus::before,
+.btn-action:hover::before {
+	width: 100%;
+}
+
+/* Link action 					*/
+.btn-link-action{
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.btn-link-action,
+.btn-link-action .btn-label,
+.btn-link-action .paris-icon{
+	color: var( --main-info-color );
+	fill: var( --main-info-color );
+}
+
+.btn-link-action:hover,
+.btn-link-action:focus,
+.btn-link-action:active  {
+	background-color: var( --main-info-color );
+	border-color: var( --main-info-color );
+	color: var( --white-color );
+	fill: var( --white-color );
+	box-shadow: none;
+}
+
+.btn-link-action:hover .btn-label,
+.btn-link-action:hover .paris-icon,
+.btn-link-action:focus .btn-label,
+.btn-link-action:focus .paris-icon,
+.btn-link-action:active .btn-label,
+.btn-link-action:active .paris-icon{
+	color: var( --white-color );
+	fill: var(--white-color)
+}
+
+.btn-link-action>.btn-label,
+.btn-link-action>.link-label {
+  border-bottom: 2px solid;
+  padding-block-end: var(--spacing-xxs);
+}
+
+/* Outline  						*/
+.btn-outline-action,
+.btn-outline-primary{
+	background-color: transparent;
+	color: var( --main-info-color);
+	border: 0;
+}
+
+.btn-outline-action .paris-icon,
+.btn-outline-action .btn-label,
+.btn-outline-primary .paris-icon,
+.btn-outline-primary .btn-label{
+	color:  var( --main-info-color);
+	fill:  var( --main-info-color);
+}
+
+.btn-outline-action:hover,
+.btn-outline-action:active,
+.btn-outline-action.active,
+.btn-outline-action.active .btn-label,
+.btn-outline-action:focus,
+.btn-outline-primary:hover,
+.btn-outline-primary:active,
+.btn-outline-primary.active,
+.btn-outline-primary.active .btn-label,
+.btn-outline-primary:focus {
+	background-color:  var( --main-info-color);
+	color: var( --white-color );
+	fill: var( --white-color );
+	box-shadow: none;
+}
+
+.btn-outline-action:focus .btn-label,
+.btn-outline-action:focus .paris-icon,
+.btn-outline-action:active .btn-label,
+.btn-outline-action:active .paris-icon,
+.btn-outline-action:hover .btn-label,
+.btn-outline-action:hover .paris-icon,
+.btn-outline-primary:focus .btn-label,
+.btn-outline-primary:focus .paris-icon,
+.btn-outline-primary:active .btn-label,
+.btn-outline-primary:active .paris-icon,
+.btn-outline-primary:hover .btn-label,
+.btn-outline-primary:hover .paris-icon{
+	color: var( --white-color);
+	fill: var( --white-color);
+}

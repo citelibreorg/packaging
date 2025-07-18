@@ -1,0 +1,142 @@
+<#ftl strip_whitespace=true strip_text=true />
+<#-- WARNING : be careful to white-space and lines break in FreeMarker macros.
+ # This macro template can be used to output white-space-sensitive formats (like RSS files).
+ # See http://dev.lutece.citelibre.fr/jira/browse/LUTECE-765
+-->
+<#-- THEME LINKS AND LABELS VARIABLES -->
+<#-- Theme Code           -->
+<#assign commonsThemeCode='citelibre' /> 
+<#assign commonsThemeVersion='2.0.0' />
+<#-- Theme Infos           -->
+<#macro commonsName>Thème CiteLibre</#macro>
+<#macro commonsDescription>Freemarker Commons macros for CiteLibre FO theme </#macro>
+<#macro commonsFile>theme_citelibre_commons.html</#macro>
+<#macro commonsPreview>themes/skin/${commonsThemeCode}/images/preview.png</#macro>
+<#-- Path                 -->
+<#assign commonsFtlPath='${commonsThemeCode}/' /> 
+<#assign commonsSiteJsPath='js/' /> 
+<#assign commonsSiteCssPath='css/' /> 
+<#-- Theme Resources Path -->
+<#assign commonsSiteThemePath='themes/skin/${commonsFtlPath}' /> 
+<#-- Theme Variables      -->
+<#-- WARNING : be careful to white-space and lines break in FreeMarker macros.
+ # This macro template can be used to output white-space-sensitive formats (like RSS files).
+ # See https://dev.lutece.${mainSite}/jira/browse/LUTECE-765
+-->
+<#-- THEME LINKS AND LABELS VARIABLES                                               -->
+<#-- MAIN VARS MANAGEMENT -->
+<#assign mainSite>CiteLibre</#assign>
+<#assign urlMainSite>https://www.citelibre.org</#assign>
+<#-- END MAIN VARS MANAGEMENT -->
+<#-- FOOTER MANAGEMENT -->
+<#assign logoFooter>${commonsSiteThemePath}images/footer-logo-citelibre.svg</#assign>
+<#assign footerLinkContact><#if dskey('themecitelibre.site_property.Url.contactURL') !=''>${dskey('themecitelibre.site_property.Url.contactURL')!'${urlMainSite}/contact'}</#if></#assign>
+<#assign footerLinkLegal><#if dskey('themecitelibre.site_property.Url.legalURL') !=''>${dskey('themecitelibre.site_property.Url.legalURL')!'${urlMainSite}/mentionslegales'}</#if></#assign>
+<#assign footerLinkCgu><#if dskey('themecitelibre.site_property.Url.cguURL') !=''>${dskey('themecitelibre.site_property.Url.cguURL')!'${urlMainSite}/mentionslegales'}</#if></#assign>
+<#assign footerLinkDataProtection><#if dskey('themecitelibre.site_property.Url.dataURL') !=''>${dskey('themecitelibre.site_property.Url.dataURL')!'${urlMainSite}/mentionslegales'}</#if></#assign>
+<#assign footerLinkAccessibility>${dskey('themecitelibre.site_property.Url.accessibilityURL')!'${urlMainSite}/accessibilite'}</#assign>
+<#assign footerLinkCookies>${dskey('themecitelibre.site_property.Url.cookieURL')!'${urlMainSite}/cookies'}</#assign>
+<#assign footerSocialTitleFb>Facebook</#assign>       
+<#assign footerSocialLinkFb>https://www.facebook.com/citelibre</#assign>       
+<#assign footerSocialTitleTw>Twitter</#assign>        
+<#assign footerSocialLinkTw>https://twitter.com/citelibre</#assign>        
+<#assign footerSocialTitleIn>Instagram</#assign>        
+<#assign footerSocialLinkIn>https://www.instagram.com/citelibre_maville/</#assign>        
+<#assign footerSocialTitleLi>LinkedIn</#assign>
+<#assign footerSocialLinkLi>https://www.linkedin.com/company/citelibre/</#assign>
+<#assign hasSiteMap><#if !dskey('themecitelibre.site_property.menu.siteMapMenu.checkbox')?starts_with('DS') &&  dskey('themecitelibre.site_property.menu.siteMapMenu.checkbox') =='1'>true<#else>false</#if></#assign>
+<#-- END FOOTER MANAGEMENT    -->
+<#-- BEGIN CITELIBRE MANAGEMENT     -->
+<#assign urlKeycloack>${dskey('themecitelibre.site_property.Url.keycloack')!}</#assign>
+<#-- END MCITELIBRE MANAGEMENT -->
+<#-- BANNER MANAGEMENT        -->
+<#assign hasBanner><#if !dskey('themecitelibre.site_property.banner.shown.checkbox')?starts_with('DS') &&  dskey('themecitelibre.site_property.banner.shown.checkbox') =='1'>true<#else>false</#if></#assign>
+<#assign urlDefaultBannerImage>${dskey('themecitelibre.site_property.banner')}</#assign>
+<#assign showWholeSiteBannerEverywhere><#if dskey('themecitelibre.site_property.banner.showSiteImgEverywhere.checkbox') =='1'>false<#else>true</#if></#assign>
+<#assign isBannerOnlyHome=showWholeSiteBannerEverywhere?boolean >
+<#-- END BANNER MANAGEMENT    -->
+<#-- MENU MANAGEMENT          -->
+<#assign isDark><#if dskey('themecitelibre.site_property.theme.checkbox') == '1'>true<#else>false</#if></#assign>
+<#assign logoHeader>${commonsSiteThemePath}images/header-logo-citelibre.svg</#assign>
+<#assign skipLinkMenu><#if !dskey('themecitelibre.site_property.menu.skipLinkMenu.checkbox')?starts_with('DS') && dskey('themecitelibre.site_property.menu.skipLinkMenu.checkbox') == '1'>true<#else>false</#if></#assign>
+<#assign skipLinkMainId>${dskey('themecitelibre.site_property.menu.skipLinkMainId')}</#assign>
+<#assign hasDefaultMenu><#if dskey('themecitelibre.site_property.menu.hasDefaultMenu.checkbox') == '1'>true<#else>false</#if></#assign>
+<#assign isFixedMenu><#if dskey('themecitelibre.site_property.menu.fixedMenu.checkbox') == '1'>true<#else>false</#if></#assign>
+<#assign isMainSidebarMenu><#if dskey('themecitelibre.site_property.menu.sidebarMenu.checkbox') == '1'>true<#else>false</#if></#assign>
+<#assign isMainSidebarMenuCollapse><#if dskey('themecitelibre.site_property.menu.sidebarMenuCollapse.checkbox') == '1'>true<#else>false</#if></#assign>
+<#assign urlDefaultSearch>${dskey('themecitelibre.site_property.Url.search')!}</#assign>
+<#-- MENU MANAGEMENT          -->
+<#-- LAYOUT MANAGEMENT        -->
+<#assign isLayoutFluid><#if dskey('themecitelibre.site_property.layout.type.checkbox') == '1'>true<#else>false</#if></#assign>
+<#-- END LAYOUT MANAGEMENT    -->
+<#-- UTILS MANAGEMENT         -->
+<#assign addGoToTop><#if dskey('themecitelibre.site_property.menu.gototop.checkbox') == '1'>true<#else>false</#if></#assign>
+<#assign isTargetDefaultIconShown><#if dskey('themecitelibre.site_property.link.showTargetIcon.checkbox') == '1'>true<#else>false</#if></#assign>
+<#assign xssChars>${dskey('themecitelibre.site_property.xss.xssChars')}</#assign>
+<#assign xssMessage>${dskey('themecitelibre.site_property.xss.xssMsg')}</#assign>
+<#-- END UTILS MANAGEMENT     -->
+<#-- Theme Macros             -->
+<#macro themeCSSLinks>
+<!-- Theme CSS include -->
+<link href="${commonsSiteThemePath}${commonsSiteCssPath}vendor/bootstrap.min.css" rel="stylesheet">
+<link href="${commonsSiteThemePath}${commonsSiteCssPath}vendor/fontawesome-all.min.css" rel="stylesheet">
+<link href="${commonsSiteThemePath}${commonsSiteCssPath}vendor/tabler-icons.min.css" rel="stylesheet">
+<link href="${commonsSiteThemePath}${commonsSiteCssPath}vendor/swiper.min.css" rel="stylesheet">
+<link href="${commonsSiteThemePath}js/jquery/plugins/toastr/toastr.min.css?theme=citelibre${commonsThemeVersion}" crossorigin="anonymous" rel="stylesheet">
+<link href="${commonsSiteThemePath}${commonsSiteCssPath}theme-citelibre-dark-mode.css" rel="stylesheet">
+<link href="${commonsSiteThemePath}${commonsSiteCssPath}theme_citelibre_styles.css" rel="stylesheet">
+<link href="${commonsSiteThemePath}${commonsSiteCssPath}page_template_styles.css" rel="stylesheet">
+<script src="${commonsSiteThemePath}${commonsSiteJsPath}jquery/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+</#macro>
+<#macro themeJSLinks>
+<!-- Scripts -->
+<script src="${commonsSiteThemePath}${commonsSiteJsPath}vendor/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+<script src="${commonsSiteThemePath}${commonsSiteJsPath}vendor/bootstrap.bundle.min.js"></script> <!-- Bootstrap framework -->
+<script src="${commonsSiteThemePath}${commonsSiteJsPath}vendor/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+<script src="${commonsSiteThemePath}${commonsSiteJsPath}vendor/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+<script src="${commonsSiteThemePath}${commonsSiteJsPath}vendor/dark-mode-switch.min.js"></script>
+<script src="${commonsSiteThemePath}${commonsSiteJsPath}vendor/jquery/plugins/validation/jquery.validate.min.js"></script>
+<script src="${commonsSiteThemePath}${commonsSiteJsPath}vendor/jquery/plugins/toastr/toastr.min.js"></script>
+<script src="${commonsSiteThemePath}${commonsSiteJsPath}util/lutece.js" charset="utf-8"></script>
+<!-- Theme - Custom scripts -->
+<script src="${commonsSiteThemePath}${commonsSiteJsPath}site.js"></script>
+</#macro>
+<#-- MACROS                                 -->
+<#include "theme_commons_macros.html" />
+<#-- END MACROS                             -->
+<#-- DEPRECATED MACROS                      -->
+<#-- Compatibility version 1                -->
+<#-- cStepContent                           -->
+<#macro cStepContent title id='' class='' help='' iterable=false iteration=0 labelAddIteration='Ajouter' labelDelIteration='#i18n{themecitelibre.labelDelete}' params=''></#macro>
+<#-- cCustomListArrow USE cList  DEPRECATED -->
+<#macro cCustomListArrow items=''>
+<@cList items />
+</#macro>  
+<#-- cCustomList USE cList DEPRECATED       -->
+<#macro cCustomList items type='arrow' class='' id='' params=''>
+<@cList items type class id params >
+<#nested>
+</@cList>
+</#macro>  
+<#-- MACRO consentement cookies CNIL            -->
+<#-- Name : DEPRECATED  cConsent                -->
+<#-- Attributes List  :                         -->
+<#-- title : 'Ce site'                          -->
+<#-- linkLabel='cookies'                        -->
+<#-- link='/pages/mentions-legales-234'         -->
+<#-- id='cookie-banner-citelibrefr'                 -->
+<#-- class                                      -->
+<#-- params                                     -->
+<#macro cConsent title='Ce site' linkLabel='cookies' link='/pages/mentions-legales-234' id='cookie-banner-citelibrefr' class='' params=''>
+<#-- Managed in init_site.js -->
+<@cSection type='div' class='cookies ${class}' id=id >
+  <@cSection type='div' class='cookies-banner'>
+    <@cText class='cookies-banner-text'>
+        <#local legalLink><@cLink href=link label=linkLabel class='font-' /></#local>
+        ${i18n( "themecitelibre.msgLegal", title, legalLink )}
+    </@cText>
+    <@cBtn label='#i18n{themecitelibre.labelAccept}' type='button' class='primary' id='cookie-banner-citelibrefr-accept' />            
+  </@cSection>
+</@cSection>
+</#macro>
+<#-- END DEPRECATED MACROS -->

@@ -1,0 +1,11 @@
+<#if visible>
+	<#assign classDisp><#if id_display??>display_field_${id_display}</#if></#assign>
+	<@cRow class=classDisp>
+		<@cCol>
+			<@cTitle level=2>${group.title!}</@cTitle>
+			<#list groupContent as childrenHtml>
+				${childrenHtml!}
+			</#list>
+		</@cCol>
+	</@cRow>
+</#if>

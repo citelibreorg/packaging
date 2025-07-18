@@ -1,0 +1,56 @@
+<div class="form-group">
+	<label class="control-label col-xs-12"  for="attribute${entry.idEntry}">${entry.title} <#if entry.mandatory>*</#if></label>
+	<div class=" col-xs-12">	 
+		<select name="attribute${entry.idEntry}" id="attribute${entry.idEntry}" class="form-control 
+			<#if list_responses??>
+				<#list list_responses as response>
+					<#if response.entry.idEntry == entry.idEntry && response.entry.error??>
+						error
+						<#break>
+					</#if>
+				</#list>
+				${entry.CSSClass!}
+		</#if>"	>
+		<option value="">#i18n{appointment.xpage.form.noValue}</option>
+		<#list entry.fields as field>
+			<#if field.code == 'answer_choice'>
+				<option  value="${field.idField}" <#if field.comment?? && field.comment != ''>title="${field.comment}"</#if>
+					<#if list_responses??>
+						<#list list_responses as response>
+							<#if response.entry.idEntry == entry.idEntry && response.field??>
+								<#if response.field.idField == field.idField>
+									selected ="selected"
+									<#break>
+								</#if>
+							</#if>
+						</#list>
+					<#else>
+						<#if field.defaultValue>
+							selected ="selected"
+						</#if>
+					</#if>
+					>
+						${field.title}
+				</option>
+			</#if>	
+		</#list>
+	</select>
+	<#if entry.helpMessage?exists&&entry.helpMessage!=''>
+	<p class="help-block">${entry.helpMessage}</p>
+	</#if>
+	<#if list_responses??>
+		<#list list_responses as response>
+			<#if response.entry.idEntry == entry.idEntry && response.entry.error?? && response.entry.error.isDisplayableError>
+				<div class="alert alert-error alert-danger">
+					<#assign error = response.entry.error>
+					<#if error.mandatoryError>
+						${error.errorMessage}
+					<#else>
+						#i18n{appointment.message.mandatory.entry}
+					</#if>
+				</div>	
+				</#if>
+			</#list>
+	</#if>
+	</div>
+</div>

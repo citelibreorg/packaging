@@ -1,0 +1,26 @@
+<#if blog??>
+<section class="card portlet">
+<div class="row">
+	<article class="col">
+		<header>
+			<h2>${blog.contentLabel}</h2>
+			<#if blog.docContent?? && blog.docContent?size!=0>
+				<#list blog.docContent as docContent >
+					<#if docContent.contentType.idContentType=1>
+					<figure class="float-start p-3">
+						<img src="servlet/plugins/blogs/file?id_file=${docContent.id!}" title="${blog.contentLabel}" alt="${blog.contentLabel}" style="width:150px" class="img-fluid">
+						<#break>
+					</figure>
+					</#if>
+				</#list>
+			</#if>
+			<h3>${blog.description!}</h3> 
+		</header>
+		<div class="py-4 px-5">
+		${blog.htmlContent!}
+		</div>
+	</article>
+	<div class=" overflow-hidden"></div>
+</div>
+</section>
+</#if>

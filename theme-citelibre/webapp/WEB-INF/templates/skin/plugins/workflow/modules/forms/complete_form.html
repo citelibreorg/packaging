@@ -1,0 +1,36 @@
+<#include "/admin/util/editor/editor.html" />
+<#include "/skin/plugins/asynchronousupload/upload_commons.html" />
+<@cContainer>
+	<@cRow>
+		<@cCol class="py-5 mt-5">
+			<header class="mt-5 pt-5">
+				<h1 class="h2">#i18n{module.workflow.forms.resubmit_form.page_title}</h1>
+			</header>
+			<hr>
+			<#if complete_form.message?? && complete_form.message != ''><@cAlert class='warning'>${complete_form.message}</@cAlert></#if>
+			<@cForm class='form-horizontal' action='jsp/site/Portal.jsp' params=' enctype="multipart/form-data"' >
+				<input type="hidden" name="page" value="workflow-complete-form" />
+				<input type="hidden" name="id_history" value="${complete_form.idHistory}" />
+				<input type="hidden" name="id_task" value="${complete_form.idTask}" />
+				<input type="hidden" name="action" value="do_modify_response" />
+				<#if id_response??><input type="hidden" name="id_response" value="id_response" /></#if>
+				<#if url_return?? && url_return != ''><input type="hidden" name="url_return" value="${url_return}" /></#if>
+				<#if signature?? && signature != ''><input type="hidden" name="signature" value="${signature}" /></#if>
+				<#if timestamp?? && timestamp != ''><input type="hidden" name="timestamp" value="${timestamp}" /></#if>
+				<#if list_step?has_content>
+					<#list list_step as step_display>
+						${step_display!}
+					</#list>
+				</#if>
+				<@cFormRow class='mt-5'>
+					<@cCol class='d-flex justify-content-center'>
+						<@cBtn label='#i18n{module.workflow.forms.complete_form.button_save}' class='primary' params=' name="save" ' />
+					</@cCol>
+				</@cFormRow>
+			</@cForm>
+		</@cCol>
+	</@cRow>
+</@cContainer>
+<@addRequiredJsFiles />
+<script src="jsp/site/plugins/asynchronousupload/GetMainUploadJs.jsp?handler=formsAsynchronousUploadHandler" ></script>
+<@initEditor />

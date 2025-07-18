@@ -1,0 +1,19 @@
+<#if !entry.onlyDisplayInBack || is_completeness_bo>
+<@cText class=entryClass!>
+<@cInline type='strong'>${entry.title} : </@cInline>
+<#if list_responses?has_content>
+<#assign beginHourCode = "begin_hour">
+<#assign endHourCode = "end_hour">
+<#-- Filtrer et trouver les objets Response correspondants -->
+<#list list_responses as response>
+    <#if response.field.code == beginHourCode>
+        <#assign beginHour = response.toStringValueResponse>
+    </#if>
+    <#if response.field.code == endHourCode>
+        <#assign endHour = response.toStringValueResponse>
+    </#if>
+</#list>
+<@cInline type='em'>#i18n{message.slot.preposition.from} ${beginHour} #i18n{forms.message.slot.preposition.to} ${endHour}</@cInline>
+</#if>
+</@cText>
+</#if>

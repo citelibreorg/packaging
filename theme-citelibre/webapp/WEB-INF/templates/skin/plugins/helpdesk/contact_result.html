@@ -1,0 +1,16 @@
+<@cContainer>
+	<@cRow class='justify-content-center align-items-md-center'>
+        <@cCol> 
+            <@cTitle level=2>#i18n{helpdesk.contact_result.boxTitle}</@cTitle >
+            <@cAlert class='success' title='#i18n{helpdesk.contact_result.message}' >
+                <@cForm class='d-flex justify-content-center mt-l'>
+                    <@cInput type='hidden' name='page' value='helpdesk' />
+                    <@cInput type='hidden' name='faq_id' value=faq.id />
+                    <@cBtn class='btn btn-primary' label='#i18n{helpdesk.contact_result.back}'>
+                        #i18n{portal.utl.labelBack}
+                    </@cBtn>
+                </@cForm>   
+            </@cAlert>   
+        </@cCol>
+    </@cRow>
+</@cContainer>

@@ -1,0 +1,137 @@
+<#if !entry.onlyDisplayInBack || is_completeness_bo>
+<#assign hasError = false />
+<#assign error = '' />
+<#if list_responses??>
+	<#list list_responses as response>
+		<#if response.entry.idEntry == entry.idEntry && response.entry.error?? && response.entry.error.isDisplayableError>
+			<#assign hasError = true />
+			<#assign error = response.entry.error>
+		</#if>
+	</#list>
+</#if>
+<#assign idName = buildEntryName( entry, entry_iteration_number )>
+<#assign errorMsg><#if hasError><#if error.mandatoryError>#i18n{forms.message.mandatory.entry}<#else>${error.errorMessage}</#if></#if></#assign>
+<#assign helpMsg><#if entry.helpMessage?exists&&entry.helpMessage!=''>${entry.helpMessage}</#if></#assign>
+<#assign entryClass><#if entry.CSSClass?contains('hidden')>hidden<#elseif entry.CSSClass!=''><#list entry.CSSClass?split(' ') as laClass><#if !laClass?starts_with( 'col-' )> ${laClass!}</#if></#list></#if><#if hasError> is-invalid</#if></#assign>
+<@cField>
+	<@cLabel label=entry.title for=idName id='label-${idName}' required=entry.mandatory /> 
+	<#if entry.helpMessage?exists&&entry.helpMessage!=''><@cFormHelp label=helpMsg id=idName /></#if>
+	<@cInput type='hidden' name='${idName}' id='${idName}' />
+	<@chList id='sortable_${entry.idEntry!}_1' class='list-group ${entryClass!}' params='role="listbox" tabindex="0" aria-labelledby="label-${idName}" aria-multiselectable="false"'>
+		<#list entry.fields as field>
+			<#if field.code == 'answer_choice'>
+				<#assign notSelected=true />
+				<#if list_responses?has_content>
+					<#list list_responses as response>
+						<#if response.entry.idEntry == entry.idEntry && response.field??>
+							<#if response.field.idField == field.idField>
+								<#assign notSelected=false />
+							</#if>
+						</#if>
+					</#list>
+				</#if>
+				<#if notSelected>
+					<@chItem id='field_${field.idField}' class='list-group-item sortable-list ' params='role="option" tabindex="0" data-sortable-id="${field.idField}"'>${field.title}</@chItem>
+				</#if>
+			</#if>
+		</#list>
+	</@chList>
+	<@chList id='sortable_${entry.idEntry!}_2' class='list-group ${entryClass!}' params='role="listbox" tabindex="0" aria-labelledby="label-${idName}" aria-multiselectable="false"'>
+		<#if list_responses?has_content>
+			<#assign nIdx=0 />
+			<#list list_responses?sort_by('sortOrder') as response>
+				<#list entry.fields as field>
+					<#if response.field.idField == field.idField>
+						<@chItem id='field_${field.idField}' class='list-group-item sortable-list ${acClass!}' params='role="option" tabindex="0" data-sortable-id="${field.idField}"'>${field.title}</@chItem>
+					</#if>
+				</#list>
+			</#list>
+		</#if>
+	</@chList>
+	<#if hasError><@cFormError label=errorMsg id=idName /></#if>
+</@cField>
+<script src="themes/skin/shared/plugins/forms/js/Sortable.min.js"></script>
+<script>
+$( function() {
+	let selector = '#sortable_${entry.idEntry!}_1';
+	const itemSelector = '.sortable-list';
+	if( $('#sortable_${entry.idEntry!}_2').children('li').length > 0 ){ selector = '#sortable_${entry.idEntry!}_2' }
+	const elSort = document.querySelector( selector );
+	const listSort = Sortable.create( elSort, { 
+		animation: 150, 
+		dataIdAttr: 'data-sortable-id',
+		onChoose: function ( evt ) {
+			evt.item.classList.add("active");
+			evt.item.setAttribute('aria-selected', true );
+			evt.from.setAttribute('aria-activedescendant', evt.item.id );
+		},
+		onUnchoose: function ( evt) {
+			evt.item.classList.remove("active");
+			evt.item.removeAttribute('aria-selected');
+		}
+	});
+
+	function moveElement( element, direction ) {
+		// Set current element attributes
+		element.srcElement.classList.add("active");
+		element.srcElement.setAttribute('aria-selected', true );
+		element.currentTarget.setAttribute('aria-activedescendant', element.srcElement.id );
+		// bail out if we get input that we don't expect
+		if (["up", "down"].includes(direction) == false ) {
+			return false
+		}
+		if (typeof( element.srcElement.dataset.sortableId ) == 'undefined') {
+			return false
+		}
+		// `sortableId` is whatever you've set in your sortablejs config for `dataIdAttr`
+		let sortableId = element.srcElement.dataset.sortableId
+		let order = listSort.toArray()
+		let index = order.indexOf(sortableId)
+		// pull the item we're moving out of the order
+		order.splice(index, 1)
+		// put it back in at the correct position
+		if (direction == 'down') {
+			order.splice(index+1, 0, sortableId)
+		} else if (direction == 'up') {
+			order.splice(index-1, 0, sortableId)
+		}
+		listSort.sort(order, true)
+		document.querySelectorAll( itemSelector ).forEach(function(item){
+			item.classList.remove('active');
+			item.removeAttribute('aria-selected');
+		})
+	}
+
+	elSort.addEventListener('keydown', (event) => { 
+		if ( event.keyCode == 38 || event.keyCode == 40  ) {
+			event.stopPropagation()
+			event.preventDefault()
+			if ( event.keyCode == 38 ){
+				moveElement( event, 'up' )
+			} else {
+				moveElement( event, 'down' )
+			}
+			event.srcElement.focus()
+		}
+		if ( event.keyCode == 36 ){
+			event.stopPropagation()
+			event.preventDefault()
+			event.currentTarget.children[0].focus()
+		}
+		if ( event.keyCode == 35 ){
+			event.stopPropagation()
+			event.preventDefault()
+			const lastItem = event.currentTarget.childElementCount - 1
+			event.currentTarget.children[ lastItem ].focus()
+		}
+	});
+
+	$('form').submit(function(){
+		let itemList='';
+		const aSort = listSort.toArray() 
+		aSort.forEach( function(item) { itemList += 'field[]=' + item + ';'	});
+		$('#${idName}').val( itemList );
+	}); 
+  });
+</script>
+</#if>

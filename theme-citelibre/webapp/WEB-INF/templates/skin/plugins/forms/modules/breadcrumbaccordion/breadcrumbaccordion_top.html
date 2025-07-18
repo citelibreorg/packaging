@@ -1,0 +1,11 @@
+<#if list_step_completed?has_content>
+<#assign nIndexStep = 0 />
+<#list list_step_completed as stepDisplay>
+<#assign cStep = stepDisplay.step />
+<@chItem class='breadcrumb-item'>
+<#assign ariaLabel>#i18n{'themecitelibre.ariaLabelUpdate'} ${cStep.title?html}</#assign>
+<@cBtn class='link' label=cStep.title!?replace("- hidden","") params='name="action_doGoToStep" value="${nIndexStep!}" aria-label="${ariaLabel!}" formnovalidate' />
+</@chItem>
+<#assign nIndexStep=nIndexStep+1 />
+</#list>
+</#if>

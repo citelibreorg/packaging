@@ -1,0 +1,9 @@
+.fc-day-grid-event .fc-content {
+    display: flex;
+    justify-content: center;
+}
+
+.fc-toolbar.fc-header-toolbar .btn-primary{
+    background-color: var( --main-color ) !important;
+    border-color: var( --main-color ) !important;
+}

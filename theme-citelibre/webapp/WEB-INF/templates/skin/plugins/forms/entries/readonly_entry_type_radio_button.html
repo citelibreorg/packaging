@@ -1,0 +1,9 @@
+<#if !entry.onlyDisplayInBack>
+<#assign entryClass><#if entry.CSSClass?contains('hidden')>hidden</#if></#assign>
+<#compress>
+<@cText class=entryClass!>
+<@cInline type='strong'>${entry.title!''} :</@cInline>
+<#if list_responses?has_content><#list list_responses as response><@cInline class='em'><#if entryTypeService.getResponseValueForRecap(null, null, response, null)??>${entryTypeService.getResponseValueForRecap(null, null, response, null)}<#else>${response.toStringValueResponse!''}</#if></@cInline><#sep>, </#sep></#list></#if>
+</@cText>
+</#compress>
+</#if>

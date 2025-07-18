@@ -1,0 +1,330 @@
+body,
+header,
+nav,
+footer,
+table,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+	color: var(--main-color);
+	font-family: var(--font-family-list);
+	font-size: var(--font-m);
+	font-style: normal;
+	font-weight: 400;
+	line-height: var(--line-height-xs);
+	margin-bottom: 0
+}
+
+h1,
+.h1 {
+	font-weight: 900;
+	font-size: var(--font-xxxl);
+	line-height: var(--line-height-xxxl);
+}
+
+h2,
+.h2 {
+	font-weight: 900;
+	font-size: var(--font-xxl);
+	line-height: var(--line-height-xxl);
+}
+
+h3,
+.h3 {
+	font-weight: 800;
+	font-size: var(--font-xl);
+	color: var(--main-info-color);
+	line-height: var(--line-height-xl);
+}
+
+.h4,
+h4 {
+	font-weight: 800;
+	font-size: var(--font-l);
+	line-height:  var(--line-height-l);
+}
+
+/* Line Height */
+.lh-xxs {
+	line-height: var(--line-height-xxs);
+}
+
+.lh-xs {
+	line-height: var(--line-height-xs);
+}
+
+.lh-sm {
+	line-height: var(--line-height-sm);
+}
+
+.lh-m {
+	line-height: var(--line-height-m);
+}
+
+.lh-l {
+	line-height: var(--line-height-l);
+}
+
+.lh-xl {
+	line-height: var(--line-height-xl);
+}
+
+.lh-xxl {
+	line-height: var(--line-height-xxl);
+}
+
+.lh-xxxl {
+	line-height: var(--line-height-xxxl);
+}
+
+/* Medium devices and below (tablets, 768px and below) */
+@media ( max-width:  991.98px) {
+	h1 {
+		font-size: var( --font-xxl );
+	}
+
+	h2 {
+		font-size: var( --font-xl );
+	}
+
+	h3 {
+		font-size: var( --font-l );
+	}
+
+	h4 {
+		font-size: var( --font-ml );
+	}
+}
+
+/* Samll devices and below (small phone, 375px and below) */
+@media ( max-width:  374.98px) {
+	h1 {
+		font-size: var( --font-xl );
+	}
+
+	h2 {
+		font-size: var( --font-l );
+	}
+
+	h3 {
+		font-size: var( --font-m );
+	}
+
+	h4 {
+		font-size: var( --font-sm );
+	}
+}
+
+h5,
+.h5,
+.text-cap {
+	font-weight: 600;
+	font-size: var(--font-ml);
+	line-height: var(--line-height-l);
+}
+
+h6,
+.h6 {
+	font-weight: 800;
+	font-size: var(--font-m);
+	line-height: var(--line-height-l);
+}
+
+p {
+	font-size: var(--font-m);
+	line-height: var(--line-height-sm);
+}
+
+/* Samll devices and below (small phone, 375px and below) */
+@media ( max-width:  374.98px) {
+	p {
+		font-size: var( --font-sm );
+	}
+}
+
+small{
+	line-height: var(--line-height-sm);
+	font-size: var(--font-m);
+	font-weight: 400;
+	font-style: normal;
+}
+
+/* Samll devices and below (small phone, 375px and below) */
+@media ( max-width:  374.98px) {
+	small {
+		font-size: var( --font-sm );
+	}
+}
+
+code {
+	color: var(--main-danger-color);
+	font-size: var(--font-m)
+}
+
+/* Blockquote */
+.blockquote{
+	border-left: var(--border-large) solid var(--border-color);
+}
+
+.text-cap {
+	font-weight: 600;
+	font-size: var(--font-l);
+	line-height: var(--line-height-l);
+}
+
+/* Samll devices and below (small phone, 375px and below) */
+@media ( max-width:  374.98px) {
+	.text-cap {
+		font-size: var( --font-m );
+		line-height: var(--line-height-m);
+	}
+}
+
+/* Styles for style "intertitle" */
+.title_inter {
+	margin-block-end: calc( var( --size-base ) * 6.25 );
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--main-color);
+	color: var(--white-color);
+	padding: var(--spacing-sm ) var(--spacing-ml) !important;
+}
+
+/* Samll devices and below (small phone, 375px and below) */
+@media ( max-width:  374.98px) {
+	.title_inter {
+		margin-block-end: calc( var( --size-base ) * 3.25 );
+		padding: var(--spacing-xxs ) var(--spacing-xs);
+	}
+}
+
+.title_inter>h1,
+.title_inter>h2,
+.title_inter>h3 {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	color: var(--white-color);
+}
+
+/* Assistive text class for aria zone 	*/
+.assistive-text {
+	position: absolute;
+	margin: calc( -1 * ( var( --size-base ) / 4 ) );
+	border: 0;
+	padding: 0;
+	width: var( --size-base ) / 4;
+	height: var( --size-base ) / 4;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+}
+
+/* Text */
+.text-summary,
+.lead {
+	font-size: var(--font-sm); 
+	font-weight: 600;
+}
+
+.text-cap {
+	font-weight: 600;
+	font-size: var( --font-m );
+	line-height:  var( --line-height-l );
+}
+
+/* Small devices and below (small phone, 360px and below) */ 
+@media ( max-width:  358.98px ) {
+	.text-cap{
+		font-size: var( --font-sm );
+		line-height:  var( --line-height-m );
+	}
+}
+
+.text-strong {
+	font-size: var( --font-xs );
+	font-weight: 600;
+}
+
+.text-decoration-underline,
+.text-underline {
+	text-decoration: underline;
+}
+
+/* Truncation  */
+.truncate {
+	--tw: 250px;
+	width: var(--tw);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: inline-block;
+}
+
+.truncate-overflow {
+	--lh: 2rem;
+	--max-lines: 2;
+	line-height: var(--lh) !important;
+	position: relative;
+	max-height: calc(var(--lh) * var(--max-lines));
+	overflow: hidden;
+	padding-inline-end: 1rem;
+	font-weight: 400;
+}
+
+.truncate-overflow::before {
+	position: absolute;
+	content: "...";
+	inset-block-end: 0;
+	inset-inline-end: 2.5px;
+}
+
+.truncate-overflow::after {
+	content: "";
+	position: absolute;
+	inset-inline-end: 0;
+	width: 1rem;
+	height: 1rem;
+	background: var( --white-color );
+}
+
+.hyphenate {
+	/* Careful, this breaks the word wherever it is without a hyphen */
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	/* Adds a hyphen where the word breaks */
+	hyphens: auto;
+}
+
+/* Hr separator */
+.separator {
+	width: var(--size-base);
+	height: 4.5rem;
+	background-color: var(--main-color);
+	margin-inline: 2.5rem;
+}
+
+/* Text divider */
+.divider {
+	display: flex;
+	align-items: center;
+	margin: 1rem -1rem
+}
+
+.divider:before,
+.divider:after {
+	content: '';
+	height: 1px;
+	margin: 0 var(--divider-margin-start) 0 var(--divider-margin-end);
+	flex: var(--divider-margin-content-before);
+	background-color: var(--gray-dark-color);
+}
+
+.divider:after {
+	flex: var(--divider-margin-content-after)
+}

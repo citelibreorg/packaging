@@ -1,0 +1,73 @@
+<@cForm id='summary-validate' action='jsp/site/Portal.jsp?page=forms' >
+<@cInput name='id_form' value='${id_form}' type='hidden' />
+<@cInput name='token' value='${token}' type='hidden' />
+<@cContainer>
+	<@cRow>
+		<@cCol>
+			<@cHeader class='d-flex align-items-center'>
+				<@cTitle level=2 class='h1'>#i18n{forms.modify_form.labelDisplaySummary}</@cTitle>
+				<#if form.countResponses><@cText class='ms-auto'>#i18n{forms.createEntry.manageField.labelFieldNumber} : <@cInline type='Strong'>${form.currentNumberResponse}</@cInline></@cText></#if>
+			</@cHeader >
+			<@cSection class='summary-steps'>
+			<!-- <@cAlert title='#i18n{themecitelibre.labelSummaryTitle}'>
+				<@cText>#i18n{themecitelibre.labelSummaryText}</@cText>
+			</@cAlert>  -->
+			<!-- #current_step_title : Add for breadcrumbs -->
+			<#if list_summary_step_display?has_content>
+				<#list list_summary_step_display as summary_step_display>
+					${summary_step_display}
+				</#list>
+			</#if>
+			</@cSection>
+		</@cCol>
+	</@cRow>
+</@cContainer>
+<@cContainer class='summary-actions'>
+	<#if display_captcha>
+		<@cFormRow class='my-5'>
+			<@cCol class='col-sm-10 offset-sm-1 col-md-5 offset-md-4'>	
+				<@input type='hidden' name='validate_captcha' value='1' />
+				${captcha}
+			</@cCol>
+		</@cFormRow>
+	</#if>
+	<@cFormRow class='d-flex justify-content-center'>
+		<@cCol class='d-flex justify-content-end'>
+			<@cBtn label='#i18n{forms.summary.step.previous}' class='outline-main' type='button' params='onclick="javascript:history.go(-1)"' />
+		</@cCol>
+		<@cCol class='d-flex justify-content-start'>
+			<#assign label_button="#i18n{forms.summary.validate}" />
+			<#if form.labelFinalButton?has_content>
+				<#assign label_button=form.labelFinalButton />
+			</#if>
+			<@cBtn label=label_button class='main' params=' name="action_doSaveResponseSummary" ' />
+		</@cCol>
+	</@cFormRow>
+</@cContainer>
+</@cForm>
+<script>
+if("IntersectionObserver" in window){
+	$( function() {
+		var observer = new IntersectionObserver(function(entries, observer) {
+			entries.forEach(entry => {
+				document.querySelector('.summary-actions').classList.toggle("actions_shadow",!entry.isIntersecting);
+			});
+		})
+		var target = document.querySelector('footer');
+		observer.observe(target);
+	});
+}
+document.addEventListener('DOMContentLoaded', () => {
+	document.querySelector('.banner header h1').innerHTML = '${form.title?html}';
+	document.querySelectorAll('.btn-show-files').forEach(button => {
+		button.addEventListener('click', () => {
+			const filesList = button.closest('.files-list').nextElementSibling
+			if (filesList) {
+				filesList.classList.toggle('visually-hidden');
+				filesList.classList.contains('visually-hidden') ? button.textContent = button.getAttribute('data-show') : button.textContent = button.getAttribute('data-hide');
+				filesList.classList.contains('visually-hidden') ? button.setAttribute('aria-expanded', 'false') : button.setAttribute('aria-expanded', 'true');
+			}
+		});
+	});
+});
+</script>

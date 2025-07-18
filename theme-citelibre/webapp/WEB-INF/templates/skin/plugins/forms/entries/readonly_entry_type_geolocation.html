@@ -1,0 +1,54 @@
+<#if !entry.onlyDisplayInBack>
+<#assign entryClass><#if entry.CSSClass?contains('hidden')>hidden</#if></#assign>
+<@cBlock class=entryClass!>
+<@cText>
+	<@cText type='strong'>${entry.title}<#if !entry.mandatory> <@cText type='small'>#i18n{forms.createEntry.labelNotMandatory}</@cText></#if> : </@cText>
+	<#assign responseX = "" >
+	<#assign responseY = "" >
+	<#if getResponseContainingTheFieldWithCode( list_responses, "address" )?? >
+		<#assign responseAddress = getResponseContainingTheFieldWithCode( list_responses, "address" ).toStringValueResponse >
+	</#if>
+	<#if getResponseContainingTheFieldWithCode( list_responses, "geometry" )?? >
+		<#assign responseGeometry = getResponseContainingTheFieldWithCode( list_responses, "geometry" ).toStringValueResponse >
+	</#if>
+	<#if getResponseContainingTheFieldWithCode( list_responses, "X" )?? >
+		<#assign responseX = getResponseContainingTheFieldWithCode( list_responses, "X" ).toStringValueResponse >
+	</#if>
+	<#if getResponseContainingTheFieldWithCode( list_responses, "Y" )?? >
+		<#assign responseY = getResponseContainingTheFieldWithCode( list_responses, "Y" ).toStringValueResponse >
+	</#if>
+	<#if responseX == "" || responseX == "0" || responseY == "" || responseY == "0">
+		<@cInline type='em'>#i18n{forms.entryType.geolocalisation.message.noGeolocation}</@cInline>
+	<#else>
+		${(responseAddress)!}
+	</#if>
+</@cText>
+<#if responseX == "" || responseX == "0" || responseY == "" || responseY == "0">
+<#else>
+	<input type="hidden" id="${entry.idEntry}_address" name="${entry.idEntry}_address" value="${(responseAddress)!}">
+	<input type="hidden" id="${entry.idEntry}_geometry" name="${entry.idEntry}_geometry" value="${(responseGeometry)!}">
+	<input type="hidden" id="${entry.idEntry}_x" name="${entry.idEntry}_x" value="${(responseX)!}">
+	<input type="hidden" id="${entry.idEntry}_y" name="${entry.idEntry}_y" value="${(responseY)!}">
+	<#assign editModeValue = "ReadOnly">
+	<#assign viewNumberValue = getFieldValueByCode( entry, "viewNumber" )>
+	<#if viewNumberValue=''>
+		<#assign viewNumberValue = "1">
+	</#if>
+	<#if entry.mapProvider?has_content>
+	<@cRow>
+		<@cCol>
+		<#if entry.mapProvider.getParameter(viewNumberValue?number)?? && entry.mapProvider.getParameter(viewNumberValue?number).mapParameter??>
+			<#assign map_parameter = entry.mapProvider.getParameter(viewNumberValue?number).mapParameter >
+		</#if>
+		<#if entry.mapProvider.getParameter(viewNumberValue?number)?? && entry.mapProvider.getParameter(viewNumberValue?number).addressParam?? >
+			<#assign add_parameter = entry.mapProvider.getParameter(viewNumberValue?number).addressParam >
+		</#if>
+		<#include entry.mapProvider.htmlCode />
+		</@cCol>
+	</@cRow>
+	<#else>
+		<@cText><@cInline type='em'>#i18n{themecitelibre.labelNoDataProvided}</@cInline></@cText>
+	</#if>
+</#if>
+</@cBlock>
+</#if>

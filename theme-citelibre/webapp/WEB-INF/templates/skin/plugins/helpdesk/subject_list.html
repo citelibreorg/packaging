@@ -1,0 +1,96 @@
+<#macro subjectsList items typeList depth>
+<#if items?has_content>
+<#assign idx=1>
+<#list items as subject>
+<#if typeList != 'subject'>
+    <#if subject.questions?? && subject.questions?size gt 0>
+    <@cTitle level=3 class='h4 d-flex align-items-center justify-content-between p-2' id='subject_${subject.id}'>
+        ${subject.text} 
+        <@cBadge class='badge bg-primary' label=subject.questions?size params='aria-label="${subject.questions?size} questions dans cette rubrique"'/>
+    </@cTitle>
+    <@chList id='${typeList}-${idx}' class='list-unstyled'>
+    <#list subject.questions as questionAnswer>
+        <#if questionAnswer.enabled == true>
+            <@chItem>
+                <@cAccordion id='${typeList}-${subject.id}-${idx}' title=questionAnswer.question titleClass='text-left' btnClass='main' border=true state=false >${questionAnswer.answer!}</@cAccordion>
+            </@chItem>
+        </#if>
+        <#assign idx=idx+1>
+    </#list>
+    </@chList>
+    </#if>
+</#if>
+<#assign child_subjects_list = subject.getChilds(plugin) />
+<#if child_subjects_list?has_content><@subjectsList items=child_subjects_list typeList=typeList depth=depth+1 /></#if>
+</#list>
+</#if>
+</#macro>
+<#macro getParentSubject subject breadcrumb>
+<#if subject?has_content>
+<#if breadcrumb == ""><#assign breadcrumbCopy = subject.text /><#else><#assign breadcrumbCopy = subject.text + " &gt; " + breadcrumb /></#if>
+<#if subject.getParent(plugin)?has_content && subject.idParent != 0><@getParentSubject subject=subject.getParent(plugin) breadcrumb=breadcrumbCopy /><#else>${breadcrumbCopy}</#if>
+</#if>
+</#macro>
+<#assign addonParam='' />
+<@cContainer>
+    <@cRow>
+        <@cCol>
+            <@cTitle level=2 class='main-info-color'>#i18n{helpdesk.subject_list.pageTitle}</@cTitle>
+            <@cForm name='form_search' >
+                <@cInput type='hidden' name='page' value=path_label />
+                <@cInput type='hidden' value='${faq.id!}' name='faq_id' />
+                <@cField label='#i18n{helpdesk.subject_list.labelSearch}' for='form_search_keywords'>
+                    <@cInputGroup>
+                           <@cInput name='search' value='' id='form_search_keywords' maxlength=100 placeholder='#i18n{helpdesk.subject_list.labelPlaceholder}' name='form_search_keywords' value='${filter_searched_keywords?html}' />
+                            <#if search_page>
+                                <@cLink class='btn btn-main' href='jsp/site/Portal.jsp?page=${path_label}&faq_id=${faq.id!}' label='' params='title="#i18n{helpdesk.subject_list.labelList}"'>
+                                    <@cIcon class='x' />
+                                </@cLink>
+                            </#if>
+                            <@cBtn label='Rechercher' class='main ms-0'>
+                                <@cIcon class='search' />
+                            </@cBtn>
+                       </@cInputGroup>
+                </@cField>
+            </@cForm>
+            <#if search_page>
+                <#if helpdesk_question_answer_list?has_content>
+                    <#assign idxSearch=0>
+                    <@chList id='questionAnswer-${idxSearch}' class='list-unstyled'>
+                        <#list helpdesk_question_answer_list as questionAnswer>
+                            <@chItem>
+                                <@cAccordion id='questionAnswer-${idxSearch}-${idxSearch}' title=questionAnswer.question titleClass='text-left' btnClass='main-info-color' border=true state=false >
+                                    ${questionAnswer.answer!}
+                                </@cAccordion>
+                            </@chItem>
+                            <#assign idxSearch=idxSearch+1>
+                        </#list>
+                    </@chList>
+                    <@cText class='text-right mt-m'>${i18n('helpdesk.search_results.labelResultsCountForSearch', idxSearch )}</@cText>
+                <#else>
+                    <@cAlert title='#i18n{helpdesk.message.search_nok}' />
+                </#if>
+            <#else>
+                <@subjectsList items=helpdesk_subject_list typeList='questionAnswer' depth=0 />
+            </#if>
+            <@cRow class='mt-l'>
+                <@cCol>
+                    <@cForm class='d-flex flex-column align-items-center'>
+                        <@cInput type='hidden' name='page' value=path_label />
+                        <@cInput type='hidden' name='faq_id' value='${faq.id!}' />
+                        <@cInput type='hidden' name='contact' value='contact' />
+                        <@cText class='text-center font-bold'>#i18n{helpdesk.subject_list.labelNoAnswer}</@cText>
+                        <@cBtn class='main mt-m' label='#i18n{helpdesk.answer_selection.pageTitle}' />
+                    </@cForm>
+                </@cCol>
+            </@cRow>
+        </@cCol>
+    </@cRow>
+</@cContainer>
+<#if search_page>
+<script>
+window.addEventListener( "load", function() { 
+<@cSetPageTitle title='' srcElement='#form_search_keywords' type='value' />
+})
+</script> 
+</#if>

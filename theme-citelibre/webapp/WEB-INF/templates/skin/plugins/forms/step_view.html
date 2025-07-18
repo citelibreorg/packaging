@@ -1,0 +1,81 @@
+<#if dskey('themecitelibre.site_property.bannerForm.showFormImg.checkbox')?number=1 && form.logo??><style>.banner{ background: transparent url("data:${form.logo.mimeType};base64,${form.logoBase64}") top left/contain no-repeat !important; }</style></#if>
+<#if dskey('themecitelibre.site_property.bannerForm.showFormTitle.checkbox')?number=0><style>.banner > header > h1{ display: none !important; }</style></#if>
+<@cForm id='form-validate' action='jsp/site/Portal.jsp?page=forms' params='enctype="multipart/form-data"'>
+<#if messageInfo?? >
+<@cContainer>
+	<@cAlert id='save-step-status' title='${messageInfo}' />
+</@cContainer>
+</#if>
+<@cContainer>
+	<@cRow class='mt-3'>
+		<@cCol>
+			<@cBlock class='d-flex'>
+			<@cTitle level=2 class='h5 me-1'> ${form.title} <@cInline class='px-2'>/</@cInline></@cTitle> ${formTopBreadcrumb!} ${formBottomBreadcrumb!}
+			</@cBlock>
+		</@cCol>
+	</@cRow>
+</@cContainer>
+<#if form.countResponses>
+	<@cStepDone step='0' title='#i18n{forms.multiviewForms.view_record_history.information}' idx=0 actionName='' >
+		<@cFormRow>
+			<@cCol>
+				<@cText>#i18n{forms.message.numberResponse.label}<@cText type='strong'>${form.currentNumberResponse}</@cText></@cText>
+			</@cCol>
+		</@cFormRow>
+	</@cStepDone>
+</#if>
+<@cContainer>
+<@cRow>
+	<@cCol>
+	${stepContent!}
+	</@cCol>
+</@cRow>
+</@cContainer>
+</@cForm>
+<#include "/skin/plugins/asynchronousupload/upload_commons.html" />
+<@addRequiredJsFiles />
+<script src="${commonsSiteThemePath}js/jquery/plugins/moment.min.js" ></script>
+<script src="jsp/site/plugins/asynchronousupload/GetMainUploadJs.jsp?handler=formsAsynchronousUploadHandler" ></script>
+<script>
+function getInputElement( displayControl ){
+	var types = ['input','select','textarea'];
+	var elm = null;
+	for(var i=0;i<types.length && (elm == undefined || elm == null || elm.length <=0);i++){
+		elm = $("div[displayControl=" + displayControl + "]").find(types[i]);
+	}
+	if( elm.is('input') ){
+		elm = $('input[name="' + elm.attr('name') + '"]');
+	}
+	return elm;
+}
+
+function getFieldValue( elm ){
+	if(elm.is(':radio')){
+		var input = $('input[name="' + elm.attr('name') + '"]:checked');
+		return input.val();
+	} else if (elm.is(':checkbox'))	{
+		var resultChecked = [];
+		for(var i=0;i< elm.length;i++){
+			if (elm [i].checked){
+				resultChecked.push(elm[i].value);
+			}
+		}
+		return resultChecked;
+	} else if (elm.is('select')) {
+		return elm[0].options[elm[0].selectedIndex].value;
+	}
+	//add other specific implementations here
+	else {
+		return elm.val();
+	}
+}
+
+$( function() {
+	$("button[name='action_addIteration']").on("click", function() {
+		var target = "#last_" + $(this).attr("value");
+		var form = $(this).closest("form");
+		var newUrl = form.attr("action").replace(/#current_step$/,target);
+		form.attr("action",newUrl);
+	});
+});
+</script>

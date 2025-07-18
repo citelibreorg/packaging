@@ -1,0 +1,32 @@
+<#if !entry.onlyDisplayInBack>
+<#assign entryClass><#if entry.CSSClass?contains('hidden')>hidden</#if></#assign>
+<#compress>
+<@cText class=entryClass!>
+<@cInline type='strong'>${entry.title!''} :</@cInline>
+<#if list_responses?has_content>
+	<@chList class='list-unstyled ps-l'>
+	<#list list_responses as response>
+		<#if response.file?exists>
+			<#if response.file.size??>
+				<#assign fileSize=response.file.size>
+				<#if fileSize lt 1024 >
+					<#assign octetUnit='o'>
+					<#assign octetNumber=fileSize >
+				<#elseif fileSize lt ( 1024 * 1024 ) >
+					<#assign octetUnit='Ko'>
+					<#assign octetNumber=fileSize / 1024 >
+				<#else>
+					<#assign octetUnit='Mo'>
+					<#assign octetNumber=fileSize / (1024*1024) >
+				</#if>
+			</#if>
+			<@chItem><@cInline type='strong' class='ms-xs'>${response.file.title}</@cInline> - <@cInline type='em' class='ms-xs'>${octetNumber?string["0.##"]} ${octetUnit}</@cInline></@chItem>
+		</#if>
+	</#list>
+	</@chList>
+<#else>
+	<@cInline type='em'>#i18n{themecitelibre.labelNoDataProvided}</@cInline>
+</#if>
+</@cText>
+</#compress>	
+</#if>

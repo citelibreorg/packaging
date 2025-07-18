@@ -1,0 +1,45 @@
+<#assign title = '' >
+<#assign inputValue = '' >
+<#assign hasError = false />
+<#if list_responses??><#list list_responses as response><#if response.entry.idEntry == entry.idEntry && response.entry.error?? && response.entry.error.isDisplayableError><#assign hasError = true /><#assign error = response.entry.error></#if></#list></#if>
+<@cFieldset id='${entry.idEntry}' legend=entry.title legendClass='inputs ${entry.CSSClass!}' class=entry.CSSClass! required=entry.mandatory >
+<@cTable>
+    <#assign x=getFieldValueByCode(entry, "array_row")?number>
+    <#list 1..x+1 as i>
+        <@cTr>
+            <#assign y=getFieldValueByCode(entry, "array_column")?number>
+            <#list 1..y+1 as j>
+            <@cTd>
+            <#list entry.fields as field>
+                <#assign value=i+"_"+j>
+                <#if field.value == value>
+                    <#assign title=field.title!>
+                    <#assign inputValue=''>
+                    <#if list_responses??>
+                        <#list list_responses as response>
+                            <#if response.field?has_content && response.field.value == value && response.toStringValueResponse?has_content>
+                                <#assign inputValue = response.toStringValueResponse>
+                            </#if>
+                        </#list>
+                    </#if>
+                </#if>
+            </#list>
+            <#if j==1 && i!=1>
+                ${title!}
+            <#elseif i == 1 && j != 1>
+                ${title!}
+            <#elseif i == 1 && j == 1>
+                <@cInline class='font-bold'>${entry.comment}</@cInline >
+            <#else>
+                <#assign idName = 'nIt' + entry_iteration_number +  '_response_' + i + '_' + j>
+                <@cField label='${title!}' for=idName showLabel=false>
+                    <@cInput name=idName! class='form-control' value=inputValue! />
+                </@cField>
+            </#if>
+            </@cTd>
+        </#list>
+        </@cTr>
+    </#list>  
+</@cTable>
+<#if entry.helpMessage?exists && entry.helpMessage!=''><@cFormHelp id=idName! label=entry.helpMessage! /></#if>
+</@cFieldset>

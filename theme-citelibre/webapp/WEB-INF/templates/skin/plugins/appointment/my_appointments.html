@@ -1,0 +1,54 @@
+<@cContainer>
+	<@cRow>
+		<@cCol>
+			<@cTitle level=2 class='mb-3'>#i18n{appointment.myAppointments.name}</@cTitle>
+			<@messages infos=infos errors=errors/>
+			<@cTable>
+				<@cThead>
+					<@cTr>
+						<@cTh>#i18n{appointment.myAppointments.labelAppointmentFormTitle}</@cTh>
+						<@cTh>#i18n{appointment.myAppointments.labelDateAppointment}</@cTh>
+						<@cTh>#i18n{appointment.myAppointments.labelTime}</@cTh>
+						<@cTh>Nombre de places réservées</@cTh>
+						<@cTh>#i18n{appointment.actions.label}</@cTh>
+					</@cTr>
+				<@cThead>
+				<@cTbody>
+					<#if list_appointments?? && list_appointments?size &gt; 0>
+						<#list list_appointments?sort_by('startingDateTime') as appointment>
+							<#assign dtApp=appointment.startingDateTime?string?datetime.iso > 
+							<#if !appointment.isCancelled && localeDateTime.isBefore(appointment.startingDateTime) >
+								<#list form_list as frm>
+									<#if frm.code?number = appointment.idForm>
+										<#assign formTitle=frm.name />
+										<#break>
+									</#if>
+								</#list>
+								<@cTr>
+									<@cTd>${formTitle!}<@cTd>
+									<@cTd>${appointment.dateOfTheAppointment!}<@cTd>
+									<@cTd>#i18n{appointment.labelFrom} ${appointment.startingTime} #i18n{appointment.labelTo} ${appointment.endingTime}<@cTd>
+									<@cTd>${appointment.nbBookedSeats!}<@cTd>
+									<@cTd>
+									<#if localeDateTime.isBefore(appointment.startingDateTime) >
+										<#if appointment.listWorkflowActions?? && appointment.listWorkflowActions?size gt 0> 
+											<#list appointment.listWorkflowActions as action> 
+												<@aButton href='jsp/site/Portal.jsp?page=appointment&view=viewWorkflowActionForm&id_action=${action.id}&amp;refAppointment=${appointment.reference}' size='sm'>
+													<#assign imgParams><#if action.icon.width!=-1> width="${action.icon.width}" </#if><#if action.icon.height!=-1> height="${action.icon.height}"</#if></#assign>
+													<@cImg src='image?resource_type=workflow_icon_img&id=${action.icon.id!}' title=action.name! alt=action.name! params=imgParams />
+												</@aButton> 
+											</#list>
+										</#if> 
+									</#if>
+									<@cTd>
+								</@cTr>
+							</#if>
+						</#list>
+					</@cTbody>
+				</@cTable>
+			<#else>
+				<@cAlert title='#i18n{portal.util.labelNoItem}' />
+			</#if>
+		</@cCol>
+	</@cRow>
+</@cContainer>

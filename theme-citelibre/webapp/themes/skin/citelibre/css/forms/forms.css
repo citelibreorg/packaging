@@ -1,0 +1,45 @@
+/*** 										***/
+/*** Forms Elemnts							***/
+/***  										***/
+legend{
+	font-size: var(--font-m);
+	font-weight: 600;
+	margin-block-end: 0;
+}
+
+/* Camera */
+.btn-cam {
+    right: calc( 5vw + 25% ) !important;
+}
+
+@media (min-width: 576px) {
+	#layout-sidebar-wrapper #layout-sidebar #main #summary-validate .container,
+	#layout-sidebar-wrapper #layout-sidebar #main #form-validate .container{
+		max-width: 540px;
+		margin-block-start: 0;
+	}
+}
+
+@media (min-width: 768px) {
+	#layout-sidebar-wrapper #layout-sidebar #main #summary-validate .container,
+	#layout-sidebar-wrapper #layout-sidebar #main #form-validate .container{
+		max-width: 720px;
+		margin-block-start: 0;
+	}
+}
+
+@media (min-width: 992px) {
+	#layout-sidebar-wrapper #layout-sidebar #main #summary-validate .container,
+	#layout-sidebar-wrapper #layout-sidebar #main #form-validate .container{
+		max-width: 960px;
+		margin-block-start: 0;
+	}
+}
+
+@media (min-width: 1200px) {
+	#layout-sidebar-wrapper #layout-sidebar #main #summary-validate .container,
+	#layout-sidebar-wrapper #layout-sidebar #main #form-validate .container{
+		max-width: 1140px;
+		margin-block-start: 0;
+	}
+}

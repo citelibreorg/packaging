@@ -1,0 +1,90 @@
+
+/* News Portlet */
+.news header {
+	position: relative;
+	background: none;
+	margin: 0;
+	height: 80px;
+	z-index: 0;
+}
+.news header h1 {
+    color: var( --white-color );
+    font-size: 2em;
+    margin: 0; 
+}
+.news nav {
+	margin: 15px  0;
+	padding: 15px;
+	border: 0;
+	border-radius: 0;
+}
+.news nav .nav-pills li {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.news nav .nav-pills li a {
+	color: var( --main-color );
+	padding: 15px;
+	width: 100%;
+	height: 100%;
+}
+
+.news nav .nav-pills li a:hover {
+	text-decoration: none;
+}
+
+.news nav .nav-pills li.active a,
+.news nav .nav-pills li:hover a,
+.news nav .nav-pills li.active, 
+.news nav .nav-pills li:hover{
+	color: var( --white-color );
+	background-color: var( --main-color );
+}
+
+.grid-list {
+	list-style: none;
+	margin: 2em;
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: repeat(auto-fill,minmax(30%, 1fr));
+}
+
+.grid-list .item-list{
+	position: relative;
+	border: 1px solid var( --main-color );
+	display: flex;
+	flex-direction: column;
+}
+
+.grid-list .item-list figure {
+	margin:0 auto;
+	height: 20rem;
+	padding: 2rem;
+}
+
+.grid-list .item-list figure img {
+	height: 100%;
+	object-fit: contain;
+	
+}
+
+.grid-list .item-list .item-title {
+	color: var( --main-color );
+}
+
+.grid-list .item-list .item-body {
+	padding: 15px;
+	border-top: 1px solid var( --main-color );
+}
+
+.grid-list .item-list .item-body a{
+	text-decoration: none;
+}
+
+.grid-list .item-list .item-body .tags {
+	top: 0;
+	right: 0;
+	margin: 0 5px;
+    position: absolute;
+}

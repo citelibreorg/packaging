@@ -1,0 +1,64 @@
+<#macro themesList items default_value exclude_value depth>
+<#if items?has_content>
+    <#list items as theme>
+        <#if exclude_value="${theme.id}">
+        <#else>
+            <#local optLabel><#if depth &gt; 0><#list 1..depth as i>&nbsp;&nbsp;</#list></#if>${theme.text}</#local>
+            <@cOption label=optLabel value=theme.id selected=(default_value=theme.id?string) />
+            <#assign child_themes_list = theme.getChilds(plugin) />
+            <#if child_themes_list?has_content>
+                <@themesList items=child_themes_list default_value=default_value exclude_value=exclude_value depth=depth+1 />
+            </#if>
+        </#if>
+    </#list>
+</#if>
+</#macro>
+<@cContainer>
+	<@cRow class='justify-content-center'>
+        <@cCol cols='12 col-md-8'> 
+            <@cTitle level=2 class='mt-5'>#i18n{helpdesk.contact.adminTitle}</@cTitle>
+                <@cForm name='form_contact'>
+                <@cInput type='hidden' name='valid' value='ok' />
+                <@cInput type='hidden' name='contact' value='result' />
+                <@cInput type='hidden' name='page' value='helpdesk' />
+                <@cInput type='hidden' name='faq_id' value=faq.id />
+                <@cField label='#i18n{helpdesk.contact.subject}' for='mail_subject-input' >
+                    <@cInput placeholder='Exemple : comment ajouter une action pour une association ?' name='mail_subject' id='mail_subject' maxlength=50 />
+                </@cField>
+                <@cField label='#i18n{helpdesk.contact.Name}' for='last_name' >
+                    <@cInput name='last_name' id='last_name' maxlength=50 />
+                </@cField>
+                <@cField label='#i18n{helpdesk.contact.FirstName}' for='first_name'>
+                    <@cInput name='first_name' id='first_name' maxlength=50 />
+                </@cField>
+                <@cField label='#i18n{helpdesk.contact.Email}' for='email' >
+                    <@cInput name='email' id='email' maxlength=80 />
+                </@cField>
+                <@cField label='#i18n{helpdesk.contact.QuestionType}' for='theme_id' >
+                    <@cSelect id='theme_id' name='theme_id' >
+                        <@themesList items=helpdesk_theme_list default_value="${default_value}" exclude_value="" depth=0 />
+                    </@cSelect>
+                </@cField>
+                <@cField label='#i18n{helpdesk.contact.YourQuestion}' for='question' >
+                    <@cTextArea name='question' id='question' placeholder='Exemple : comment ajouter une action pour une association ?' />
+                </@cField>
+                <@cFormRow class='mt-l'>
+                    <@cCol>
+                        <@cBtn class='primary' label='#i18n{helpdesk.contact.send}'>
+                            <@parisIcon name='check' params='title="#i18n{helpdesk.contact.send}"'/>
+                        </@cBtn>
+						<@cLink class='btn btn-secondary' href='jsp/site/Portal.jsp?page=helpdesk&faq_id=${faq.id}' label='' >
+                            <@parisIcon name='close' params='title="#i18n{portal.util.labelBack}"' /> #i18n{helpdesk.contact.back}
+                        </@cLink>   
+                    </@cCol>
+                </@cFormRow>
+            </@cForm>   
+        </@cCol>
+    </@cRow>
+</@cContainer>
+<script>
+window.addEventListener( "load", function() { 
+<@cSetPageTitle title='#i18n{helpdesk.contact.adminTitle}' split=true />
+})
+</script> 
+    

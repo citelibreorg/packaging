@@ -1,0 +1,29 @@
+<@cContainer>
+	<@cRow>
+		<@cCol>
+			<@cCard title='#${formResponse.id}' class='mt-5'>
+                <@cList items="">
+                <#list formResponse.steps as formQuestionResponseSteps>
+                    <li> 
+                        <#list formQuestionResponseSteps.questions as questionResponse>
+                           ${questionResponse.question.title} : <#list questionResponse.entryResponse as response> ${response.responseValue!}</#list>
+                        </#list>
+                    </li>
+                </#list>
+                </@cList>
+                <#if workflow_action_list?has_content>
+                    <@cTitle level=2>#i18n{forms.multiviewForms.view_record_history.actions}</@cTitle>
+                    <@cList items="">
+                    <#list workflow_action_list as action>
+                        <li>
+                            <@link class='btn btn-block btn-default' href='jsp/site/Portal.jsp?page=formsResponse&action=doProcessAction&id_action=${action.id}&id_response=${formResponse.id}&token=${token}' >
+                                <@img class='img-circle img-action' url='image?resource_type=workflow_icon_img&id=${action.icon.id}' title=action.name alt=action.name /> ${action.name}  
+                            </@link>
+                        </li>
+                    </#list>
+                    </@cList>
+                </#if>
+            </@cCard>
+        </@cCol>
+    </@cRow>
+</@cContainer>

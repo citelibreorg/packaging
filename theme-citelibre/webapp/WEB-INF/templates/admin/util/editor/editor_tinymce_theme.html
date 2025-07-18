@@ -1,0 +1,60 @@
+<#assign themeEditorConfig>${dskey('themeparisfr.site_property.config.editor.textblock')!}</#assign>
+<#assign themeEditorExtraConfig>
+table_appearance_options: false,
+table_header_type: 'sectionCells',
+table_sizing_mode: 'auto',
+table_class_list: [
+  {title: 'Paris.fr Default Table class', value: 'table ctable xs-collapsed'}
+],
+table_cell_class_list: [
+  {title: 'Aucune', value: ''},
+  {title: 'Cellule : bouton', value: 'button'}
+],
+templates : [
+  {
+    title: 'Alerte (style : info)',
+    description: 'Ajoute un bloc de type alerte (style info)',
+    content: `<@cAlert title='Titre de l\'alerte' />`
+  },
+  {
+    title: 'Alerte (style : success)',
+    description: 'Ajoute un bloc de type alerte (style success)',
+    content: `<@cAlert class='success' title='Titre de l\'alerte' />`
+  },
+  {
+    title: 'Alerte (style : warning)',
+    description: 'Ajoute un bloc de type alerte (style warning)',
+    content: `<@cAlert class='warning' title='Titre de l\'alerte' />`
+  },
+  {
+    title: 'Alerte (style : danger)',
+    description: 'Ajoute un bloc de type alerte (style danger)',
+    content: `<@cAlert class='danger' title='Titre de l\'alerte' />`
+  },
+  {
+    title: 'Accordéon (1 élement)',
+    description: 'Ajoute un élément de type accordéon',
+    content: `<@cCascading title='Titre de l\'accordéon'>Contenu de l'accordéon</@cCascading>`
+  },
+  {
+    title: 'Lien bouton défaut',
+    description: 'Ajoute un lien en forme de bouton du style par défaut',
+    content: `<@cLink href='' class='btn btn-primary' label='Double-clic pour modifier le lien'/>`
+  },
+  {
+    title: 'Lien bouton "inversé"',
+    description: 'Ajoute un lien en forme de bouton du style inverse',
+    content: `<@cLink href='' class='btn btn-secondary' label='Double-clic pour modifier le lien'/>`
+  },
+  {
+    title: 'Lien simple',
+    description: 'Ajoute un lien',
+    content: `<@cLink href='' class='btn btn-tertiary' label='Double-clic pour modifier le lien'/>`
+  }
+]</#assign>
+<#macro setEditorConfigOptionScript>
+<#-- Add options to config as a script after config init , like add a plugin and set an icon in menu -->
+editorConfig.plugins.push('template')
+editorConfig.toolbar += ' template' 
+editorConfig.content_css = 'themes/skin/parisfr/css/themeparisfr.min.css, css/page_template_styles.css'
+</#macro>

@@ -1,0 +1,103 @@
+<#ftl strip_whitespace='true'>
+<#--
+ # The main macro is addFileInputAndfilesBox. The macro addRequiredJsFiles is used to include required JavaScript and CSS files.
+ # Others macros are private.
+ # Add required CSS and JavaScript files to use asynchronous uploads.
+ # This is only needed in Back Office or in FO page not served by the portal service.
+ -->
+<#macro addRequiredJsFiles>
+<script type="module">
+import { themeUtils } from './themes/skin/citelibre/js/modules/theme-utils.js';
+const uploadUtils = new themeUtils;
+const aAsyncLinksToAddRemove = [{"name":"config.min.js","pathtoremove":"js/plugins/asynchronousupload/","pathtoadd":"${commonsSiteThemePath}${commonsSiteJsPath}plugins/asynchronousupload/"}]
+uploadUtils.replaceSourceLinksFromArray( aAsyncLinksToAddRemove )
+</script>
+<script>
+/* Maps to manage files field errors */
+var mapFileErrors = new Map();
+var mapFilesNumber = new Map();
+var mapFilesNumber = new Map();
+</script>
+</#macro>
+<#--
+ # addFileInput
+ # Param "type" default: 'button' : Possible values 'button' / 'dropzone'
+ -->
+<#macro addFileInput fieldName handler cssClass image=false multiple=false label='' submitBtnName='${handler.uploadSubmitPrefix}${fieldName}' type='button' ariaDescribedby='' helpMsg='' disabled=false required=false hasError=false nbFiles=0 nbMaxFiles=0 maxFileSize=0 deprecated...>
+<@deprecatedWarning args=deprecated />
+<#local fieldClass>${cssClass!}</#local>
+<#local errorMsg><#if hasError><#if error.mandatoryError>#i18n{forms.message.mandatory.entry}<#else>${error.errorMessage}</#if></#if></#local>
+<#local fieldParams><#if ariaDescribedby??> aria-describedby="${ariaDescribedby!}"</#if></#local>
+<#local hasFiles><#if nbFiles gt 0>true<#else>false</#if></#local>
+<@cInputDropFiles name=fieldName handler=handler type=type image=image nbFiles=nbMaxFiles! nbUplodadedFiles=nbFiles! maxFileSize=maxFileSize! label=label formSubmitButtonName=submitBtnName disabled=disabled required=required multiple=multiple hasFiles=hasFiles?boolean helpMsg=helpMsg errorMsg=errorMsg class=fieldClass params=fieldParams>
+<#nested>
+</@cInputDropFiles>
+</#macro>
+<#-- DEPRECATED addFileInputImage -->
+<#macro addFileInputImage fieldName handler cssClass multiple=false label='' submitBtnName='${handler.uploadSubmitPrefix}${fieldName}' type='button' ariaDescribedby='' disabled=false  required=false hasError=false nbFiles=0 nbMaxFiles=0 maxFileSize=0 deprecated...>
+<@deprecatedWarning args=deprecated />
+<#local fieldClass>${cssClass!}</#local>
+<#local errorMsg><#if hasError><#if error.mandatoryError>#i18n{forms.message.mandatory.entry}<#else>${error.errorMessage}</#if></#if></#local>
+<#local fieldParams><#if ariaDescribedby??> aria-describedby="${ariaDescribedby!}"</#if></#local>
+<#local hasFiles><#if nbFiles gt 0>true<#else>false</#if></#local>
+<@cInputDropFiles name=fieldName handler=handler type=type nbFiles=nbMaxFiles! nbUplodadedFiles=nbFiles! maxFileSize=maxFileSize! label=label formSubmitButtonName=submitBtnName disabled=disabled required=required multiple=multiple hasFiles=hasFiles?boolean errorMsg=erroMsg class=fieldClass params=fieldParams >
+<#nested>
+</@cInputDropFiles>
+</#macro>
+<#-- / DEPRECATED addFileInputImage -->
+<#macro addUploadedFilesBox fieldName handler listFiles noJs=false image=false maxFiles=0 accept='' errorMsg='' deprecated...>
+<@deprecatedWarning args=deprecated />
+<#-- file removing -->
+<#assign has_files = false>
+<#assign nb_files = 0>
+<#assign show_files = 0>
+<#if listFiles?? && listFiles?has_content>
+<#assign has_files = true>
+<#assign nb_files = listFiles?size>
+<#-- BEGIN QuickFix to remove duplicated files list REMOVE ASAP -->
+<#assign show_files = (nb_files / 2)?round - 1 >
+<#-- END QuickFix to remove duplicated files list REMOVE ASAP -->
+</#if>
+<#local file_index = 0 >
+<#local currentFilename = '' >
+<#if has_files>	
+<#list listFiles as file>
+<#local filename = ''>
+<#if file.name?? && file.name != ''><#local filename = file.name ><#else><#if file.title?? && file.title != ''><#local filename = file.title ></#if></#if>
+<#if currentFilename != filename >
+<@cInputDropFilesItem name=fieldName label=filename idx=file_index handler=handler image=image fileSize=file.size urlDl='jsp/site/plugins/asynchronousupload/DoDownloadFile.jsp?asynchronousupload.handler=${handler.handlerName}&fieldname=${fieldName}&field_index=${file_index}&fileName=${filename}' />
+</#if>
+<#local file_index = file_index + 1>
+<#-- BEGIN QuickFix to remove duplicated files list REMOVE ASAP -->
+<#if nb_files gt 0 && file_index gte show_files ><#break /></#if>
+<#-- END  QuickFix to remove duplicated files list REMOVE ASAP -->
+</#list>
+</#if>
+</#macro>
+<#-- Macro to add a file input for asynchronous and synchronous uploads.
+ # @param fieldName The name of the field.
+ # @param handler The associated handler service.
+ # @param listUploadedFiles The list of files that have already been uploaded. Files must have a 'title' or a 'name' attribute. 
+ # @param inputCssClass The CSS class to add to the input if any. Default value is an empty string.
+ # @param multiple True to use an HTML5 multiple file input, false otherwise. Default value if false.
+ -->
+<#macro addFileInputAndfilesBox fieldName handler listUploadedFiles inputCssClass='' multiple=false>
+<@addFileInput fieldName=fieldName handler=handler cssClass=inputCssClass multiple=multiple>
+<!-- addUploadedFilesBox -->
+<@addUploadedFilesBox fieldName=fieldName handler=handler listFiles=listUploadedFiles />
+</@addFileInput>
+</#macro>
+<#-- Macro to add a file image input for asynchronous and synchronous uploads.
+ # @param fieldName The name of the field.
+ # @param handler The associated handler service.
+ # @param listUploadedFiles The list of files that have already been uploaded. Files must have a 'title' or a 'name' attribute. 
+ # @param inputCssClass The CSS class to add to the input if any. Default value is an empty string.
+ # @param multiple True to use an HTML5 multiple file input, false otherwise. Default value if false.
+ -->
+ <#-- DEPRECATED addFileInputImage -->
+<#macro addFileInputImageAndfilesBox fieldName handler listUploadedFiles inputCssClass='' multiple=false>
+<@addFileInputImage fieldName=fieldName handler=handler cssClass=inputCssClass multiple=multiple >
+<@addUploadedFilesBox fieldName=fieldName handler=handler listFiles=listUploadedFiles />
+</@addFileInputImage>
+</#macro>
+<#-- DEPRECATED addFileInputImage -->

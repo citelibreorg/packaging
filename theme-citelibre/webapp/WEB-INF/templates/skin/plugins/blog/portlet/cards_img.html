@@ -1,0 +1,34 @@
+<@cContainer>
+<@cRow>
+    <@cCol class='portlet'>
+	<#if portlet_name??>
+		<@cHeader>
+			<@cTitle level=1>${portlet_name!}</@cTitle>
+		</@cHeader>
+	</#if>
+	<@cCardLayout type='deck'>
+	<#list blog_list_published as doc>
+	<#if doc.docContent?? && doc.docContent?size!=0>
+		<#list doc.docContent as docContent >
+			<#if docContent.contentType.idContentType==1>
+				<#assign imgCard="servlet/plugins/blogs/file?id_file=${docContent.id}" class="d-block" alt="${doc.contentLabel}" >
+				<#break>
+			</#if>
+		</#list>
+	</#if>
+	<#assign footerCard>
+	<#if doc.url?? && doc.url !=''>
+			<a href="${doc.url!}" target="_blank">
+		<#else>
+			<a href="jsp/site/Portal.jsp?page=blog&amp;id=${doc.id}&amp;portlet_id=${portlet_id}" >
+		</#if>
+		<p class="text-right">Read More</p>
+		</a>
+	</#assign>
+	<@cCard title=doc.contentLabel subtitle=doc.description footer=footerCard img=imgCard />
+
+	</#list>
+	</@cCardLayout>
+    </@cCol>
+</@cRow>
+</@cContainer>

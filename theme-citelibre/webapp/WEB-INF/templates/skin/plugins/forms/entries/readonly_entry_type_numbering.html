@@ -1,0 +1,13 @@
+<#assign cssClass><#if entry.CSSClass!=''>${entry.CSSClass}<#else>d-none</#if></#assign>
+<#compress>
+<@cText class=cssClass>
+<@cText type='strong'>${entry.title!''} :</@cText>
+<#if list_responses?has_content>
+<#if list_responses?size gt 0>
+<#list list_responses as response>${entryTypeService.getResponseValueForRecap(entry,nullArg,response,nullArg)!''}</#list>
+<#else>
+<@cInline type='em'>#i18n{themecitelibre.labelNoDataProvided}</@cInline>
+</#if>
+</#if>
+</@cText>
+</#compress>	

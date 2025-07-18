@@ -1,0 +1,44 @@
+<#if !entry.onlyDisplayInBack || is_completeness_bo>
+<#if getFieldByCode( entry, "illustration_image")??>
+<#assign imageCode=''>
+<#assign illustration_image_entry=getFieldByCode( entry, "illustration_image")>
+<#assign image_id = illustration_image_entry.value>
+<#list fields_list_by_id_entries as key, value><#if key = illustration_image_entry.idField><#assign imageCode><@cImg src=value alt='illustration_image_entry.title' labelDescribedBy='illustration_image_entry.title' showLabelDescribedBy=true /></#assign></#if></#list>
+</#if>
+<#assign hasError = false />
+<#if list_responses??><#list list_responses as response><#if response.entry.idEntry == entry.idEntry && response.entry.error?? && response.entry.error.isDisplayableError><#assign hasError = true /><#assign error = response.entry.error></#if></#list></#if>
+<#assign idName = buildEntryName( entry, entry_iteration_number )>
+<#assign fieldValue=''>
+<#assign entryClass=''>
+<#assign entryAutocomplete=''>
+<#assign field_width=getFieldValueByCode( entry, "width")>
+<#assign field_default=getFieldByCode( entry, "text_config")>
+<#assign errorMsg><#if hasError><#if error.mandatoryError>#i18n{forms.message.mandatory.entry}<#else>${error.errorMessage}</#if></#if></#assign>
+<#assign helpMsg><#if entry.helpMessage?exists&&entry.helpMessage!=''>${entry.helpMessage}</#if></#assign>
+<#assign entryClass><#list entry.CSSClass?split(' ') as laClass><#if !laClass?starts_with( 'col-' )>${laClass!}</#if></#list></#assign>
+<#assign field_max_size=getFieldValueByCode( entry, "max_size") >
+<#assign field_autocomplete = getFieldByCode( entry, "autocomplete" )!{} >
+<#assign entryAutocomplete><#if field_autocomplete?? && field_autocomplete.value??>autocomplete="${field_autocomplete.value}"</#if></#assign>
+<#assign field_max_size_number><#if field_max_size?number!=-1>${field_max_size?number}<#else>0</#if></#assign>
+<#if list_responses?has_content><#list list_responses as response><#if response.entry.idEntry == entry.idEntry><#if response.toStringValueResponse??><#assign fieldValue>${response.toStringValueResponse}</#assign></#if></#if></#list><#else><#if field_default.value?exists><#assign fieldValue>${field_default.value}</#assign><#else><#assign fieldValue=''></#if></#if>
+<#assign fieldParams><#if field_width!?number gt 0> style="width:${field_width?number}px;"</#if><#if entryAutocomplete=''>${entryAutocomplete}</#if></#assign>
+<#assign placeholder = getFieldValueByCode(entry, "placeholder") >
+<@cField label=entry.title! for=idName! required=entry.mandatory! class=entryClass! > 
+<@cInput name=idName placeholder=placeholder required=entry.mandatory! html5Required=false value=fieldValue?string maxlength=field_max_size_number?number helpMsg=helpMsg errorMsg=errorMsg params=fieldParams />
+</@cField>
+<#assign confirmField=getFieldByCode( entry, "confirm_field")>
+	<#if confirmField.value?boolean >
+	<#assign idName =  buildEntryName( entry, entry_iteration_number )>
+	<#if entry_iteration_number?has_content && entry_iteration_number gt 0><#assign idName = 'nIt' + entry_iteration_number + '_attribute' + entry.idEntry></#if>
+	<#assign field_width=getFieldValueByCode( entry, "width")>
+	<#assign field_autocomplete = getFieldByCode( entry, "autocomplete" )!{} >
+	<#-- assign field_width_number><#if field_width?number!=-1>${field_width?number}<#else>0</#if></#assign -->
+	<#assign field_max_size=getFieldValueByCode( entry, "max_size")>
+	<#assign fieldParams><#if field_autocomplete??>autocomplete="${field_autocomplete.value?if_exists}"</#if></#assign>
+	<@cField>
+		<@cLabel label=confirmField.title for='${idName}_confirm_field' required=entry.mandatory /> 
+		<@cInput name='${idName}_confirm_field' class='form-control-input input-sm' required=entry.mandatory! html5Required=false maxlength=field_max_size_number?number helpMsg=helpMsg errorMsg=errorMsg params=fieldParams />
+		<#-- size="${field_width?number}" -->
+	</@cField>
+	</#if>
+</#if>

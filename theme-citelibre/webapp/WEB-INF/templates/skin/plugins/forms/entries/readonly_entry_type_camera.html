@@ -1,0 +1,27 @@
+<#assign width=320>
+<#assign field_width=getFieldValueByCode( entry, "width")>
+<#if field_width?number &gt; 0><#assign width=field_width?number></#if>
+<#assign entryClass>d-flex <#if entry.CSSClass?contains('hidden')>hidden</#if></#assign>
+<#compress>
+<@cText class=entryClass!>
+<@cInline class='me-2' type='strong'>${entry.title!''} :</@cInline>
+<#if list_responses?has_content>
+	<#assign first = true>
+	<#list list_responses as response>
+		<#if response.file?exists>
+			<@cImg src='' alt="${entry.title!''}" id='img${entry.idEntry}' title="${entry.title!''}" class="img-fluid img-responsive img-thumbnail" params=' style="width:${width};"' />
+		<#else>
+			<@cInline type='em'>#i18n{themecitelibre.labelNoDataProvided}</@cInline>
+		</#if>
+	</#list>
+</#if>
+</@cText>
+</#compress>
+<script>
+$( function(){
+	var dataImg = sessionStorage.getItem('data${entry.idEntry}' );
+	if( dataImg != null && dataImg !="" ){
+		img${entry.idEntry}.setAttribute('src', dataImg );
+	}
+});
+</script>

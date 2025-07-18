@@ -1,0 +1,17 @@
+<#if !entry.onlyDisplayInBack>
+<#assign entryClass><#if entry.CSSClass?contains('hidden')>hidden</#if></#assign>
+<#compress>
+<@cText class=entryClass!>
+<@cInline type='strong'>${entry.title!''} :</@cInline>
+<#if list_responses?has_content>
+	<#if list_responses?size gt 0>
+		<#list list_responses?sort_by('sortOrder') as response><@cInline type='em' class='ms-xs'>${response.sortOrder}</@cInline> : <@cInline type='strong' class='ms-xs'><#if entryTypeService.getResponseValueForRecap(null, null, response, null)??>${entryTypeService.getResponseValueForRecap(null, null, response, null)}<#else>${response.toStringValueResponse!''}</#if></@cInline><#sep>, </#sep></#list>
+	<#else>
+		<@cInline type='em' class='ms-xs'>#i18n{themecitelibre.labelNoDataProvided}</@cInline>
+	</#if>
+<#else>
+<@cInline type='em' class='ms-xs'>#i18n{themecitelibre.labelNoDataProvided}</@cInline>
+</#if>
+</@cText>
+</#compress>
+</#if>

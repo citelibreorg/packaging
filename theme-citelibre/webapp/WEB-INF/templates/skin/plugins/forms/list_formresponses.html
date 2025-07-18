@@ -1,0 +1,16 @@
+<@cContainer>
+	<@cRow>
+		<@cCol>
+			<@cCard title='#i18n{forms.xpage.myformresponses.view.pageTitle}' class='mt-5'>
+				<@chList class='custom-list list-default'>
+				<#list response_list as response>
+					<@chItem>
+						<#assign linkTitle>${response.formTitle}  <time datetime="${response.dateUpdate?date}" class="ms-1 ms-1">${response.dateUpdate?date}</time> <small class="ms-auto ms-auto">${response.workflowState!}</small></#assign>
+						<@cLink href='jsp/site/Portal.jsp?page=formsResponse&id_response=${response.idFormResponse}' label=form.title title='#i18n{forms.xpage.myformresponses.view.labelView}' />
+					</@chItem>
+				</#list>
+				</@chList>
+			</@cCard>
+		</@cCol>
+	</@cRow>
+</@cContainer>

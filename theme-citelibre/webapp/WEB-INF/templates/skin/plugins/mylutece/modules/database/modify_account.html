@@ -1,0 +1,66 @@
+<@cContainer>
+    <@cRow>
+        <@cCol>
+            <@cTitle>#i18n{module.mylutece.database.xpage.modify_account.pageTitle}</@cTitle>
+            <!-- Form container -->
+            <@cSection class="form-container">
+                <!-- Form -->
+                <#if error_code?has_content >
+                    <#assign typeClass = "class=\"error\"" />
+                    <#if error_code = "error_mandatory_fields">
+                        <div class="alert alert-error">#i18n{module.mylutece.database.message.account.errorMandatoryFields}</div>
+                        <#if !(user.lastName?has_content)>
+                            <#assign classLastName = typeClass />
+                        </#if>
+                        <#if !(user.firstName?has_content)>
+                            <#assign classFirstName = typeClass />
+                        </#if>
+                        <#if !(user.email?has_content)>
+                            <#assign classEmail = typeClass />
+                        </#if>
+                    </#if>
+                    <#if error_code = "error_syntax_email">
+                        <div class="alert alert-error">#i18n{module.mylutece.database.message.account.errorBadEmail}</div>
+                        <#assign classEmail = typeClass />
+                    </#if>
+                    <#if error_code = "error_captcha">
+                        <div class="alert alert-error">#i18n{module.mylutece.database.message.account.errorCaptcha}</div>
+                    </#if>
+                </#if>
+                <#if action_successful?has_content>
+                    <@cForm name='modifyAccount' action='${action_successful}'>
+                        <@cField label='#i18n{module.mylutece.database.message.modify_account.success}'>
+                            <@cBtn label='#i18n{module.mylutece.database.xpage.account.btnBack}' class='form-control-submit-button' params='name="BtnBack"' />
+                        </@cField>
+                    </@cForm>     
+                    <!-- end of form -->
+                <#else>
+                    <@cForm name='modifyAccount' action='jsp/site/plugins/mylutece/modules/database/DoModifyAccount.jsp'>
+                        <@input type='hidden' name='plugin_name' value='${plugin_name}' />
+                        <#if show_input_email>
+                            <@cField>
+                                <@cInput maxlength=100 name='email' value='${(user.email)?if_exists}' />
+                                <@cLabel for="email">#i18n{module.mylutece.database.xpage.modify_account.eMail}</@cLabel>
+                            </@cField>
+                        </#if>	
+                        <@cField>
+                            <@cInput maxlength=100 name="last_name" value="${(user.lastName)?if_exists}" />
+                            <@cLabel for="last_name">#i18n{module.mylutece.database.xpage.modify_account.lastName} </@cLabel>
+                        </@cField>
+                        <@cField>
+                            <@cInput maxlength=100 name="first_name" value="${(user.firstName)?if_exists}" />
+                            <@cLabel for="first_name">#i18n{module.mylutece.database.xpage.modify_account.firstName}</@cLabel>
+                        </@cField>
+                        <#if jcaptcha?exists><@cField>${jcaptcha}</@cField></#if>				
+                        <@cField>
+                            <@cBtn class='btn-outline-sm' label='#i18n{module.mylutece.database.xpage.modify_account.btnModifyAccount}' params='name="modifyAccountBtn"' />
+                        </@cField>
+                    </@cForm>     
+                    <!-- end of form -->
+                </#if>
+            </@cSection> 
+            <!-- end of form container -->
+        </@cCol> <!-- end of col -->
+    </@cRow> <!-- end of row -->
+</@cContainer> <!-- end of container -->
+<script>$(function(){ $('.ex-header').hide()});</script>

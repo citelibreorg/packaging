@@ -1,0 +1,28 @@
+<#include "minimal_header.html" />
+<#assign errorTitle>#i18n{themecitelibre.error500.title}</#assign>
+<#assign errorText>#i18n{themecitelibre.error500.text}</#assign>
+<#assign labelLink>#i18n{themecitelibre.labelContact}</#assign>
+
+<@cErrorMessage title=errorTitle text=errorText linkUrl=footerLinkContact linkLabelUrl=labelLink >
+<#if error_cause??>
+  <hr class="my-5">
+  <p class="expert lead font-bold text-center">Pour les connaisseurs...</p>
+  <div class="alert alert-warning alert-expert">
+    ${error_cause!}
+  </div>
+</#if>
+</@cErrorMessage>
+<#include "minimal_footer.html" />
+<#if error_cause??>
+<script>
+$( function(){
+  $('.alert-expert').toggle();
+  $('.expert').on( 'click', function(e){
+    $('.alert-expert').toggle();
+  });
+  $('.alert-expert').on( 'click', function(e){
+    $('.alert-expert').toggle();
+  });
+});
+</script>
+</#if>

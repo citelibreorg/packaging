@@ -1,0 +1,10 @@
+<#assign userName='#i18n{themecitelibre.labelConnect}' >
+<#assign userEmail='' >
+<#assign urlMylutece='' />
+<#if user?has_content>
+    <#assign userName=user.getUserInfo('user.name.given') >
+    <#assign urlMylutece=url_dologout >
+<#else>
+    <#assign urlMylutece=urlKeycloack >
+</#if>
+<@cMainNavUser connected=user?has_content userName=userName urlConnect=urlMylutece  />

@@ -1,0 +1,22 @@
+</main>
+<!-- container -->
+<!-- footer -->
+<@cMainFooter title=favourite! /> 
+<!-- end footer -->
+<!-- Le javascript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="themes/skin/citelibre/js/vendor/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Activate Bootstrap scrollspy on the main nav element
+    const skipLinks = document.querySelectorAll('.skip-links li a');
+    skipLinks.forEach(link => {
+        const windowUrl = window.location.href;
+        const linkHref = link.getAttribute('href');
+        link.setAttribute('href', windowUrl + linkHref);
+    });
+});
+</script>
+</body>
+</html>

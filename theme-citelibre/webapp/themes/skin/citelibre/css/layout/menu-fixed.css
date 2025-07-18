@@ -1,0 +1,88 @@
+/*** 										***/
+/*** 	Menus 								***/
+/*** 										***/
+.main-header.is-sidebar.is-fixed,
+.theme-main-header.is-fixed > .main-header{
+	position: fixed;
+	z-index: 1000;
+	width: 100%;
+	top: 0;
+	margin-block-start: 0;
+}
+
+.theme-main-header.is-fixed{
+	padding-block-start: var(--spacing-m );
+}
+
+.theme-main-header.is-fixed.has-banner{
+	padding-block-start: var(--spacing-xs );
+}
+
+.main-header.is-sidebar.is-fixed + #layout-sidebar-wrapper{
+	margin-block-start: var(--spacing-xxl);
+}
+
+.theme-main-header.is-fixed:not(.has-banner) + #main,
+.theme-main-header.is-fixed.has-banner > .main-header + .banner{
+	margin-block-start: var( --menu-fixed-top );
+}
+
+.main-header.is-sidebar.is-fixed + #layout-sidebar-wrapper #sidebar-main-menu #main-menu-sidebar{
+    position: fixed;
+    top: var(--spacing-xxl);
+    left: var(--spacing-xxs); 
+    overflow: scroll;
+    width: calc( 61.25 * var(--spacing-xxs));
+	height: 100vh;
+}
+
+.main-header.is-sidebar.is-fixed + #layout-sidebar-wrapper #sidebar-main-menu #main-menu-sidebar .navbar-main{
+   	padding-inline-start: var(--spacing-xxs);
+}
+
+#layout-sidebar-wrapper .theme-main-header #main-menu-sidebar .nav-item .nav-link,
+#layout-sidebar-wrapper .theme-main-header #main-menu-sidebar .nav-item.dropdown .nav-link.dropdown-toggle{
+	width: 98%;
+	text-align: start;
+}
+
+@media (max-width: 767.98px) {
+	.theme-main-header.is-fixed > .main-header{
+		position: fixed;
+	}
+	
+	.main-header.is-sidebar.is-fixed + #layout-sidebar-wrapper,
+	.theme-main-header.is-fixed > .main-header + .banner{
+		margin-block-start: 0;
+	}
+	
+	.main-header.is-sidebar:not(.menu-info).is-fixed + #layout-sidebar-wrapper #layout-sidebar #main {
+		margin-block-start: calc( var(--spacing-xxs) * 23.6 );
+	}
+	
+	.theme-main-header.is-fixed #main-banner.banner,
+	.theme-main-header.is-fixed:not(.has-banner) + #main{
+		margin-block-start: calc( var(--spacing-xxs) * 18.55 );
+	}
+
+	.main-header.is-sidebar.is-fixed + #layout-sidebar-wrapper #sidebar-main-menu #main-menu-sidebar{
+		position: relative;
+		width: auto;
+	}
+}
+
+/* Small devices and below (small phone, 360px and below) */ 
+@media ( max-width:  358.98px ) {
+	.theme-main-header.is-fixed{
+		padding-block-start: var(--spacing-xs );
+	}
+
+	.theme-main-header.is-fixed.has-banner{
+		padding-block-start: var(--spacing-xxs );
+	}
+
+
+	.theme-main-header.is-fixed #main-banner.banner, .theme-main-header.is-fixed:not(.has-banner) + #main {
+		margin-block-start: calc( var(--spacing-xxs) * 25 );
+	}
+} 

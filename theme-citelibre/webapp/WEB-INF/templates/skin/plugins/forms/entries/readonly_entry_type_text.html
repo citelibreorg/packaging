@@ -1,0 +1,17 @@
+<#if !entry.onlyDisplayInBack>
+<#assign entryClass><#if entry.CSSClass?contains('hidden')>hidden</#if></#assign>
+<#compress>
+<@cText class=entryClass!>
+<@cInline type='strong'>${entry.title?capitalize!''} : </@cInline>
+<#if list_responses?has_content>
+	<#list list_responses as response>
+		<#if response.toStringValueResponse!?trim != ''>
+			${response.toStringValueResponse!''}
+		<#else>
+			<@cInline type='em'>#i18n{themecitelibre.labelNoDataProvided}</@cInline>
+		</#if>
+	</#list>
+</#if>
+</@cText>
+</#compress>
+</#if>

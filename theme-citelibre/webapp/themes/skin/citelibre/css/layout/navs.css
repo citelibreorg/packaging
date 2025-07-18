@@ -1,0 +1,79 @@
+/*** 										***/
+/*** 	Menus 								***/
+/*** 										***/
+.skip-links,
+.skip-links>li {
+	position: absolute;
+	width: 100%;
+}
+
+.skip-links {
+	left: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	z-index: 9999;
+}
+
+.skip-links a {
+	background-color: var(--main-info-color);
+	color: var(--white-color);
+	font-size: var(--font-m);
+	font-weight: 600;
+	left: -999rem;
+	padding: .5rem 1rem;
+	position: absolute;
+	text-decoration: none;
+}
+
+.skip-links a:focus {
+	left: 0;
+}
+
+/* Long menu management */
+.main-header #navbarMainMenu .navbar-main .btn-hlinks[aria-expanded="true"] svg{
+	transition: transform .2s ease-out;
+	transform: rotate(180deg);
+}
+
+#navbar-hidden-links {
+	background: var(--white-color);
+	position: absolute;
+	z-index: 1;
+	width: 25rem;
+	padding-inline: var(--spacing-sm);
+	padding-block-end: var(--spacing-sm);
+	height: auto;
+	top: 7rem;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+#navbar-hidden-links .nav-item {
+	display: block;
+	height: auto;
+	width: 100%;
+	padding: .5rem 1rem;
+}
+
+#navbar-hidden-links .nav-item>.nav-link {
+	width: 100%;
+	padding: 2rem;
+	border: 0
+}
+
+/* Search Menu */
+.navbar-menu-search ,
+.navbar-menu-search .form-control,
+.navbar-menu-search .input-group{
+	margin-block-start: 0;
+}
+
+.nav-link:focus {
+	outline: 1px solid var(--main-color);
+    outline-offset: calc(var(--spacing-xxs) / 2);
+	box-shadow: none;
+	text-decoration: underline;
+}

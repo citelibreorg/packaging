@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="${commonsSiteThemePath}js/util/actb/css/atcb.min.css">	
+<#assign formTitle><#if form.displayTitleFo && form.title != '' >${form.title}<#else>#i18n{appointment.appointmentApp.defaultTitle}</#if></#assign>
+<@cContainer hasHeader=false class='pb-3 no-header'>
+<@cStepDone step='1' title=formTitle idx=0 actionName='' >
+	<@cRow>
+		<@cCol>
+			<@cText>${form.description!}</@cText>
+		</@cCol>
+	</@cRow>
+</@cStepDone>
+<@cStepDone step='2' title='#i18n{appointment.appointmentApp.choiceOfDate}' idx=1 actionName=''>
+	<@cRow>
+		<@cCol>
+			<@cText>#i18n{appointment.labelThe} ${dateAppointment} #i18n{appointment.labelFrom} ${startingTimeAppointment} #i18n{appointment.labelTo} ${endingTimeAppointment}</@cText>
+		</@cCol> 
+	</@cRow>
+</@cStepDone>
+<@cStepDone step='3' title='#i18n{appointment.appointmentApp.enteringInformation}' idx=2 actionName=''>
+	<@cRow>
+		<@cCol>
+			<@chList class='list-group list-group-flush'>
+				<@chItem class='list-group-item'>${formMessages.fieldLastNameTitle!} : ${user.lastName!}</@chItem>
+				<@chItem class='list-group-item'>${formMessages.fieldFirstNameTitle!} : ${user.firstName!}</@chItem>
+				<@chItem class='list-group-item'>${formMessages.fieldEmailTitle!} : ${user.email!}</@chItem>
+				<#if form.maxPeoplePerAppointment gt 1><@chItem class='list-group-item'>#i18n{appointment.createAppointmentForm.labelNumberOfBookedseatsPerAppointment} : ${nbplaces!}</@chItem></#if>
+				<#list listResponseRecapDTO as response><#if response.recapValue?? && response.recapValue?has_content><#if !entrySave?exists||entrySave.idEntry!=response.entry.idEntry><@chItem class='list-group-item'>${response.entry.title}<#assign entrySave=response.entry> : ${response.recapValue!}</@chItem></#if></#if></#list>
+			</@chList>
+		</@cCol> 
+	</@cRow>
+</@cStepDone>
+<@cStepDone step=4 title='#i18n{appointment.appointmentApp.validation.title}' actionName='' idx=4></@cStepDone>
+<@cStepCurrent step=5 title='#i18n{appointment.appointmentApp.confirmation}' actionNextStep='' actionPrevStep=''  actionSaveStep='' >
+	<@cRow>
+		<@cCol class='d-flex justify-content-center'>
+			<@cAlert title=formMessages.textAppointmentCreated />
+		</@cCol>
+	</@cRow>
+	<@cRow>
+		<@cCol class='d-flex justify-content-center'>
+			<@cLink id='finish' class='btn btn-main btn-main-sm me-2' href=formMessages.urlRedirectAfterCreation label='' >
+				<@cIcon class='check' label='${formMessages.labelButtonRedirection}' /> 
+				<@cInline class='span-label'>${formMessages.labelButtonRedirection}</@cInline>
+			</@cLink>
+			<@cBlock id='atcb' class='atcb d-flex align-items-center' params='style="display: none;"'>
+				{
+				  "name":"${formTitle}",
+				  "description":"${form.description}",
+				  "startDate":"${dateAppointment?date?iso_utc}",
+				  "endDate":"${dateAppointment?date?iso_utc}",
+				  "startTime":"${startingTimeAppointment}",
+				  "endTime":"${endingTimeAppointment}",
+				  "location":"Somewhere over the rainbow",
+				  "label":"Ajouter au calendrier",
+				  "options":[
+					"Apple",
+					"Google",
+					"iCal",
+					"Microsoft365",
+					"MicrosoftTeams",
+					"Outlook.com",
+					"Yahoo"
+				  ],
+				  "timeZone":"Europe/Berlin",
+				  "trigger":"click",
+				  "inline":true,
+				  "listStyle":"modal",
+				  "iCalFileName":"RDV-CiteLibre"
+				}
+			  </@cBlock>
+		</@cCol>
+	</@cRow>
+</@cStepCurrent>
+</@cContainer>
+<script src="${commonsSiteThemePath}js/util/actb/js/atcb.min.js"></script>

@@ -1,0 +1,161 @@
+
+<div class="page-wrapper">
+    <!-- Page header -->
+    <div class="page-header d-print-none">
+      <div class="container-xl">
+        <div class="row g-2 align-items-center">
+          <div class="col">
+            <h2 class="page-title">
+                #i18n{portal.search.search_results.title}
+            </h2>
+            <div class="text-light mt-1 mb-3">${paginator.itemsCount} (#i18n{portal.search.search_results.labelResultsCount})</div>
+            <!-- <div class="text-muted mt-1">About ${paginator.itemsCount} result (0.19 seconds)</div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page body -->
+    <div class="page-body">
+        <div class="container-xl">
+        <div class="row g-4">
+            <div class="col-3">
+                <@tform method="get" action="jsp/site/Portal.jsp">
+                <input type="hidden" name="page" value="search" />
+                <div class="form-group">
+                    <label for="query">#i18n{portal.search.search_results.pageTitle} ${type_filter!}</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control input-sm" name="query" id="query" value="${query?if_exists}" />
+                        <button class="btn btn-action py-0" type="submit" title="#i18n{portal.search.search_results.buttonSearch}">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </div>
+                </div>
+                <#if help_message!="">
+                    <#-- help_message text -->
+                    <@div class="text-light">${help_message}</@div>
+                </#if>
+                <#-- type_filter -->
+                <#if type_filter != "none">
+                    <@cField label='#i18n{portal.search.search_results.typeFilter}' labelClass='' for='type_filter'>
+                    <#if type_filter == "option">
+                        <@cSelect name='type_filter' id='type_filter' class='d-block w-100 mt-2'>
+                            <#list list_type_and_link as map>
+                                <#if map.type == 'blogs' || map.type ='Page' >
+                                    <#assign optLabel><#if map_index != 0>${map.type}<#else>#i18n{portal.search.search_results.typeFilterNone}</#if></#assign>
+                                    <@cOption value=map.type label=optLabel?capitalize />
+                                </#if>  
+                            </#list>
+                        </@cSelect>
+                    <#elseif type_filter == 'checkbox'> 
+                        <#list list_type_and_link as map>
+                            <#if type_filter != "checkbox" || map_index != 0>
+                                <#if map.type == 'blogs' || map.type ='Page' >
+                                    <@cCheckbox name='type_filter' id='type_filter_${map.type}' value='${map.type}' label='${map.type?capitalize}'  />
+                                </#if>
+                            </#if>
+                        </#list>
+                    <#elseif type_filter == 'radio'> 
+                        <#list list_type_and_link as map>
+                            <#if type_filter != "radio" || map_index != 0>
+                                <#if map.type == 'blogs' || map.type ='Page' >
+                                    <@cRadio name='type_filter' id='type_filter_${map.type}' value='${map.type}' label='${map.type?capitalize}'  />
+                                </#if>
+                            </#if>
+                        </#list>
+                    <#else>
+                        <!-- NOT POSSIBLE -->
+                    </#if>
+                    </@cField>
+                </#if>
+                <#-- default_operator and/or 
+                    <div class="form-group">
+                        <label class="col-sm-5">#i18n{portal.search.search_results.operator}</label>
+                        <div class="col-sm-7">
+                            <select name="default_operator" class="input-sm form-control">
+                            <#list ["OR","AND"] as operator>
+                                <option value="${operator}" <#if operator = default_operator> selected="selected"</#if> >
+                                    #i18n{portal.search.search_results.operator.${operator}}
+                                </option>
+                            </#list>
+                            </select>
+                        </div>
+                    </div> 
+                -->
+                <#-- date_filter 0/1 -->
+                <#if date_filter == "1">
+                    <@cField label='#i18n{portal.search.search_results.dateFilterAfter}' labelClass='' for='date_after'>
+                        <@input name='date_after' id='date_after' />
+                    </@cField>    
+                    <@cField label='#i18n{portal.search.search_results.dateFilterBefore}' labelClass='' for='date_after'>
+                        <@input name='date_before' id='date_before' />
+                    </@cField> 
+                </#if>
+                <#if taglist?has_content>
+                    <#if tag_filter == "1" && taglist?trim != "">
+                        <div class="form-group">
+                            <#-- tag_filter -->
+                            <#list taglist?split(" ") as tag>
+                                <#if tag?exists && tag?trim !="">
+                                    <input type="submit" name="tag_filter" value="${tag}" />
+                                </#if>
+                            </#list>
+                        </div>
+                    </#if>
+                </#if>
+            </@tform>
+        </div>
+        <div class="col-9">
+            <#if error?has_content>
+                <@cAlert title=error />
+            </#if>
+            <#-- included sponsored links if available - might be null -->
+            ${sponsoredlinks_set!}
+            <#if results_list?size gt 0>
+                <@cRow class='row-cards'>
+                <#list results_list as result>
+                    <@cCol class='col-sm-6 col-lg-4'>
+                        <div class="card card-sm">
+                            <a href="${result.url?xhtml}" class="d-block">
+                                <!-- <img src="images/default-search.jpg" class="card-img-top"> -->
+                                <img src="images/default-search.svg" class="card-img-top p-2">
+                            </a>
+                            <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <span class="avatar me-3 rounded" style="background-image: url()"></span>
+                            <div>
+                                <div class="text-primary mb-2">${result.title?upper_case}</div>
+                                <#if result.summary?has_content><div class="text-muted mb-2">${result.summary}</div></#if>
+                                <!-- <#if result.type?has_content><div class="text-primary">${result.type}</div></#if> -->
+                                <#if result.date?has_content><div class="text-dark"> ${result.date?date?string.short}</div></#if>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </@cCol>
+                </#list>
+                </@cRow>
+            <#else>
+                <@cAlert title='#i18n{portal.search.search_results.labelNoResults}' dismissible=false class='warning rounded my-0 py-0' />
+            </#if>
+            <@cRow>
+                <@cCol>
+                    <@pagination paginator=paginator/>
+                </@cCol>
+            </@cRow>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<#if date_filter == "1">
+<@initThemeDatePicker /> 
+<@getThemeDatePicker idField='date_after' format='' />
+<@getThemeDatePicker idField='date_before' format='' />
+</#if>
+<script>
+
+</script>
+<!-- 
+    <#import "dump.ftl" as dumper>
+    <pre><@dumper.dump .data_model /></pre>
+-->

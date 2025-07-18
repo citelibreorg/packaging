@@ -1,0 +1,74 @@
+/*!
+ * Dark Mode Switch v1.0.1 (https://github.com/coliff/dark-mode-switch)
+ * Copyright 2021 C.Oliff
+ * Licensed under MIT (https://github.com/coliff/dark-mode-switch/blob/main/LICENSE)
+ */
+
+[data-theme="dark"] {
+  --main-color: #111 !important;
+  color: var( --light-color ) !important;
+}
+
+[data-theme="dark"] #main {
+  background-color: var( --main-color );
+}
+
+[data-theme="dark"] li,
+[data-theme="dark"] p,
+[data-theme="dark"] legend,
+[data-theme="dark"] label,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5 {
+  color: var( --light-color ) !important;
+}
+
+[data-theme="dark"] .step-current .step-title h1 {
+  color: var( --light-color ) !important;
+}
+
+[data-theme="dark"] .header h1,
+[data-theme="dark"] .header h2,
+[data-theme="dark"] .header h3,
+[data-theme="dark"] .header h4,
+[data-theme="dark"] .header h5,
+[data-theme="dark"] .header p,
+[data-theme="dark"] span,
+[data-theme="dark"] li,
+[data-theme="dark"] .footer h1,
+[data-theme="dark"] .footer h2,
+[data-theme="dark"] .footer h3,
+[data-theme="dark"] .footer h4,
+[data-theme="dark"] .footer h5,
+[data-theme="dark"] .footer p{
+  color: var( --light-color ) !important;
+}
+
+[data-theme="dark"] .label-control,
+[data-theme="dark"] .btn-main,
+[data-theme="dark"] .btn-main span,
+[data-theme="dark"] .btn-main svg,
+[data-theme="dark"] .card-title{
+  color: var( --dark-color ) !important;
+}
+
+[data-theme="dark"] .btn-main:hover,
+[data-theme="dark"] .btn-main:hover span,
+[data-theme="dark"] .btn-main:hover svg{
+  color: var( --white-light ) !important;
+}
+
+[data-theme="dark"] .alert-primary {
+  color: var( --dark-color ) !important;
+  background-color: var( --white-light ) !important;
+}
+
+[data-theme="dark"] .img-fluid{
+  filter: grayscale(1) contrast(1.2) !important;
+}
+
+[data-theme="dark"] .input-group-text{
+  color: var( --dark-color ) !important;
+}

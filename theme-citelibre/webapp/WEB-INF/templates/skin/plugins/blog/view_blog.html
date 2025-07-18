@@ -1,0 +1,15 @@
+<@cContainer>
+<@cRow>
+    <@cCol>
+        <@cArticle title='${blog.contentLabel}' >
+        ${blog.description!}
+        ${blog.htmlContent}
+        </@cArticle>
+    </@cCol>
+</@cRow>
+</@cContainer>
+<style>
+#main > .banner, .main-header + .banner.internal + #main {
+margin-top: 10rem !important;
+}
+</style>

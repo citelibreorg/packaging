@@ -1,0 +1,86 @@
+<#assign classDisp><#if question??>display_field_${question.id}_${question.iterationNumber}</#if></#assign>
+<#assign param>displayControl="${question.id}_${question.iterationNumber}"</#assign>
+<#assign entryCSSClass><#if question.entry.CSSClass??><#if question.entry.CSSClass?trim?starts_with('col-')>${question.entry.CSSClass}<#else>col-12</#if></#if> ${classDisp}</#assign>
+<@cCol class=entryCSSClass params=param>
+${questionContent}
+</@cCol>
+<#if list_validator??>
+<@cInput name='displayed_questions' id='${question.id}_${question.iterationNumber}' class='' value='' type='hidden' /> 
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+<#assign validNames = [] />
+<#list list_validator as validator>
+<#if !validNames?seq_contains(validator.validatorBeanName)>
+<#assign validNames = validNames + [validator.validatorBeanName] />
+function validator_${validator.validatorBeanName?replace('.','_')}(inputValue,controlValue){
+	${validator.getJavascriptValidation()!'return true;'}
+}
+</#if>
+</#list>
+
+var bOtherStepValidated = true;
+<#if other_step_validation??>
+<#if other_step_validation>
+$('.display_field_${question.id!''}_${question.iterationNumber}').show();
+$('#${question.id}_${question.iterationNumber}').val('${question.id}_${question.iterationNumber}');
+<#else>
+$('.display_field_${question.id!''}_${question.iterationNumber}').hide();
+$('#${question.id}_${question.iterationNumber}').val('');
+bOtherStepValidated = false;
+</#if>
+</#if>
+<#list list_control as control>
+var displayControl = ${control.listIdQuestion[0]} + "_" + ${question.iterationNumber},
+input${control.id}_${question.iterationNumber} = getInputElement(displayControl);
+input${control.id}_${question.iterationNumber}.bind('change keyup paste mouseup input', function(){
+	var nValidControlsCount = 0;
+	var nNotValidControlsCount = 0;
+	<#list list_control as itemControl>
+		var displayItemControl = ${itemControl.listIdQuestion[0]} + "_" + ${question.iterationNumber},
+		input${itemControl.id}_${question.iterationNumber} = getInputElement(displayItemControl);
+		
+		var inputValue = getFieldValue(input${itemControl.id}_${question.iterationNumber});
+		// AND condition : if at least 1 control value isn't present, do not display question
+		if($("div[displayControl='${itemControl.listIdQuestion[0]}_${question.iterationNumber}']").hasClass("control_invalid") || !validator_${itemControl.validatorName?replace('.','_')}( inputValue, '${itemControl.value}')){
+			nNotValidControlsCount++;
+		} else {
+			nValidControlsCount++;
+		}
+	</#list>
+	var bIsQuestionDisplayed;
+	<#if logical_operator_label == 'or'>
+	bIsQuestionDisplayed = ( nValidControlsCount > 0 ) || bOtherStepValidated;
+	<#else>
+	bIsQuestionDisplayed = ( nNotValidControlsCount == 0 ) && bOtherStepValidated;
+	</#if>
+	
+	if( bIsQuestionDisplayed ) {
+		$('.display_field_${question.id!''}_${question.iterationNumber}').removeClass("control_invalid");
+		$('.display_field_${question.id!''}_${question.iterationNumber}').show();
+		$('#${question.id}_${question.iterationNumber}').val('${question.id}_${question.iterationNumber}');
+	} else {
+		$('.display_field_${question.id!''}_${question.iterationNumber}').addClass("control_invalid");
+		$('.display_field_${question.id!''}_${question.iterationNumber}').hide();
+		$('#${question.id}_${question.iterationNumber}').val('');
+	}
+
+	var currentControl = "${question.id}_${question.iterationNumber}";
+	var currentInput = getInputElement(currentControl);
+
+	if ( currentInput[0] != undefined && currentInput[0].type != 'file' ){
+		currentInput.change();
+	}
+	
+	var stepGroup = document.querySelector( '.step-group:has(.display_field_${question.id!''}_${question.iterationNumber})' );
+	if( stepGroup != null){
+		stepGroupDisplay( stepGroup )
+	}
+
+});
+input${control.id}_${question.iterationNumber}.change();
+</#list>
+});
+</script>
+<#else>
+<@cInput name='displayed_questions' id='${question.id}_${question.iterationNumber}' class='' value='${question.id}_${question.iterationNumber}' type='hidden' />
+</#if>

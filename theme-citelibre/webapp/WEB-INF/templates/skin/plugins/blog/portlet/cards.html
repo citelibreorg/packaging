@@ -1,0 +1,27 @@
+<@cContainer>
+<@cRow>
+    <@cCol class='portlet'>
+	<#if portlet_name??>
+		<@cHeader>
+			<@cTitle level=1>${portlet_name!}</@cTitle>
+		</@cHeader>
+	</#if>
+	<@cCardLayout type='deck'>
+	<#list blog_list_published?sort_by('creationDate') as doc>
+	<#assign footerCard>
+	<#if doc.url?? && doc.url !=''>
+			<a href="${doc.url!}" target="_blank">
+		<#else>
+			<a href="jsp/site/Portal.jsp?page=blog&amp;id=${doc.id}&amp;portlet_id=${portlet_id}" >
+		</#if>
+		<p class="text-right">Read More</p>
+		</a>
+	</#assign>
+	<@cCard title=doc.contentLabel footer=footerCard subtitle=doc.description>
+		
+	</@cCard>
+	</#list>
+	</@cCardLayout>
+    </@cCol>
+</@cRow>
+</@cContainer>

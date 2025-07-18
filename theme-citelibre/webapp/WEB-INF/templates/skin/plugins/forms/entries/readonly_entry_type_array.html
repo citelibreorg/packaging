@@ -1,0 +1,13 @@
+<#compress>
+<@cText>
+<@cInline type='strong'>${entry.title!''} :</@cInline>
+<#if list_responses?has_content>
+    <#assign strResponse><#list list_responses as response>${response.toStringValueResponse!''}</#list></#assign>
+    <#if strResponse?trim != ''>
+        ${strResponse}
+    <#else>
+        <@cInline type='em'>#i18n{themecitelibre.labelNoDataProvided}</@cInline>
+    </#if>
+</#if>
+</@cText>
+</#compress>

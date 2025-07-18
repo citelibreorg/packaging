@@ -1,0 +1,18 @@
+<#assign entryClasses='' >
+<#list entry.CSSClass?split(' ') as laClass><#assign entryClasses += laClass + ' '  ></#list>
+<@cRow class=entryClasses> 
+	<@cCol> 
+		<@cAlert title=''>
+		${entry.comment!}
+		<#if url_download_fo??>
+		<@chList class='list-group ps-0 mt-m'>
+			<@chItem class='list-group-item w-50 d-flex justify-content-between align-items-center'>
+				<@cLink href='${url_download_fo}' label='' title='${filename}' class='d-flex justify-content-between' >
+					<@cIcon class='download me-2' /> <@cText type='span'>${filename!}</@cText>
+				</@cLink>
+			</@chItem>
+		</@chList>
+		</#if>
+		</@cAlert>
+	</@cCol>
+</@cRow>

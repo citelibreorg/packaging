@@ -1,0 +1,41 @@
+<#assign indexGroup=-1>
+<#assign indexIteration=0>
+<#assign nbIterationMin=group.iterationMin>
+<#assign isShownTitle><#if group.title?ends_with('hidden')>false<#else>true</#if></#assign>
+<@cFieldset class='step-group mt-0'>
+<#list groupContent as childrenHtml>
+	<#assign indexIteration = ( childrenHtml?index / nbBaseChildren )?int />
+	<#assign nbTotalIteration = ( groupContent?size / nbBaseChildren )?int />
+	<#if indexGroup != indexIteration>
+		<#if childrenHtml?is_last><a name="last_${id_group}"></a></#if>
+		<#assign cClass><#if childrenHtml?index &gt;= 1>border-top pt-m mt-l</#if><#if id_display??> display_field_${id_display} hidden</#if></#assign>
+		<#if cClass !=''><div class="${cClass}"></#if>
+		<#assign legend>
+		<@cInline class='h3 group-title'>${group.title}</@cInline> <#if indexIteration gt 0>(${indexIteration+1})</#if> 
+		<#if ( nbTotalIteration gt nbIterationMin ) && ( isIterable && indexIteration = nbTotalIteration - 1 )><div class="btn btn-group mt-0"></#if>
+		<#if nbTotalIteration gt nbIterationMin>
+			<@cBtn class='danger' label=group.iterationRemoveLabel! params=' formnovalidate name="action_removeIteration" value="${group.id}_${indexIteration}"'>
+				<@cIcon class='trash' />
+			</@cBtn>
+		</#if>
+		<#if isIterable && indexIteration = nbTotalIteration - 1>
+			<@cBtn class='main ms-auto' label=group.iterationAddLabel params='formnovalidate value="${id_group}" name="action_addIteration"'>
+				<@cIcon class='plus' />
+			</@cBtn>
+		</#if>
+		<#if ( nbTotalIteration gt nbIterationMin ) && ( isIterable && indexIteration = nbTotalIteration - 1 )></div></#if>
+		</#assign>
+		<@cLegend label=legend showLabel=isShownTitle?boolean class='col-12 d-flex align-items-center justify-space-between' id='group-${indexIteration+1!}' />
+		<#if cClass !=''></div></#if>
+	</#if>
+	<#if group.description!='' && indexGroup=-1>
+		<@cRow class='w-100'>
+			<@cCol>
+				${group.description}
+			</@cCol>		
+		</@cRow>
+	</#if>
+	${childrenHtml}
+	<#if indexGroup != indexIteration><#assign indexGroup=indexIteration></#if>	
+</#list>
+</@cFieldset>

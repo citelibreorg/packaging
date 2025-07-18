@@ -1,0 +1,110 @@
+<@cContainer class='news'>
+	<@cRow>
+    	<@cCol class='portlet'>
+		<#if portlet_name??>
+			<@cHeader>
+				<@cTitle level=1>${portlet_name!}</@cTitle>
+			</@cHeader>
+		</#if>
+		<#if blog_list_published??>
+			<nav>
+				<ul class="nav nav-pills">
+					<li role="presentation" class="active"><a href="#all">Tout</a></li>
+				</ul>
+			</nav>
+			<ul class="grid-list">
+				<#list blog_list_published?sort_by('updateDate')?reverse as doc>
+					<li class="item-list">
+						<figure>
+						<#if doc.docContent?? && doc.docContent?size!=0>
+							<#list doc.docContent as docContent >
+								<#if docContent.contentType.idContentType=1>
+									<img class="img-fluid" src="servlet/plugins/blogs/file?id_file=${docContent.id}" title="${doc.contentLabel}" alt="${doc.contentLabel}" >
+									<#break>
+								</#if>
+							</#list>
+						</#if>
+						</figure>
+						<div class="item-body">
+							<p class="item-date text-right"><small>${doc.updateDate!}</small></p>
+							<#if doc.url?? && doc.url !=''>
+								<a href="${doc.url!}" target="_blank">
+							<#else>
+								<a href="jsp/site/Portal.jsp?page=blog&amp;id=${doc.id}&amp;portlet_id=${portlet_id}" >
+							</#if>
+								<h3 class="item-title text-center">${doc.contentLabel}</h3>
+							</a>
+							<p class="item-text text-center">${doc.description!}</p>
+							
+							<p class="tags">
+							<#list doc.tag as tg>
+								<#list tg.name?split(" ") as x>
+									<#assign tfilter=x?lower_case />
+									<#break>
+								</#list>
+								<!-- <span class="badge <#if tg?index = 0>badge-primary tag tag-top<#else>badge-dark tag tag-bottom</#if> ${tfilter!}">${tg.name!} </span> -->
+								<span class="badge main-bg-color text-white tag ${tfilter!}">${tg.name!} </span>
+		
+							</#list>
+							</p>
+							
+						</div>
+					</li>
+				</#list>
+			</ul>
+		</#if>
+		</@cCol>
+	</@cRow>
+</@cContainer>
+
+
+<script>
+function getTags( arr ) {
+	var a = [];
+		for ( var i = 0; i < arr.length; i++ ) {
+		a.push( arr[ i ].innerHTML );
+		}
+	var hashTable = {};
+	return a.filter(function (el) {
+		var key = JSON.stringify(el);
+		var match = Boolean(hashTable[key]);
+		return (match ? false : hashTable[key] = true);
+	});
+}
+
+function setMenuFilterTag( item ){
+	var a = [];
+	for ( var i = 0; i < item.length; i++ ) {
+	var tFilter = item[i].toLowerCase().split(" ");
+	a.push( '<li role="presentation" id="' + tFilter[ 0 ] + '"><a href="#' + tFilter[ 0 ] + '">' + item[ i ] + '</a></li>' );
+	}
+	$( ".nav-pills" ).append( a.join('') );
+}
+
+function filterContentbyTags( ){
+	$(".nav-pills a").on( 'click', function(e){
+		e.preventDefault();
+		$(".nav-pills > li").removeClass('active');
+		var classFilter = $(this).attr("href").replace('#','.');
+		if( classFilter == '.all' ){
+			$(".item-list").show();
+		} else {
+			$(".item-list").hide();
+			$( classFilter ).parents(".item-list").animate({opacity: "toggle"}, 500 ).show();
+		}
+		$(this).parents('li').addClass('active');
+	});
+}
+
+$(function(){
+	setMenuFilterTag( getTags( $( ".tag" ).toArray() ) );
+	filterContentbyTags();
+	if ( window.location.hash === '#events' ){
+		$(".nav-pills > li").removeClass('active');
+		$('#events').addClass('active');
+		$(".item-list").hide();
+		$( '.events' ).parents(".item-list").animate({opacity: "toggle"}, 500 ).show();
+	}
+});
+</script>
+	

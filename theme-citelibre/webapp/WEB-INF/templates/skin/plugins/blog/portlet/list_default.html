@@ -1,0 +1,42 @@
+<@cContainer>
+	<@cRow>
+    	<@cCol class='portlet'>
+		<#if portlet_name??>
+			<@cHeader>
+				<@cTitle level=1>${portlet_name!}</@cTitle>
+			</@cHeader>
+		</#if>
+		<#if blog_list_published??>
+			<@cList items=[]>
+				<#list blog_list_published as doc>
+				<li>
+					<#if doc.url?? && doc.url !=''>
+						<a href="${doc.url!}" target="_blank">
+					<#else>
+						<a href="jsp/site/Portal.jsp?page=blog&amp;id=${doc.id}&amp;portlet_id=${portlet_id}" >
+					</#if>	
+					<@cTitle level=3>${doc.contentLabel}</@cTitle>
+					<!--
+					<#list doc.tag as tg>
+						<#if tg?index = 0>
+							<#list tg.name?split(" ") as x>
+								<#assign tfilter=x?lower_case /> 
+								<#break>
+							</#list>	
+							<span class="badge badge-primary tag tag-top ${tfilter!}">${tg.name!} </span>
+							<#break>
+						<#elseif tg?index = 1>
+							<span class="badge badge-primary tag tag-bottom">${tg.name!} </span>
+						<#else>
+							<#break>
+						</#if>	
+					</#list>
+					-->
+					</a>
+				</li>
+				</#list>
+			</@cList>
+			</#if>
+		</@cCol>
+	</@cRow>
+</@cContainer>

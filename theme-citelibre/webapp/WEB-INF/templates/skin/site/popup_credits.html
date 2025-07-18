@@ -1,0 +1,16 @@
+<#include "minimal_header.html" />
+<@cContainer class="my-5" hasHeader=false>
+    <@cRow>
+        <@cCol>
+            <@cTitle class='py-3'>${portal_domain}</@cTitle>
+            <@cTitle level=2 class='py-3'>#i18n{portal.site.popup_credits.pageTitle}</@cTitle>
+            <@cText>#i18n{portal.site.popup_credits.labelVersion} : Lutece v.${app_version}</@cText>
+            <@cSection class='py-3'>#dskey{portal.site.site_property.popup_credits.textblock}</@cSection>
+            <@cText class='mt-3'>
+             <@cLink class='btn-outline-sm' label='#i18n{portal.util.labelBack}' href="." />
+            </@cText>
+           
+        </@cCol>
+    </@cRow>
+</@cContainer>
+<#include "minimal_footer.html" />

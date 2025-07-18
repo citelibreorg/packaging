@@ -1,0 +1,42 @@
+<#assign entryClass><#if entry.CSSClass?contains('hidden')>hidden</#if></#assign>
+<#compress>
+<@cRow class=entryClass!>
+    <@cCol cols='12 col-sm-3'><@cText class='text-right font-weight-bold'>${entry.title!''}</@cText></@cCol>
+    <@cCol cols='12 col-sm-9'>
+        <@cText>
+        <#assign coordinate = "" >
+        <#assign datalayer = "" >
+        <#if getResponseContainingTheFieldWithCode( list_responses, "coordinates_geojson" )?? >
+            <#assign coordinate = getResponseContainingTheFieldWithCode( list_responses, "coordinates_geojson" ).toStringValueResponse >
+        </#if>
+        <#if getResponseContainingTheFieldWithCode( list_responses, "DataLayer" )?? >
+            <#assign datalayer = getResponseContainingTheFieldWithCode( list_responses, "DataLayer" ).toStringValueResponse >
+        </#if>
+        </@cText>
+        <#include "/skin/plugins/carto/manage_map.html" />
+    </@cCol>
+</@cRow>        
+<script>
+window.addEventListener('load', function() {
+    // Retrieve the map object.
+    var map = mapsPlaceholder.pop();
+    
+    var geojson = ${coordinate};
+   	
+   	if ( geojson["geometry"]["type"] == "Point" ) {
+        var coordinates = geojson["geometry"]["coordinates"];
+        var marker = L.marker([coordinates[1],coordinates[0]]).addTo(map);
+    }
+    else if ( geojson["geometry"]["type"] == "Polygon" ) {
+        var coordinates = geojson["geometry"]["coordinates"][0];
+        var inverseCoord = L.GeoJSON.coordsToLatLngs(coordinates);
+        var polygon = L.polygon(inverseCoord ).addTo(map);
+    }
+    else if ( geojson["geometry"]["type"] == "Polyline" ) {
+        var coordinates = geojson["geometry"]["coordinates"];
+        var inverseCoord = L.GeoJSON.coordsToLatLngs(coordinates);
+        var polyline = L.polyline(inverseCoord ).addTo(map);
+    }
+    
+});
+</script>

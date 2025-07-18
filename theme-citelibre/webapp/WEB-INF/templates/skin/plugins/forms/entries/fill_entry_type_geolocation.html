@@ -1,0 +1,154 @@
+<#assign editModeValue = ''>
+<#assign viewNumberValue = '1'>
+<#assign addressValue = '' />
+<#assign idAddressValue = '' />
+<#assign xValue = '' />
+<#assign yValue = '' />
+<#assign geometryValue = '' />
+<#assign hasError = false />
+<#assign entryClass=''>
+<#assign entryClass>position-relative <#list entry.CSSClass?split(' ') as laClass>${laClass!}</#list></#assign>
+<#assign idName = buildEntryName( entry, entry_iteration_number )>
+<#if list_responses??><#list list_responses as response><#if response.entry.idEntry == entry.idEntry && response.entry.error?? && response.entry.error.isDisplayableError><#assign hasError = true /><#assign error = response.entry.error></#if></#list></#if>
+<#assign errorMsg><#if hasError><#if error.mandatoryError>#i18n{forms.message.mandatory.entry}<#else>${error.errorMessage}</#if></#if></#assign>
+<#assign helpMsg><#if entry.helpMessage?? && entry.helpMessage!=''>${entry.helpMessage}</#if></#assign>
+<#assign idName = buildEntryName( entry, entry_iteration_number )>
+<#assign iterationNumber = entry_iteration_number?c >
+<#if entry.fields??>
+<#assign addressField = getFieldValueByCode( entry, "address" )>
+<#assign viewNumberValue = getFieldValueByCode( entry, "viewNumber" )>
+<#assign editModeValue = getFieldValueByCode( entry, "editMode" )>
+</#if>
+<#if entry.mapProvider??>
+<@cField label=entry.title! for=idName! class=entryClass required=entry.mandatory!>
+<#if list_responses?? && list_responses?has_content>
+	<#assign addressValue = getResponseContainingTheFieldWithCode(list_responses, "address").toStringValueResponse />
+	<#assign idAddressValue = getResponseContainingTheFieldWithCode(list_responses, "idAddress").toStringValueResponse />
+	<#assign xValue = getResponseContainingTheFieldWithCode(list_responses, "X").toStringValueResponse />
+	<#assign yValue = getResponseContainingTheFieldWithCode(list_responses, "Y").toStringValueResponse />
+	<#assign geometryValue = getResponseContainingTheFieldWithCode(list_responses, "geometry").toStringValueResponse />
+</#if>
+<#if editModeValue == '' || editModeValue?starts_with('Address') >
+	<@cInput class=' form-control-input form-geoloc address-autocomplete ${entryClass!}' required=entry.mandatory! html5Required=false name='${idName}_address' value=addressValue! errorMsg=errorMsg helpMsg=helpMsg />
+	<@cBlock id='labelAutocomplete'></@cBlock>
+<#else>
+	<@cInput type='hidden' name='${idName}_address' id='${idName}' value=addressValue! />
+</#if>
+<@cInput type='hidden' name='${idName}_idAddress' id='${idName}_idAddress' value=idAddressValue! />
+<@cInput type='hidden' name='${idName}_x' id='${idName}_x' value=xValue! />
+<@cInput type='hidden' name='${idName}_y' id='${idName}_y' value=yValue! />
+<@cInput type='hidden' name='${idName}_geometry' id='${idName}_geometry' value=geometryValue! />
+<#if entry.mapProvider?has_content>
+<@cText params='hidden'>${entry.mapProvider.key!}</@cText>
+<#if viewNumberValue?has_content && entry.mapProvider.getParameter(viewNumberValue?number)?? && entry.mapProvider.getParameter(viewNumberValue?number).mapParameter??>
+	<#assign map_parameter = entry.mapProvider.getParameter(viewNumberValue?number).mapParameter >
+</#if>
+<#if viewNumberValue?has_content && entry.mapProvider.getParameter(viewNumberValue?number)?? && entry.mapProvider.getParameter(viewNumberValue?number).addressParam?? >
+	<#assign add_parameter = entry.mapProvider.getParameter(viewNumberValue?number).addressParam >
+</#if>
+<#include entry.mapProvider.htmlCode />
+</#if>
+</@cField>
+<#if entry.mapProvider?has_content>
+<#if entry.mapProvider.key='wsaddress' || entry.mapProvider.key='openstreetmap'>
+<#include "/skin/plugins/address/modules/autocomplete/include/suggestPOI.html" />
+<@setupSuggestPOI />
+<script>
+$(window).on('load', function () {
+	let iterationNumber = '${entry_iteration_number}';
+	if (document.getElementById('number_iteration_geolocation') == null) {
+		let numberAddressInput = document.createElement('input');
+		numberAddressInput.type = 'hidden';
+		numberAddressInput.id = 'number_iteration_geolocation';
+		numberAddressInput.name = 'number_iteration_geolocation';
+		document.getElementById('form-validate').appendChild(numberAddressInput);
+		document.getElementById('number_iteration_geolocation').value = iterationNumber;
+	} else {
+		document.getElementById('number_iteration_geolocation').value = iterationNumber;
+	}
+
+	let currStep = $('.step-current .step-content'),
+		btnSendStep = currStep.find('[name="action_doSaveStep"]'),
+		hasCheckAdr = currStep.find('.checkaddress').length;
+
+	var jAdresse = $('#${idName}_address');
+	var jAdresseId = $('#${idName}_idAddress');
+	var jAdresseX = $('#${idName}_x');
+	var jAdresseY = $('#${idName}_y');
+	var jAdresseGeometry = $('#${idName}_geometry');
+
+	jAdresse.suggestPOI();
+	jAdresse.bind($.suggestPOI.EVT_SELECT, function( event ){
+		event.preventDefault();
+		if( event.poi != null){
+			jAdresseGeometry.val(event.poi.type);
+			jAdresseY.val(event.poi.y);
+			jAdresseX.val(event.poi.x);
+			jAdresseId.val(event.poi.id);
+			jAdresse.addClass('wssuggest');
+			jAdresse.removeClass('is-invalid').next('.invalid-feedback').remove();
+		}
+	});
+
+	/* Remove unused field with wsadress */
+	$('#${entry.idEntry}_address_results').remove();
+
+	if ( hasCheckAdr > 0 ) {
+		currStep.addClass('checkadress');
+		if( jAdresse.val().trim() != '' ) {
+			btnSendStep.attr('disabled', 'disabled');
+		}
+	}
+
+	/* Check if an entry has been selected in the data list and prevent from validating step */
+	const wsv = sessionStorage.getItem('wsvalidated_${entry.idEntry}');
+	if ( wsv === 'done') {
+		jAdresse.addClass('wssuggest');
+		jAdresse.removeClass('is-invalid').next('.invalid-feedback').remove();
+		btnSendStep.removeAttr('disabled');
+	}
+
+	if ( hasCheckAdr > 0 ) {
+		jAdresse.on('focus', (e) => {
+			if ( jAdresse.hasClass('wsvalidated') || jAdresse.val().trim() != '' ) {
+				jAdresse.addClass('wssuggest');
+			}
+		});
+
+		jAdresse.on( 'keyup', (e) => {
+			if ( jAdresse.hasClass('wssuggest') ) {
+				if ( jAdresse.val().trim() != '' ) {
+					jAdresse.removeClass('wssuggest').removeClass('wsvalidated');
+					btnSendStep.attr('disabled', 'disabled');
+				} else {
+					jAdresse.addClass('wssuggest');
+					jAdresse.addClass('wsvalidated').removeClass('wssuggest').removeClass('is-invalid').next('.invalid-feedback').remove();
+					btnSendStep.removeAttr('disabled');
+				}
+			}
+		});
+
+		jAdresse.on('blur', (e) => {
+			if ( !jAdresse.hasClass('wssuggest') ) {
+				if ( e.target.value.trim() != '' ) {
+					jAdresse.addClass('is-invalid');
+					jAdresse.next('.invalid-feedback').length === 0 ? jAdresse.after('<div class="invalid-feedback">#i18n{forms.message.geolocation.checkAdress}</div>') : '';
+					btnSendStep.attr('disabled', 'disabled');
+					jAdresse.focus();
+				} else {
+					jAdresse.addClass('wsvalidated').removeClass('wssuggest').removeClass('is-invalid').next('.invalid-feedback').remove();
+					btnSendStep.removeAttr('disabled');
+					sessionStorage.setItem('wsvalidated_${entry.idEntry}', 'done');
+				}
+			} else {
+				jAdresse.addClass('wsvalidated').removeClass('wssuggest').removeClass('is-invalid').next('.invalid-feedback').remove();
+				btnSendStep.removeAttr('disabled');
+				sessionStorage.setItem('wsvalidated_${entry.idEntry}', 'done');
+			}
+		});
+	}
+});
+</script>
+</#if>
+</#if>
+</#if>

@@ -1,0 +1,31 @@
+/*** 										***/
+/*** 	Toastr 								***/
+/*** 										***/
+.browser-warning {
+	background-color: var(--alt-warning-light-color);
+}
+
+#toast-container.browser-warning>.toast.toast-warning {
+	box-shadow: none;
+	border-color: transparent;
+	background-color: transparent;
+	flex-basis: 0;
+	max-width: 100%;
+}
+
+.browser-warning .toast.toast-warning .toast-title,
+.browser-warning .toast.toast-warning .toast-message {
+	width: 50%;
+	margin-inline: auto;
+	font-size: var(--font-m)
+}
+
+.browser-warning .toast.toast-warning .toast-message a:hover {
+	color: var(--main-info-color);
+}
+
+#toast-container>div {
+	opacity: 1;
+	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+	filter: alpha(opacity=100);
+}

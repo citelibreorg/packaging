@@ -3,7 +3,7 @@ name: Github CI
 on: [push, pull_request]
 
 env:
-  MAVEN_OPTS: -Dmaven.repo.local=/home/runner/work/citelibre/citelibre/.m2 -Dmaven.artifact.threads=256 -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+  MAVEN_OPTS: -Dmaven.artifact.threads=256 -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 
 jobs:
   build:
@@ -12,22 +12,14 @@ jobs:
     steps:
       - name: Clone
         uses: actions/checkout@v4
-      - name: Cache Maven Repository
-        uses: actions/cache@v4
-        with:
-          path: |
-            /home/runner/work/citelibre/citelibre/.m2
-          key: m2_repository
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '21'
       - name: Setup Maven Action
         uses: s4u/setup-maven-action@v1.18.0
         with:
           maven-version: 3.6.3
+          java-version: '21'
+          java-distribution: 'zulu'
+          cache-enabled: 'true'
+          cache-path: '~/.m2/repository'
+          cache-prefix: 'citelibre'
       - name: Build
-        run: mvn package -Passembly,rendezvous -Dm2.location=/home/runner/work/citelibre/citelibre/.m2
-      - name: Remove Snapshots Before Caching
-        run: find /home/runner/work/citelibre/citelibre/.m2 -name '*SNAPSHOT' | xargs rm -Rf
+        run: mvn package -Passembly,rendezvous

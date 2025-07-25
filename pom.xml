@@ -35,6 +35,7 @@
     <name>CiteLibre :: Parent</name>
     <version>2.0.0-SNAPSHOT</version>
     <packaging>lutece-site</packaging>
+    <description>CiteLibre is a packaged services suite made by @lutece-platform and @lutece-secteur-public software bricks</description>
 
     <organization>
         <name>CiteLibre</name>
@@ -97,6 +98,12 @@
 
         <!-- runtime -->
         <apache.tomcat.version>9.0.107</apache.tomcat.version>
+
+        <!-- Image related configuration -->
+        <image.base>eclipse-temurin:21.0.7_6-jre-noble</image.base>
+        <image.workdir>/opt/applications</image.workdir>
+        <image.version>${citelibre.packaging.version}</image.version>
+        <image.name>citelibre/${citelibre.packaging.base}:${image.version}</image.name>
 
         <!-- tools -->
         <build.config.version>2.0.0</build.config.version>
@@ -782,6 +789,23 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <configuration>
+                                    <target>
+                                        <mkdir dir="${project.build.directory}/classes" />
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -790,6 +814,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <id>rendezvous</id>
             <properties>
                 <citelibre.packaging.base>citelibre-rendezvous</citelibre.packaging.base>
+                <citelibre.packaging.version>1.0.9</citelibre.packaging.version>
             </properties>
             <dependencies>
                 <!-- 3rd parties -->
@@ -932,6 +957,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <id>serviceez</id>
             <properties>
                 <citelibre.packaging.base>citelibre-serviceez</citelibre.packaging.base>
+                <citelibre.packaging.version>1.0.2</citelibre.packaging.version>
             </properties>
             <dependencies>
                 <!-- core -->
@@ -1220,6 +1246,76 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <type>lutece-plugin</type>
                 </dependency>
             </dependencies>
+        </profile>
+        <!--
+        Build local image named citelibre/${citelibre.packaging.base}:${image.version}
+        mvn clean package -Passembly,<app (ex:rendezvous)>,docker
+        -->
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                        <version>3.4.6</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>dockerBuild</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <from>
+                                <image>${image.base}</image>
+                            </from>
+                            <to>
+                                <image>${image.name}</image>
+                            </to>
+                            <container>
+                                <appRoot>${image.workdir}</appRoot>
+                                <workingDirectory>${image.workdir}</workingDirectory>
+                                <entrypoint>
+                                    <arg>${image.workdir}/apache-tomcat/bin/catalina.sh</arg>
+                                    <arg>run</arg>
+                                </entrypoint>
+                                <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+                                <labels>
+                                    <org.opencontainers.image.url>${project.scm.url}</org.opencontainers.image.url>
+                                    <org.opencontainers.image.documentation>${project.scm.url}</org.opencontainers.image.documentation>
+                                    <org.opencontainers.image.description>${project.description}</org.opencontainers.image.description>
+                                    <org.opencontainers.image.created>${maven.build.timestamp}</org.opencontainers.image.created>
+                                    <org.opencontainers.image.authors>${project.artifactId}</org.opencontainers.image.authors>
+                                    <org.opencontainers.image.vendor>${project.groupId}</org.opencontainers.image.vendor>
+                                    <org.opencontainers.image.title>${image.name}</org.opencontainers.image.title>
+                                    <org.opencontainers.image.version>${project.version}</org.opencontainers.image.version>
+                                    <com.application.params>_JAVA_OPTIONS=...</com.application.params>
+                                    <com.application.cmd>docker run ${image.name} &lt;args&gt;</com.application.cmd>
+                                </labels>
+                            </container>
+                            <extraDirectories>
+                                <paths>
+                                    <path>
+                                        <from>${project.build.directory}/assembly/${citelibre.packaging.base}</from>
+                                        <into>${image.workdir}</into>
+                                    </path>
+                                </paths>
+                                <permissions>
+                                    <permission>
+                                        <file>${image.workdir}/**/*.sh</file>
+                                        <mode>755</mode>
+                                    </permission>
+                                </permissions>
+                            </extraDirectories>
+                            <outputPaths>
+                                <imageJson>${project.build.directory}/jib-image.json</imageJson>
+                            </outputPaths>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>

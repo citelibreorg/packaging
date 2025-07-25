@@ -95,6 +95,5 @@
             <directory>target/${citelibre.packaging.base}</directory>
             <outputDirectory>/webapps/${citelibre.packaging.base}</outputDirectory>
         </fileSet>
-
     </fileSets>
 </assembly>

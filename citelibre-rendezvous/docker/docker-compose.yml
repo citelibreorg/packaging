@@ -1,0 +1,45 @@
+name: citelibre-rendezvous
+services:
+  rendezvous-db:
+    container_name: rendezvous-db
+    image: mariadb:10.6
+    environment:
+      MARIADB_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MARIADB_DATABASE: "${MYSQL_DATABASE}"
+      MARIADB_USER: "${MYSQL_USER}"
+      MARIADB_PASSWORD: "${MYSQL_PASSWORD}"
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: [ "CMD", "mariadb", "-u${MYSQL_USER}", "-p${MYSQL_PASSWORD}", "${MYSQL_DATABASE}", "-e", "SELECT 1 FROM core_xsl_export" ]
+    networks:
+      - citelibre-network
+
+  citelibre-app:
+    container_name: rendezvous-app
+    image: citelibre/citelibre-rendezvous:${CITELIBRE_IMAGE_VERSION}
+    environment:
+      PORTAL_URL: "${PORTAL_URL}"
+      PORTAL_USER: "${PORTAL_USER}"
+      PORTAL_PASSWORD: "${PORTAL_PASSWORD}"
+      ELASTICDATA_ELASTIC_SERVER_URL: "${ELASTICDATA_ELASTIC_SERVER_URL}"
+      ELASTICDATA_ELASTIC_SERVER_LOGIN: "${ELASTICDATA_ELASTIC_SERVER_LOGIN}"
+      ELASTICDATA_ELASTIC_SERVER_PWD: "${ELASTICDATA_ELASTIC_SERVER_PWD}"
+      MATOMO_DEFAULT_SERVER_HTTP_URL: "${MATOMO_DEFAULT_SERVER_HTTP_URL}"
+      MATOMO_DEFAULT_SERVER_HTTPS_URL: "${MATOMO_DEFAULT_SERVER_HTTPS_URL}"
+      SOLR_SERVER_ADDRESS: "${SOLR_SERVER_ADDRESS}"
+      KIBANA_URL: "${KIBANA_URL}"
+      KIBANA_URL_IFRAME: "${KIBANA_URL_IFRAME}"
+    depends_on:
+      rendezvous-db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    volumes:
+      - ${CITELIBRE_DOCKER_VOLUME_PATH}:/opt/applications/apache-tomcat/webapps/citelibre-rendezvous/WEB-INF/logs
+    networks:
+      - citelibre-network
+
+networks:
+  citelibre-network:
+    external: true

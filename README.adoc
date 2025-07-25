@@ -1,5 +1,8 @@
 = Cite Libre
 
+image:https://github.com/citelibre/packaging/actions/workflows/maven.yml/badge.svg?branch=main[Github CI,float="right"]
+image:https://img.shields.io/github/license/citelibre/packaging.svg[License]
+
 **Cite Libre** is xxx.
 
 == 🚀 Key Features

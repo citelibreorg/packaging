@@ -2,17 +2,51 @@ name: citelibre-platform
 services:
 
   mariadb:
-    container_name: matomo-db
+    container_name: citelibre-platform-db
     image: mariadb:10.6
     environment:
-      MARIADB_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      MARIADB_DATABASE: "${MYSQL_DATABASE}"
-      MARIADB_USER: "${MYSQL_USER}"
-      MARIADB_PASSWORD: "${MYSQL_PASSWORD}"
-    volumes:
-      - ./matomo/sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      MARIADB_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MARIADB_USER: $MYSQL_USER
+      MARIADB_PASSWORD: $MYSQL_PASSWORD
     healthcheck:
-      test: [ "CMD", "mariadb", "-u${MYSQL_USER}", "-p${MYSQL_PASSWORD}", "${MYSQL_DATABASE}", "-e", "SELECT 1 FROM matomo_user_token_auth" ]
+      test: [ "CMD", "mariadb", "-u${MYSQL_USER}", "-p${MYSQL_PASSWORD}", "-e", "show databases" ]
+    networks:
+      - citelibre-network
+
+  init-matomo-db:
+    container_name: citelibre-init-matomo-db
+    image: mariadb:10.6
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    command: sh -c "sh /init_db.sh"
+    environment:
+      MYSQL_PWD: $MYSQL_ROOT_PASSWORD
+      INIT_DATABASE_HOST: citelibre-platform-db
+      INIT_DATABASE_NAME: $MATOMO_DATABASE
+    volumes:
+      - ./common/sql/init_db.sh:/init_db.sh
+      - ./matomo/sql/init.sql:/init.sql
+    networks:
+      - citelibre-network
+
+  matomo:
+    container_name: citelibre-matomo
+    image: matomo:5.0.3
+    depends_on:
+      init-matomo-db:
+        condition: service_completed_successfully
+    environment:
+      MATOMO_DATABASE_HOST: $MATOMO_DATABASE_HOST
+      MATOMO_DATABASE_ADAPTER: $MATOMO_DATABASE_ADAPTER
+      MATOMO_DATABASE_TABLES_PREFIX: $MATOMO_DATABASE_TABLES_PREFIX
+      MATOMO_DATABASE_USERNAME: $MYSQL_USER
+      MATOMO_DATABASE_PASSWORD: $MYSQL_PASSWORD
+      MATOMO_DATABASE_DBNAME: $MATOMO_DATABASE
+      MARIADB_AUTO_UPGRADE: $MARIADB_AUTO_UPGRADE
+      MARIADB_INITDB_SKIP_TZINFO: $MARIADB_INITDB_SKIP_TZINFO
+    ports:
+      - "8484:80"
     networks:
       - citelibre-network
 
@@ -74,26 +108,6 @@ services:
       - ./kibana/init.sh:/tmp/init.sh
       - ./kibana/export.ndjson:/tmp/export.ndjson
     #command: "/bin/sh /tmp/init.sh"
-    networks:
-      - citelibre-network
-
-  matomo:
-    container_name: citelibre-matomo
-    image: matomo:5.0.3
-    depends_on:
-      mariadb:
-        condition: service_healthy
-    environment:
-      MATOMO_DATABASE_HOST: $MATOMO_DATABASE_HOST
-      MATOMO_DATABASE_ADAPTER: $MATOMO_DATABASE_ADAPTER
-      MATOMO_DATABASE_TABLES_PREFIX: $MATOMO_DATABASE_TABLES_PREFIX
-      MATOMO_DATABASE_USERNAME: $MYSQL_USER
-      MATOMO_DATABASE_PASSWORD: $MYSQL_PASSWORD
-      MATOMO_DATABASE_DBNAME: $MYSQL_DATABASE
-      MARIADB_AUTO_UPGRADE: $MARIADB_AUTO_UPGRADE
-      MARIADB_INITDB_SKIP_TZINFO: $MARIADB_INITDB_SKIP_TZINFO
-    ports:
-      - "8484:80"
     networks:
       - citelibre-network
 

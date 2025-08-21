@@ -24,8 +24,9 @@ services:
       MYSQL_PWD: $MYSQL_ROOT_PASSWORD
       INIT_DATABASE_HOST: citelibre-platform-db
       INIT_DATABASE_NAME: $MATOMO_DATABASE
+      INIT_APP_USER: $MYSQL_USER
     volumes:
-      - ./common/sql/init_db.sh:/init_db.sh
+      - ../citelibre-common/sql/init_db.sh:/init_db.sh
       - ./matomo/sql/init.sql:/init.sql
     networks:
       - citelibre-network
@@ -110,6 +111,35 @@ services:
     #command: "/bin/sh /tmp/init.sh"
     networks:
       - citelibre-network
+
+#  keycloak:
+#    image: keycloak/keycloak:26.3.3-0
+#    container_name: citelibre-keycloak
+#    depends_on:
+#      mariadb:
+#        condition: service_healthy
+#    environment:
+#      KEYCLOAK_USER: $KEYCLOAK_USER
+#      KEYCLOAK_PASSWORD: $KEYCLOAK_PASSWORD
+#      KEYCLOAK_LOGLEVEL: $KEYCLOAK_LOGLEVEL
+#      ROOT_LOGLEVEL: $KEYCLOAK_ROOT_LOGLEVEL
+#      DB_VENDOR: $KEYCLOAK_DB_VENDOR
+#      DB_ADDR: $KEYCLOAK_DB_ADDR
+#      DB_PORT: $KEYCLOAK_DB_PORT
+#      DB_DATABASE: $KEYCLOAK_DB_DATABASE
+#      DB_USER: $MYSQL_USER
+#      DB_PASSWORD: $MYSQL_PASSWORD
+#      DB_SCHEMA: $KEYCLOAK_DB_SCHEMA
+#      KC_DB: $KEYCLOAK_KC_DB
+#      KC_DB_URL: $KEYCLOAK_KC_DB_URL
+#      KC_DB_USERNAME: $MYSQL_USER
+#      KC_DB_PASSWORD: $MYSQL_PASSWORD
+#    volumes:
+#      - themes/citelibre:/opt/keycloak/themes/citelibre
+#    ports:
+#      - "8081:8080"
+#    networks:
+#      - citelibre-network
 
 networks:
   citelibre-network:

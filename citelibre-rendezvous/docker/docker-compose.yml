@@ -1,17 +1,33 @@
 name: citelibre-rendezvous
 services:
+
   rendezvous-db:
     container_name: rendezvous-db
     image: mariadb:10.6
     environment:
       MARIADB_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      MARIADB_DATABASE: "${MYSQL_DATABASE}"
       MARIADB_USER: "${MYSQL_USER}"
       MARIADB_PASSWORD: "${MYSQL_PASSWORD}"
-    volumes:
-      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
-      test: [ "CMD", "mariadb", "-u${MYSQL_USER}", "-p${MYSQL_PASSWORD}", "${MYSQL_DATABASE}", "-e", "SELECT 1 FROM core_xsl_export" ]
+      test: [ "CMD", "mariadb", "-u${MYSQL_USER}", "-p${MYSQL_PASSWORD}", "-e", "show databases" ]
+    networks:
+      - citelibre-network
+
+  init-rendezvous-db:
+    container_name: rendezvous-init-db
+    image: mariadb:10.6
+    depends_on:
+      rendezvous-db:
+        condition: service_healthy
+    command: sh -c "sh /init_db.sh"
+    environment:
+      MYSQL_PWD: $MYSQL_ROOT_PASSWORD
+      INIT_DATABASE_HOST: rendezvous-db
+      INIT_DATABASE_NAME: $RDV_DATABASE
+      INIT_APP_USER: $MYSQL_USER
+    volumes:
+      - ../../citelibre-common/sql/init_db.sh:/init_db.sh
+      - ./sql/init.sql:/init.sql
     networks:
       - citelibre-network
 
@@ -31,8 +47,8 @@ services:
       KIBANA_URL: "${KIBANA_URL}"
       KIBANA_URL_IFRAME: "${KIBANA_URL_IFRAME}"
     depends_on:
-      rendezvous-db:
-        condition: service_healthy
+      init-rendezvous-db:
+        condition: service_completed_successfully
     ports:
       - "8080:8080"
     volumes:

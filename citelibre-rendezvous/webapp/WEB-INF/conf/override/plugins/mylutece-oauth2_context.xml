@@ -37,11 +37,11 @@
                         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
                         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
+    <context:property-placeholder />
     <bean id="mylutece-oauth2.authDataClient"
         class="fr.paris.lutece.plugins.mylutece.modules.oauth2.authentication.AuthDataClient">
         <property name="name" value="authData" />
-        <property name="dataServerUri"
-            value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/userinfo" />
+        <property name="dataServerUri" value="${MYLUTECE_OAUTH2_AUTHDATACLIENT_DATASERVERURI}" />
         <property name="tokenMethod" value="HEADER" />
         <property name="default" value="true" />
 
@@ -53,16 +53,16 @@
     </bean>
 
     <bean id="mylutece-oauth2.server" class="fr.paris.lutece.plugins.oauth2.business.AuthServerConf">
-        <property name="issuer" value="http://fcp.integ01.dev-oauth2.fr"/>
-        <property name="authorizationEndpointUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/auth"/>
-        <property name="tokenEndpointUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/token"/>
-        <property name="logoutEndpointUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/logout?client_id=moncompte&amp;post_logout_redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Frendezvous%2F"/>
-        <property name="enableJwtParser" value="false"/>
+        <property name="issuer" value="${MYLUTECE_OAUTH2_SERVER_ISSUER}"/>
+        <property name="authorizationEndpointUri" value="${MYLUTECE_OAUTH2_SERVER_AUTHORIZATIONENDPOINTURI}"/>
+        <property name="tokenEndpointUri" value="${MYLUTECE_OAUTH2_SERVER_TOKENENDPOINTURI}"/>
+        <property name="logoutEndpointUri" value="${MYLUTECE_OAUTH2_SERVER_LOGOUTENDPOINTURI}"/>
+        <property name="enableJwtParser" value="${MYLUTECE_OAUTH2_SERVER_ENABLEJWTPARSER}"/>
     </bean> 
     
     <bean id="mylutece-oauth2.client" class="fr.paris.lutece.plugins.oauth2.business.AuthClientConf">
-        <property name="clientId" value="moncompte"/>
-        <property name="clientSecret" value="moncompte"/>
+        <property name="clientId" value="${MYLUTECE_OAUTH2_CLIENT_CLIENTID}"/>
+        <property name="clientSecret" value="${MYLUTECE_OAUTH2_CLIENT_CLIENTSECRET}"/>
     </bean>       
     
     <bean id="oauth2.callbackHandler" class="fr.paris.lutece.plugins.oauth2.web.CallbackHandler" >

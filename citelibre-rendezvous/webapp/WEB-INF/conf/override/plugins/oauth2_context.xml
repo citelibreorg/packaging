@@ -37,18 +37,18 @@
        http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
-    
+    <context:property-placeholder />
     <bean id="oauth2.server" class="fr.paris.lutece.plugins.oauth2.business.AuthServerConf">
-        <property name="issuer" value="http://fcp.integ01.dev-oauth2.fr"/>
-        <property name="authorizationEndpointUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/auth"/>
-        <property name="tokenEndpointUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/token"/>
-        <property name="logoutEndpointUri" value="http://localhost:8081/realms/citelibre_frontoffice/protocol/openid-connect/logout?client_id=moncompte&amp;post_logout_redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Frendezvous%2F"/>
-        <property name="enableJwtParser" value="false"/>
+        <property name="issuer" value="${OAUTH2_SERVER_ISSUER}"/>
+        <property name="authorizationEndpointUri" value="${OAUTH2_SERVER_AUTHORIZATIONENDPOINTURI}"/>
+        <property name="tokenEndpointUri" value="${OAUTH2_SERVER_TOKENENDPOINTURI}"/>
+        <property name="logoutEndpointUri" value="${OAUTH2_SERVER_LOGOUTENDPOINTURI}"/>
+        <property name="enableJwtParser" value="${OAUTH2_SERVER_ENABLEJWTPARSER}"/>
     </bean> 
     
     <bean id="oauth2.client" class="fr.paris.lutece.plugins.oauth2.business.AuthClientConf">
-        <property name="clientId" value="moncompte"/>
-        <property name="clientSecret" value="moncompte"/>
+        <property name="clientId" value="${OAUTH2_CLIENT_CLIENTID}"/>
+        <property name="clientSecret" value="${OAUTH2_CLIENT_CLIENTID}"/>
     </bean>       
     
     <bean id="oauth2.callbackHandler" class="fr.paris.lutece.plugins.oauth2.web.CallbackHandler" >

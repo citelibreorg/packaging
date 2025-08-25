@@ -29,12 +29,14 @@
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder />
      <bean id="adminauthenticationoauth2.authDataClient" class="fr.paris.lutece.plugins.adminauthenticationoauth2.business.authentication.AuthDataClient">
         <property name="name" value="adminAuthData" />
-        <property name="dataServerUri" value="http://localhost:8081/realms/citelibre_backoffice/protocol/openid-connect/userinfo"/>
+        <property name="dataServerUri" value="${ADMINAUTHENTICATIONOAUTH2_AUTHDATACLIENT_DATASERVERURI}"/>
         <property name="tokenMethod" value="HEADER"/>
         <property name="default" value="true"/>
         <property name="scope">
@@ -46,15 +48,15 @@
 
     <bean id="adminauthenticationoauth2.server" class="fr.paris.lutece.plugins.oauth2.business.AuthServerConf">
         <property name="issuer" value="http://fcp.integ01.dev-oauth2.fr"/>
-        <property name="authorizationEndpointUri" value="http://localhost:8081/realms/citelibre_backoffice/protocol/openid-connect/auth"/>
-        <property name="tokenEndpointUri" value="http://localhost:8081/realms/citelibre_backoffice/protocol/openid-connect/token"/>
-        <property name="logoutEndpointUri" value="http://localhost:8081/realms/citelibre_backoffice/protocol/openid-connect/logout?client_id=moncompte&amp;post_logout_redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Frendezvous%2Fjsp%2Fadmin%2FAdminLogin.jsp"/>
-        <property name="enableJwtParser" value="false"/>
+        <property name="authorizationEndpointUri" value="${ADMINAUTHENTICATIONOAUTH2_SERVER_AUTHORIZATIONENDPOINTURI}"/>
+        <property name="tokenEndpointUri" value="${ADMINAUTHENTICATIONOAUTH2_SERVER_TOKENENDPOINTURI}"/>
+        <property name="logoutEndpointUri" value="${ADMINAUTHENTICATIONOAUTH2_SERVER_LOGOUTENDPOINTURI}"/>
+        <property name="enableJwtParser" value="${ADMINAUTHENTICATIONOAUTH2_SERVER_ENABLEJWTPARSER}"/>
     </bean> 
 
     <bean id="adminauthenticationoauth2.client" class="fr.paris.lutece.plugins.oauth2.business.AuthClientConf">
-        <property name="clientId" value="moncompte"/>
-        <property name="clientSecret" value="moncompte"/>
+        <property name="clientId" value="${ADMINAUTHENTICATIONOAUTH2_CLIENT_CLIENTID}"/>
+        <property name="clientSecret" value="${ADMINAUTHENTICATIONOAUTH2_CLIENT_CLIENTSECRET}"/>
     </bean>
 
      <!-- By default the admin user authentication system use client and server properties define in the file oauth2_context.xml -->

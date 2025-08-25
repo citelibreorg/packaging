@@ -27,7 +27,7 @@ services:
       INIT_APP_USER: $MYSQL_USER
     volumes:
       - ../citelibre-common/sql/init_db.sh:/init_db.sh
-      - ./matomo/sql/init.sql:/init.sql
+      - ./matomo/sql/:/sql/
     networks:
       - citelibre-network
 
@@ -45,7 +45,7 @@ services:
       INIT_APP_USER: $MYSQL_USER
     volumes:
       - ../citelibre-common/sql/init_db.sh:/init_db.sh
-      - ./keycloak/sql/init.sql:/init.sql
+      - ./keycloak/sql/:/sql/
     networks:
       - citelibre-network
 

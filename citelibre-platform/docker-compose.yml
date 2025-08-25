@@ -31,6 +31,24 @@ services:
     networks:
       - citelibre-network
 
+  init-keycloak-db:
+    container_name: citelibre-init-keycloak-db
+    image: mariadb:10.6
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    command: sh -c "sh /init_db.sh"
+    environment:
+      MYSQL_PWD: $MYSQL_ROOT_PASSWORD
+      INIT_DATABASE_HOST: citelibre-platform-db
+      INIT_DATABASE_NAME: $KEYCLOAK_DB_DATABASE
+      INIT_APP_USER: $MYSQL_USER
+    volumes:
+      - ../citelibre-common/sql/init_db.sh:/init_db.sh
+      - ./keycloak/sql/init.sql:/init.sql
+    networks:
+      - citelibre-network
+
   matomo:
     container_name: citelibre-matomo
     image: matomo:5.0.3
@@ -112,34 +130,38 @@ services:
     networks:
       - citelibre-network
 
-#  keycloak:
-#    image: keycloak/keycloak:26.3.3-0
-#    container_name: citelibre-keycloak
-#    depends_on:
-#      mariadb:
-#        condition: service_healthy
-#    environment:
-#      KEYCLOAK_USER: $KEYCLOAK_USER
-#      KEYCLOAK_PASSWORD: $KEYCLOAK_PASSWORD
-#      KEYCLOAK_LOGLEVEL: $KEYCLOAK_LOGLEVEL
-#      ROOT_LOGLEVEL: $KEYCLOAK_ROOT_LOGLEVEL
-#      DB_VENDOR: $KEYCLOAK_DB_VENDOR
-#      DB_ADDR: $KEYCLOAK_DB_ADDR
-#      DB_PORT: $KEYCLOAK_DB_PORT
-#      DB_DATABASE: $KEYCLOAK_DB_DATABASE
-#      DB_USER: $MYSQL_USER
-#      DB_PASSWORD: $MYSQL_PASSWORD
-#      DB_SCHEMA: $KEYCLOAK_DB_SCHEMA
-#      KC_DB: $KEYCLOAK_KC_DB
-#      KC_DB_URL: $KEYCLOAK_KC_DB_URL
-#      KC_DB_USERNAME: $MYSQL_USER
-#      KC_DB_PASSWORD: $MYSQL_PASSWORD
-#    volumes:
-#      - themes/citelibre:/opt/keycloak/themes/citelibre
-#    ports:
-#      - "8081:8080"
-#    networks:
-#      - citelibre-network
+  keycloak:
+    image: keycloak/keycloak:26.3.3-0
+    container_name: citelibre-keycloak
+    depends_on:
+      init-keycloak-db:
+        condition: service_completed_successfully
+    environment:
+      KC_HOSTNAME: citelibre-keycloak
+      KC_HEALTH_ENABLED: $KC_HEALTH_ENABLED
+      KC_METRICS_ENABLED: $KC_METRICS_ENABLED
+      KC_DB: $KEYCLOAK_KC_DB
+      KC_DB_URL: $KEYCLOAK_KC_DB_URL
+      KC_DB_USERNAME: $MYSQL_USER
+      KC_DB_PASSWORD: $MYSQL_PASSWORD
+      KEYCLOAK_USER: $KEYCLOAK_USER
+      KEYCLOAK_PASSWORD: $KEYCLOAK_PASSWORD
+      KEYCLOAK_LOGLEVEL: $KEYCLOAK_LOGLEVEL
+      ROOT_LOGLEVEL: $KEYCLOAK_ROOT_LOGLEVEL
+      DB_VENDOR: $KEYCLOAK_DB_VENDOR
+      DB_ADDR: $KEYCLOAK_DB_ADDR
+      DB_PORT: $KEYCLOAK_DB_PORT
+      DB_DATABASE: $KEYCLOAK_DB_DATABASE
+      DB_USER: $MYSQL_USER
+      DB_PASSWORD: $MYSQL_PASSWORD
+      DB_SCHEMA: $KEYCLOAK_DB_SCHEMA
+    volumes:
+      - ./keycloak/themes/citelibre:/opt/keycloak/themes/citelibre
+    entrypoint: "/opt/keycloak/bin/kc.sh --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true start-dev"
+    ports:
+      - "8585:8080"
+    networks:
+      - citelibre-network
 
 networks:
   citelibre-network:

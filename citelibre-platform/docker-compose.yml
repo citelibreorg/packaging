@@ -137,7 +137,7 @@ services:
       init-keycloak-db:
         condition: service_completed_successfully
     environment:
-      KC_HOSTNAME: citelibre-keycloak
+      KC_HOSTNAME: localhost
       KC_HEALTH_ENABLED: $KC_HEALTH_ENABLED
       KC_METRICS_ENABLED: $KC_METRICS_ENABLED
       KC_DB: $KEYCLOAK_KC_DB
@@ -160,6 +160,8 @@ services:
     entrypoint: "/opt/keycloak/bin/kc.sh --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true start-dev"
     ports:
       - "8585:8080"
+      - "8586:9000"
+      - "8543:8443"
     networks:
       - citelibre-network
 

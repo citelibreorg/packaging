@@ -12,6 +12,11 @@ charset = "utf8mb4"
 salt = "b6519453d9ac98489c501edb0beb84ac"
 trusted_hosts[] = "localhost"
 enable_trusted_host_check=0
+force_ssl = 0
+assume_secure_protocol = 0
+proxy_client_headers[] = HTTP_X_FORWARDED_FOR
+proxy_host_headers[] = HTTP_X_FORWARDED_HOST
+proxy_uri_header = 1
 
 [PluginsInstalled]
 PluginsInstalled[] = "Diagnostics"

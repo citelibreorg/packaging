@@ -49,6 +49,21 @@ services:
     networks:
       - citelibre-network
 
+  adminer:
+    container_name: citelibre-adminer
+    image: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+      ADMINER_DESIGN: adminer-dark
+    restart: always
+    depends_on:
+      init-matomo-db:
+        condition: service_completed_successfully
+      init-keycloak-db:
+        condition: service_completed_successfully
+    networks:
+      - citelibre-network
+
   matomo:
     container_name: citelibre-matomo
     image: matomo:5.0.3
@@ -64,8 +79,6 @@ services:
       MATOMO_DATABASE_DBNAME: $MATOMO_DATABASE
       MARIADB_AUTO_UPGRADE: $MARIADB_AUTO_UPGRADE
       MARIADB_INITDB_SKIP_TZINFO: $MARIADB_INITDB_SKIP_TZINFO
-    ports:
-      - "8484:80"
     networks:
       - citelibre-network
 
@@ -79,8 +92,6 @@ services:
       - solr-precreate
       - citelibre
       - /opt/solr/server/solr/configsets/myconfig
-    ports:
-      - "8983:8983"
     volumes:
       - ./solr/citelibre:/opt/solr/server/solr/configsets/myconfig:ro
     networks:
@@ -105,8 +116,6 @@ services:
       interval: 10s
       timeout: 10s
       retries: 120
-    ports:
-      - "9200:9200"
     networks:
       - citelibre-network
 
@@ -117,10 +126,15 @@ services:
       elasticsearch:
         condition: service_healthy
     environment:
+      SERVER_NAME: citelibre.org
+      SERVER_PORT: 5601
+      SERVER_HOST: "0.0.0.0"
+      SERVER_BASEPATH: "/kibana"
+      SERVER_REWRITEBASEPATH: true
+      SERVER_PUBLICBASEURL: "http://localhost/kibana"
+      ELASTICSEARCH_HOSTS: '["http://citelibre-elastic:9200"]'
       ELASTICSEARCH_USERNAME: $ELASTICSEARCH_USERNAME
       ELASTICSEARCH_PASSWORD: $ELASTICSEARCH_PASSWORD
-    ports:
-      - "5601:5601"
     links:
       - elasticsearch
     volumes:
@@ -137,17 +151,26 @@ services:
       init-keycloak-db:
         condition: service_completed_successfully
     environment:
-      KC_HOSTNAME: localhost
+      KC_FEATURES: hostname:v2
+
+      KC_HTTP_ENABLED: true
+      KC_HOSTNAME: http://localhost/keycloak
+      KC_HOSTNAME_BACKCHANNEL_DYNAMIC: true
+      KC_PROXY_HEADERS: forwarded
+
       KC_HEALTH_ENABLED: $KC_HEALTH_ENABLED
       KC_METRICS_ENABLED: $KC_METRICS_ENABLED
+      ROOT_LOGLEVEL: $KEYCLOAK_ROOT_LOGLEVEL
+
+      KEYCLOAK_USER: $KEYCLOAK_USER
+      KEYCLOAK_PASSWORD: $KEYCLOAK_PASSWORD
+      KEYCLOAK_LOGLEVEL: $KEYCLOAK_LOGLEVEL
+
       KC_DB: $KEYCLOAK_KC_DB
       KC_DB_URL: $KEYCLOAK_KC_DB_URL
       KC_DB_USERNAME: $MYSQL_USER
       KC_DB_PASSWORD: $MYSQL_PASSWORD
-      KEYCLOAK_USER: $KEYCLOAK_USER
-      KEYCLOAK_PASSWORD: $KEYCLOAK_PASSWORD
-      KEYCLOAK_LOGLEVEL: $KEYCLOAK_LOGLEVEL
-      ROOT_LOGLEVEL: $KEYCLOAK_ROOT_LOGLEVEL
+
       DB_VENDOR: $KEYCLOAK_DB_VENDOR
       DB_ADDR: $KEYCLOAK_DB_ADDR
       DB_PORT: $KEYCLOAK_DB_PORT
@@ -157,11 +180,22 @@ services:
       DB_SCHEMA: $KEYCLOAK_DB_SCHEMA
     volumes:
       - ./keycloak/themes/citelibre:/opt/keycloak/themes/citelibre
-    entrypoint: "/opt/keycloak/bin/kc.sh --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true start-dev"
+    entrypoint: "/opt/keycloak/bin/kc.sh --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true start"
+    networks:
+      - citelibre-network
+
+  httpd:
+    image: httpd:2.4
+    container_name: citelibre-httpd
+    volumes:
+      - ./httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./httpd/conf/httpd-info.conf:/usr/local/apache2/conf/httpd-info.conf
+      - ./httpd/conf/extra/httpd-default.conf:/usr/local/apache2/conf/extra/httpd-default.conf
+      - ./httpd/conf/extra/httpd-mpm.conf:/usr/local/apache2/conf/extra/httpd-mpm.conf
+      - ./httpd/doc/index.html:/usr/local/apache2/htdocs/index.html
+      - ./httpd/doc/images/citelibre.png:/usr/local/apache2/htdocs/images/citelibre.png
     ports:
-      - "8585:8080"
-      - "8586:9000"
-      - "8543:8443"
+      - "80:80"
     networks:
       - citelibre-network
 

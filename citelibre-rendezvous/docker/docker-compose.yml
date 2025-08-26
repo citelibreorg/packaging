@@ -2,7 +2,7 @@ name: citelibre-rendezvous
 services:
 
   rendezvous-db:
-    container_name: rendezvous-db
+    container_name: citelibre-rendezvous-db
     image: mariadb:10.6
     environment:
       MARIADB_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
@@ -14,7 +14,7 @@ services:
       - citelibre-network
 
   init-rendezvous-db:
-    container_name: rendezvous-init-db
+    container_name: citelibre-rendezvous-init-db
     image: mariadb:10.6
     depends_on:
       rendezvous-db:
@@ -34,8 +34,8 @@ services:
     networks:
       - citelibre-network
 
-  citelibre-app:
-    container_name: rendezvous-app
+  citelibre-rendezvous:
+    container_name: citelibre-rendezvous
     image: citelibre/citelibre-rendezvous:${CITELIBRE_IMAGE_VERSION}
     environment:
       PORTAL_URL: $PORTAL_URL

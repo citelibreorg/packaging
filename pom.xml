@@ -695,7 +695,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 <configuration>
                     <scope>compile,runtime</scope>
                     <!-- // exclude false positive -->
-                    <!--                    <excludeVulnerabilityIds>CVE-xxx/excludeVulnerabilityIds>-->
+                    <!-- <excludeVulnerabilityIds>CVE-xxx/excludeVulnerabilityIds>-->
                 </configuration>
             </plugin>
         </plugins>

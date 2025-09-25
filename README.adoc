@@ -7,17 +7,58 @@ image:https://img.shields.io/github/license/citelibre/packaging.svg[License]
 
 == 🚀 Key Features
 
-- ✅ **todo**: todo.
+- ✅ **Rendez Vous**: todo.
+- ✅ **Service EZ**: todo.
 
 == 🔧 Getting Started
 
-To quickly get started with Cite Libre
+Cite Libre can be started with docker compose.
+
+First of all, run the common platform that holds third party components such as Keycloak, Kibana/ES, Matomo, Solr, etc...
+
+[source,bash]
+----
+docker compose -f citelibre-platform/docker-compose.yml up [-d]
+----
+
+You can access the following interfaces
+
+- Matomo (for see stats of your application) at http://localhost/matomo : admin/adminadmin
+- Keycloak at http://localhost/keycloak/admin : admin / admin1234
+- Elasticsearch at http://localhost/elasticsearch
+- Kibana at http://localhost/kibana lutece / RKOmBI1sWaa*SFm1gx*H
+
+Or simply go to http://localhost/ that will prevent you with a Portal to every deployed applications.
+
+=== Rendez Vous
+
+[source,bash]
+----
+docker compose -f citelibre-rendezvous/docker-compose.yml up [-d]
+----
+
+
 
 == 🧩 Packaging
 
-Cite Libre provide ready to use packaging:
+Pre-requisite: Apache Maven >= 3.8 and Java >= 17.
 
-- todo
+=== Rendez Vous
+To build the *RendezVous* packaging, you need to run:
+
+[source,bash]
+----
+mvn clean package -Passembly,rendezvous
+----
+
+To build a local docker image you can run
+
+[source,bash]
+----
+mvn clean package -Passembly,rendezvous,docker
+----
+
+The image will be created in your local registry as `citelibre/citelibre-rendezvous`.
 
 == 📖 Documentation
 
@@ -33,17 +74,6 @@ We warmly welcome contributions!
 - Submit your enhancements via pull requests
 - Create https://github.com/citelibre/packaging/issues[issues]
 - Open https://github.com/citelibre/packaging/discussions[discussions]
-
-=== Build
-
-Pre-requisite: Apache Maven >= 3.8 and Java >= 17.
-
-To build the *RendezVous* packaging, you need to run:
-
-[source,bash]
-----
-mvn clean package -Passembly,rendezvous
-----
 
 == 📜 License
 

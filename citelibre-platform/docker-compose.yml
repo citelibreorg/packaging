@@ -140,7 +140,6 @@ services:
     volumes:
       - ./kibana/init.sh:/tmp/init.sh
       - ./kibana/export.ndjson:/tmp/export.ndjson
-    #command: "/bin/sh /tmp/init.sh"
     networks:
       - citelibre-network
 

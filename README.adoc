@@ -37,7 +37,8 @@ Or simply go to http://localhost/ that will prevent you with a Portal to every d
 docker compose -f citelibre-rendezvous/docker-compose.yml up [-d]
 ----
 
-
+- Back office at http://localhost/citelibre-rendezvous/jsp/admin/AdminMenu.jsp : admin@paris.fr/coucou
+- Front office at http://localhost/citelibre-rendezvous/jsp/site/Portal.jsp : test@paris.fr/coucou
 
 == 🧩 Packaging
 

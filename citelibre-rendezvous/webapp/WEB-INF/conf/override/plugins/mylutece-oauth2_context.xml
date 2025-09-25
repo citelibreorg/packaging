@@ -44,7 +44,6 @@
         <property name="dataServerUri" value="${MYLUTECE_OAUTH2_AUTHDATACLIENT_DATASERVERURI}" />
         <property name="tokenMethod" value="HEADER" />
         <property name="default" value="true" />
-
         <property name="scope">
             <set value-type="java.lang.String">
                 <value>openid</value>

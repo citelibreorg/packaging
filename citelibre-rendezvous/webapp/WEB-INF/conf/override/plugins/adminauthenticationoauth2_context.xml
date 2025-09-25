@@ -33,16 +33,17 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder />
-     <bean id="adminauthenticationoauth2.authDataClient" class="fr.paris.lutece.plugins.adminauthenticationoauth2.business.authentication.AuthDataClient">
-        <property name="name" value="adminAuthData" />
+    <context:property-placeholder/>
+    <bean id="adminauthenticationoauth2.authDataClient"
+          class="fr.paris.lutece.plugins.adminauthenticationoauth2.business.authentication.AuthDataClient">
+        <property name="name" value="adminAuthData"/>
+        <property name="default" value="true"/>
         <property name="dataServerUri" value="${ADMINAUTHENTICATIONOAUTH2_AUTHDATACLIENT_DATASERVERURI}"/>
         <property name="tokenMethod" value="HEADER"/>
-        <property name="default" value="true"/>
         <property name="scope">
-         <set value-type="java.lang.String">
-	   	  <value>openid</value>
-	  	</set>
+            <set value-type="java.lang.String">
+                <value>openid</value>
+            </set>
         </property>
     </bean>
 
@@ -52,15 +53,15 @@
         <property name="tokenEndpointUri" value="${ADMINAUTHENTICATIONOAUTH2_SERVER_TOKENENDPOINTURI}"/>
         <property name="logoutEndpointUri" value="${ADMINAUTHENTICATIONOAUTH2_SERVER_LOGOUTENDPOINTURI}"/>
         <property name="enableJwtParser" value="${ADMINAUTHENTICATIONOAUTH2_SERVER_ENABLEJWTPARSER}"/>
-    </bean> 
+    </bean>
 
     <bean id="adminauthenticationoauth2.client" class="fr.paris.lutece.plugins.oauth2.business.AuthClientConf">
         <property name="clientId" value="${ADMINAUTHENTICATIONOAUTH2_CLIENT_CLIENTID}"/>
         <property name="clientSecret" value="${ADMINAUTHENTICATIONOAUTH2_CLIENT_CLIENTSECRET}"/>
     </bean>
 
-     <!-- By default the admin user authentication system use client and server properties define in the file oauth2_context.xml -->
-    <bean id="adminauthenticationoauth2.callbackHandler" class="fr.paris.lutece.plugins.oauth2.web.CallbackHandler" >
+    <!-- By default the admin user authentication system use client and server properties define in the file oauth2_context.xml -->
+    <bean id="adminauthenticationoauth2.callbackHandler" class="fr.paris.lutece.plugins.oauth2.web.CallbackHandler">
         <property name="handlerName" value="adminOauth2Handler"/>
         <property name="authServerConf" ref="adminauthenticationoauth2.server"/>
         <property name="authClientConf" ref="adminauthenticationoauth2.client"/>
@@ -68,7 +69,7 @@
         <property name="default" value="false"/>
     </bean>
 
-    <bean id="oauth2.jwtParser" class="fr.paris.lutece.plugins.oauth2.jwt.JjwtJWTParser" />
+    <bean id="oauth2.jwtParser" class="fr.paris.lutece.plugins.oauth2.jwt.JjwtJWTParser"/>
 
 
 </beans>

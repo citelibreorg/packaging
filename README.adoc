@@ -26,7 +26,7 @@ You can access the following interfaces
 - Matomo (for see stats of your application) at http://localhost/matomo : admin/adminadmin
 - Keycloak at http://localhost/keycloak/admin : admin / admin1234
 - Elasticsearch at http://localhost/elasticsearch
-- Kibana at http://localhost/kibana lutece / RKOmBI1sWaa*SFm1gx*H
+- Kibana at http://localhost/kibana : lutece / RKOmBI1sWaa*SFm1gx*H
 
 Or simply go to http://localhost/ that will prevent you with a Portal to every deployed applications.
 

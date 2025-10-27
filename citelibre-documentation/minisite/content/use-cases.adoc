@@ -1,0 +1,11 @@
+= Use Cases
+:minisite-index: 200
+:minisite-index-title: Use Cases
+:minisite-index-description: All-in-one services platform.
+:minisite-index-icon: route
+:minisite-keywords: services
+:minisite-breadcrumb: Home[/] > Use Cases
+:minisite-nav-prev-label: Getting Started
+:minisite-nav-next-label: Packaging
+
+== Managing xxx

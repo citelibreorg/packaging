@@ -1,0 +1,19 @@
+= Deployment
+:minisite-index: 500
+:minisite-index-title: Deployment
+:minisite-index-description: How to deploy the platform.
+:minisite-index-icon: rocket
+:minisite-keywords: deployment
+:minisite-breadcrumb: Home[/] > Deployment
+:minisite-nav-prev-label: Development
+
+This page lists some tips to develop in the project.
+
+== Local deployment in Minikube
+
+Minikube environment can be setup too.
+
+To start and deploy to minikube run the following commands:
+
+* `./scripts/main.sh start`: starts minikube and preloads CiteLibre images,
+* `./scripts/main.sh deploy`: deploys the all in one alveolus - can be changed setting the environment variable `DEPLOY_ALVEOLUS` for faster iterations.

@@ -1,0 +1,10 @@
+= Getting Started
+:minisite-index: 100
+:minisite-index-title: Getting Started
+:minisite-index-description: How to start page.
+:minisite-index-icon: play-circle
+:minisite-keywords: documentation
+:minisite-breadcrumb: Home[/] > Getting Started
+:minisite-nav-next-label: Use Cases
+
+This documentation aim to provide technical and functional information to help user to use the CiteLibre platform.

@@ -1,0 +1,10 @@
+= CiteLibre Documentation
+
+Run Maven command to generate the documentation static website and open default browser.
+
+[source,bash]
+----
+mvn process-classes yupiik-tools:serve-minisite -e
+----
+
+Website is available on http://localhost:4200

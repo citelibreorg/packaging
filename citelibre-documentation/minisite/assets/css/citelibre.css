@@ -1,0 +1,19 @@
+/* reset the centered content (better for landing pages) */
+:root {
+    /* NI2 colors (from dark to light) */
+    --yupiik-site-green: #FF3300;
+    --yupiik-site-purple: #FF3300;
+    --yupiik-site-blue-light: #003E66;
+    --yupiik-site-blue-dark: #003E66;
+    --yupiik-site-grey-light: #F4F4F4;
+    --yupiik-site-grey-dark: #212121;
+}
+
+code {
+  background-color: transparent !important;
+}
+
+pre,
+pre > code {
+    color: white !important;
+}

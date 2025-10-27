@@ -52,8 +52,8 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:https://github.com/citelibre/packaging.git</connection>
-        <developerConnection>scm:git:https://github.com/citelibre/packaging.git</developerConnection>
+        <connection>scm:git:https://github.com/citelibreorg/packaging.git</connection>
+        <developerConnection>scm:git:https://github.com/citelibreorg/packaging.git</developerConnection>
         <tag>HEAD</tag>
         <url>https://github.com/citelibre/packaging.git</url>
     </scm>

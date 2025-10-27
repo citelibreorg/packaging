@@ -1,0 +1,11 @@
+= Packaging
+:minisite-index: 300
+:minisite-index-title: Packaging
+:minisite-index-description: Packaging pre-built services.
+:minisite-index-icon: box
+:minisite-keywords: packaging
+:minisite-breadcrumb: Home[/] > Packaging
+:minisite-nav-prev-label: Use Cases
+:minisite-nav-next-label: Development
+
+List of the pre-built services packaging.

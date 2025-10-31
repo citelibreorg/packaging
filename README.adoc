@@ -3,34 +3,83 @@
 image:https://github.com/citelibre/packaging/actions/workflows/maven.yml/badge.svg?branch=main[Github CI,float="right"]
 image:https://img.shields.io/github/license/citelibre/packaging.svg[License]
 
-**Cite Libre** is xxx.
+**CiteLibre** is the software suite provided by the City of Paris to help you implement a wide range of digital services ready for deployment with your brand image.
+
+Benefit from the City of Paris service packs already available free of charge, with new ones that will focus on citizen participation coming soon. These services are developed on the Lutece platform, pre-assembled and containerized for easy deployment, and 100% open source.
+
+The services are based on the latest versions of the required plugins and the latest version of the Lutece core project which gathers all common features to run a Lutece-based website (front and back office, user management, role-based access controls, ...)
 
 == 🚀 Key Features
 
-- ✅ **Rendez Vous**: todo.
-- ✅ **Service EZ**: todo.
+- ✅ **RendezVous**: The full-featured appointment booking system
+
+Control your content in a seamless customer experience
+* A white-label interface for customization
+* Fully customizable content
+* Several different entry points
+* Several calendar templates available
+* Display availability on a map
+* Connection to queue managers possible
+Specify your availability and your reception capacity
+* An agenda by appointment type
+* Unlimited number of agendas
+* A fully customizable reservation form
+* A publication schedule
+* Concepts of typical and specific weeks
+* Numerous available settings
+* Controlling overbooking
+Manage your appointments and focus on your services
+* Automatic validation of appointments or prior pre-instruction
+* Real-time changes to your reception capacity
+* Advanced user notification settings
+* RGPD Compliance
+* Fully customizable reminder policy for appointments
+* Collection and display of usage statistics to adapt your reception capacity.
+
+- ✅ **Service'EZ**: Easily build a taylored form to process your users' data and administrative procedures
+
+Build the best interface to process your users' requests
+* Create a form in just a few clicks
+* Manage all input fields
+* Define conditional display rules for more tailored viewing and use
+* Do this in several stages, and allow your connected users to save their drafts.
+* Define your workflow for transferring requests to the personnel in charge, informing the user and tracking the status of requests until they are processed.
+Campaign tracking tools is at the heart of the tool and, fundamentally, of any results-driven marketing activity.
+* Easily find all submitions to a form using filters and multi-criteria personalized searches
+* Export your data in csv or pdf format, or with all files in a zip file.
+* To guarantee the security of user data, personal data can be anonymized.
+
+- 👷 **Particip'EZ**: Add some participatory citizenship to your services (**WIP**)
+
 
 == 🔧 Getting Started
 
-Cite Libre can be started with docker compose.
+Any CiteLibre service can be started with docker compose.
 
-First of all, run the common platform that holds third party components such as Keycloak, Kibana/ES, Matomo, Solr, etc...
+=== CiteLibre backbone
+First of all, you need to run the common platform that holds third party components such as Keycloak, Kibana/ES, Matomo, Solr, etc...
 
 [source,bash]
 ----
 docker compose -f citelibre-platform/docker-compose.yml up [-d]
 ----
 
-You can access the following interfaces
+You can then access the following service interfaces
 
-- Matomo (for see stats of your application) at http://localhost/matomo : admin/adminadmin
-- Keycloak at http://localhost/keycloak/admin : admin / admin1234
-- Elasticsearch at http://localhost/elasticsearch
-- Kibana at http://localhost/kibana : lutece / RKOmBI1sWaa*SFm1gx*H
+- **Matomo** is used to store and display web and app analytics (http://localhost/matomo: admin/adminadmin)
+- **Adminer** to easily access and interact with the application data (http://localhost/adminer?server=rendezvous-db&username=citelibre&db=rendezvous password: rdv)
+- **Keycloak** to manage front-end and back-end authentication and single sign-on (http://localhost/keycloak/admin: admin/admin1234)
+- **Elasticsearch** to store all business-related app data (http://localhost/elasticsearch)
+- **Kibana** to display business analytics dashboards (http://localhost/kibana: lutece/RKOmBI1sWaa*SFm1gx*H)
 
-Or simply go to http://localhost/ that will prevent you with a Portal to every deployed applications.
+Or simply go to http://localhost/ that will show a Portal to all deployed applications.
 
-=== Rendez Vous
+=== Launch a CiteLibre RendezVous instance
+
+Currently, as **CiteLibre RendezVous** first version hasn't been released officially (it will in a few weeks though :)), you need to build its Docker image in order to run it.
+To build and launch from the source code, please refer to 🧩 Packaging a CiteLibre digital service.
+
+Once it is released, the image will be hosted on DockerHub. You'll simply have to type the following command to download it and launch it.
 
 [source,bash]
 ----
@@ -40,9 +89,15 @@ docker compose -f citelibre-rendezvous/docker-compose.yml up [-d]
 - Back office at http://localhost/citelibre-rendezvous/jsp/admin/AdminMenu.jsp : admin@paris.fr/coucou
 - Front office at http://localhost/citelibre-rendezvous/jsp/site/Portal.jsp : test@paris.fr/coucou
 
-== 🧩 Packaging
+=== Launch a CiteLibre Service'EZ instance
+**TODO**
 
-Pre-requisite: Apache Maven >= 3.8 and Java >= 17.
+=== Launch a CiteLibre Particip'EZ instance
+**TODO**
+
+== 🧩 Packaging a CiteLibre digital service
+
+Pre-requisite: Apache Maven = 3.6.3 and Java >= 17.
 
 === Rendez Vous
 To build the *RendezVous* packaging, you need to run:
@@ -52,7 +107,7 @@ To build the *RendezVous* packaging, you need to run:
 mvn clean package -Passembly,rendezvous
 ----
 
-To build a local docker image you can run
+To build the local docker image you need to run
 
 [source,bash]
 ----
@@ -60,6 +115,13 @@ mvn clean package -Passembly,rendezvous,docker
 ----
 
 The image will be created in your local registry as `citelibre/citelibre-rendezvous`.
+Check that it is available and launch it locally with the following commands:
+
+[source,bash]
+----
+docker image ls
+docker compose -f citelibre-rendezvous/docker/docker-compose.yml up
+----
 
 == 📖 Documentation
 
@@ -67,20 +129,18 @@ Comprehensive documentation is available at:
 
 🌐 https://citelibre.org
 
-== 🖥️ Contributing
+== 🤝 Contributing
 
 We warmly welcome contributions!
 
 - Fork the repository
 - Submit your enhancements via pull requests
-- Create https://github.com/citelibre/packaging/issues[issues]
-- Open https://github.com/citelibre/packaging/discussions[discussions]
+- Create https://github.com/citelibreorg/packaging/issues[issues]
+- Open https://github.com/citelibreorg/packaging/discussions[discussions]
 
 == 📜 License
 
-Cite Libre is released under the BSD 2-Clause License. See the LICENSE file for more details.
+CiteLibre is released under the BSD 2-Clause License. See the LICENSE file for more details.
 
 == ©️ Copyright
 Copyright © 2025 CiteLibre.
-
-🌟 *xxx* 🌟

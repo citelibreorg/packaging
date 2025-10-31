@@ -1526,6 +1526,7 @@ INSERT INTO `core_datastore` VALUES
 ('themecitelibre.site_property.Url.search', 'jsp/site/Portal.jsp?page=search'),
 ('themecitelibre.site_property.xss.xssChars', '<>#"&'),
 ('themecitelibre.site_property.xss.xssMsg', 'Les caract\\u00e8res &#60; &#62; &#35; et &#34;  &amp; sont interdits dans le contenu de votre message.'),
+('themecitelibre.site_property.Url.keycloack', 'http://localhost/citelibre-rendezvous/servlet/plugins/oauth2/callback?data_client=authData'),
 ('core.plugins.status.themecitelibre.installed','true');
 /*!40000 ALTER TABLE `core_datastore` ENABLE KEYS */;
 UNLOCK TABLES;

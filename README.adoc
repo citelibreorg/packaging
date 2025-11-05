@@ -11,16 +11,19 @@ The services are based on the latest versions of the required plugins and the la
 
 == 🚀 Key Features
 
-- ✅ **RendezVous**: The full-featured appointment booking system
+=== ✅ **RendezVous**: The full-featured appointment booking system
 
 Control your content in a seamless customer experience
+
 * A white-label interface for customization
 * Fully customizable content
 * Several different entry points
 * Several calendar templates available
 * Display availability on a map
 * Connection to queue managers possible
+
 Specify your availability and your reception capacity
+
 * An agenda by appointment type
 * Unlimited number of agendas
 * A fully customizable reservation form
@@ -28,7 +31,9 @@ Specify your availability and your reception capacity
 * Concepts of typical and specific weeks
 * Numerous available settings
 * Controlling overbooking
+
 Manage your appointments and focus on your services
+
 * Automatic validation of appointments or prior pre-instruction
 * Real-time changes to your reception capacity
 * Advanced user notification settings
@@ -36,21 +41,24 @@ Manage your appointments and focus on your services
 * Fully customizable reminder policy for appointments
 * Collection and display of usage statistics to adapt your reception capacity.
 
-- ✅ **Service'EZ**: Easily build a taylored form to process your users' data and administrative procedures
+=== ✅ **Service'EZ**: Easily build a taylored form to process your users' data and administrative procedures
 
 Build the best interface to process your users' requests
+
 * Create a form in just a few clicks
 * Manage all input fields
 * Define conditional display rules for more tailored viewing and use
 * Do this in several stages, and allow your connected users to save their drafts.
 * Define your workflow for transferring requests to the personnel in charge, informing the user and tracking the status of requests until they are processed.
+
 Campaign tracking tools is at the heart of the tool and, fundamentally, of any results-driven marketing activity.
+
 * Easily find all submitions to a form using filters and multi-criteria personalized searches
 * Export your data in csv or pdf format, or with all files in a zip file.
 * To guarantee the security of user data, personal data can be anonymized.
 
-- 👷 **Particip'EZ**: Add some participatory citizenship to your services (**WIP**)
-
+=== 👷 **Particip'EZ**: Add some participatory citizenship to your services (**WIP**)
+**TODO**
 
 == 🔧 Getting Started
 

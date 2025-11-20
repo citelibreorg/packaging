@@ -108,6 +108,7 @@
         <!-- tools -->
         <build.config.version>2.0.0</build.config.version>
         <maven.lutece.plugin.version>5.0.1</maven.lutece.plugin.version>
+        <yupiik-bundlebee.version>1.0.31</yupiik-bundlebee.version>
 
         <!-- 3rd parties -->
         <ical4j.version>3.1.3</ical4j.version>
@@ -1319,6 +1320,77 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                             <outputPaths>
                                 <imageJson>${project.build.directory}/jib-image.json</imageJson>
                             </outputPaths>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>bundlebee</id>
+            <properties>
+                <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+
+                <bundlebee.debug>false</bundlebee.debug>
+                <bundlebee.kube.dryRun>${bundlebee.debug}</bundlebee.kube.dryRun>
+                <bundlebee.kube.verbose>${bundlebee.debug}</bundlebee.kube.verbose>
+
+                <deployment.alveolus>citelibre</deployment.alveolus>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>deploy/bundlebee</directory>
+                        <targetPath>bundlebee</targetPath>
+                    </resource>
+                </resources>
+
+                <plugins>
+                    <!--
+                        mvn -e bundlebee:apply@k8s -Pbundlebee [-Dbundlebee.debug=true] [-Ddeployment.alveolus=citelibre]
+                        mvn -e bundlebee:delete@k8s -Pbundlebee [-Dbundlebee.debug=true] [-Ddeployment.alveolus=citelibre]
+                    -->
+                    <plugin>
+                        <groupId>io.yupiik</groupId>
+                        <artifactId>bundlebee-maven-plugin</artifactId>
+                        <version>${yupiik-bundlebee.version}</version>
+                        <executions>
+                            <execution>
+                                <id>k8s</id>
+                                <phase>none</phase>
+                                <goals>
+                                    <goal>apply</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>doc</id>
+                                <goals>
+                                    <goal>placeholder-extract</goal>
+                                </goals>
+                                <phase>process-classes</phase>
+                                <configuration>
+                                    <outputType>FILE</outputType>
+                                    <failOnInvalidDescription>true</failOnInvalidDescription>
+                                    <dumpLocation>${project.basedir}/minisite/content/_partials/generated/deployment</dumpLocation>
+                                    <descriptions>${project.basedir}/bundlebee/placeholders.descriptions.properties</descriptions>
+                                    <ignoredPlaceholders>
+                                        user.name,bundlebee.deploytime,service.component,service.image.name,service.image.version,
+                                        service.name,service.node.port,service.version,service.containerPort,
+                                        bundlebee-directory-json-key-value-pairs-content:.*,project.basedir,bundlebee-lowercase:.*
+                                    </ignoredPlaceholders>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <manifest>${project.basedir}/deploy/bundlebee/manifest.json</manifest>
+                            <alveolus>${deployment.alveolus}</alveolus>
+                            <mavenRepositoriesDownloadsEnabled>true</mavenRepositoriesDownloadsEnabled>
+                            <customPlaceholders>
+                                <bundlebee-placeholder-import-default>${project.basedir}/deploy/bundlebee/environments/default.properties</bundlebee-placeholder-import-default>
+                                <project.basedir>${project.basedir}</project.basedir>
+                                <deploy.by>${user.name}</deploy.by>
+                                <bundlebee.deploytime>${maven.build.timestamp}</bundlebee.deploytime>
+                            </customPlaceholders>
                         </configuration>
                     </plugin>
                 </plugins>

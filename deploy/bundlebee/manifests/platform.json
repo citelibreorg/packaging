@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/yupiik/bundlebee/gh-pages/generated/jsonschema/manifest.descriptor.json",
+  "interpolateAlveoli": true,
+  "alveoli": [
+    {
+      "name": "citelibre-mariadb",
+      "descriptors": [
+        {
+          "name": "components/mariadb/configmap.json"
+        },
+        {
+          "name": "components/mariadb/persistencevolume.json"
+        },
+        {
+          "name": "components/mariadb/persistencevolumeclaim.json"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "database-template"
+        }
+      ],
+      "placeholders": {
+        "database.name": "citelibre-mariadb",
+        "database.component": "citelibre-mariadb",
+        "database.image.name": "{{citelibre.image.registry:-docker.io}}/mariadb",
+        "database.image.version": "{{citelibre-mariadb.version:-10.6}}",
+        "database.replicas": "{{citelibre-mariadb.replicas:-{{database.replicas:-1}}}}"
+      }
+    },
+    {
+      "//": "platform-all-in-one",
+      "name": "platform-stack",
+      "chainDependencies": true,
+      "dependencies": [
+        {
+          "name": "citelibre-mariadb"
+        }
+      ]
+    }
+  ]
+}

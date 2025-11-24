@@ -66,13 +66,14 @@
             ],
             "ports": [
               {
-                "containerPort": 3306
+                "name": "{{bundlebee-lowercase:{{database.port.name:-dbport}}}}",
+                "containerPort": {{database.port:-3306}}
               }
             ],
             "volumeMounts": [
               {
                 "name": "pv-data",
-                "mountPath": "/var/lib/mysql"
+                "mountPath": "{{database.volumeMount:-/var/lib/mysql}}"
               }
             ],
             "resources": {
@@ -91,7 +92,7 @@
           {
             "name": "pv-data",
             "persistentVolumeClaim": {
-              "claimName": "{{bundlebee-lowercase:{{database.name}}}}"
+              "claimName": "{{bundlebee-lowercase:{{database.name}}-claim}}"
             }
           }
         ],

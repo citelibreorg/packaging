@@ -18,6 +18,8 @@
   "data": {
     "APPLICATION_ENVIRONMENT":"{{bundlebee.environment:-development}}",
     "_DEPLOY_TIME":"{{bundlebee.deploytime:-unset}}",
-    "MARIADB_ROOT_PASSWORD": "citelibre"
+    "MARIADB_ROOT_PASSWORD": "{{citelibre-mariadb.root.password:-root}}",
+    "MARIADB_USER": "{{citelibre-mariadb.user:-root}}",
+    "MARIADB_PASSWORD": "{{citelibre-mariadb.password:-root}}"
   }
 }

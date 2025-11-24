@@ -26,6 +26,10 @@
         "database.image.name": "{{citelibre.image.registry:-docker.io}}/mariadb",
         "database.image.version": "{{citelibre-mariadb.version:-10.6}}",
         "database.replicas": "{{citelibre-mariadb.replicas:-{{database.replicas:-1}}}}"
+        "database.replicas": "{{citelibre-mariadb.replicas:-{{database.replicas:-1}}}}",
+        "database.volumeMount": "/var/lib/mysql",
+        "database.port.name": "mariadb-port"
+      }
       }
     },
     {

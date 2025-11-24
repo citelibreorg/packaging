@@ -7,7 +7,7 @@
     "labels": {
       "app.kubernetes.io/name": "{{bundlebee-lowercase:{{database.name}}}}",
       "app.kubernetes.io/instance": "{{database.name}}",
-      "app.kubernetes.io/version": "{{database.version}}",
+      "app.kubernetes.io/version": "{{database.image.version}}",
       "app.kubernetes.io/component": "{{database.component}}",
       "app.kubernetes.io/part-of": "{{project.name}}",
       "app.kubernetes.io/managed-by": "bundlebee",
@@ -20,8 +20,8 @@
     "ports": [
       {
         "protocol": "TCP",
-        "port": 3306,
-        "targetPort": 3306
+        "port": {{database.port:-3306}},
+        "targetPort": {{database.targetPort:-3306}}
       }
     ],
     "selector": {

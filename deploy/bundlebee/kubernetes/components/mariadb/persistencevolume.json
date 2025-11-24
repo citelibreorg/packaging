@@ -2,10 +2,10 @@
   "kind": "PersistentVolume",
   "apiVersion": "v1",
   "metadata": {
-    "name": "{{bundlebee-lowercase:{{database.name}}}}",
+    "name": "{{bundlebee-lowercase:{{database.name}}-volume}}",
     "namespace": "{{namespace.name}}",
     "labels": {
-      "app.kubernetes.io/name": "{{bundlebee-lowercase:{{database.name}}}}",
+      "app.kubernetes.io/name": "{{bundlebee-lowercase:{{database.name}}-volume}}",
       "app.kubernetes.io/part-of": "{{project.name}}",
       "app.kubernetes.io/managed-by": "bundlebee",
       "deploy.by":"{{user.name:-unknown}}",
@@ -21,7 +21,7 @@
       "{{citelibre-mariadb.database.accessMode:-ReadWriteOnce}}"
     ],
     "claimRef": {
-      "name": "citelibre-mariadb-database",
+      "name": "{{bundlebee-lowercase:{{database.name}}-claim}}",
       "namespace": "{{namespace.name}}"
     },
     "hostPath": {

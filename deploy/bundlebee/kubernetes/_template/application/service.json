@@ -20,8 +20,8 @@
     "ports": [
       {
         "protocol": "TCP",
-        "port": 80,
-        "targetPort": 8080
+        "port": {{application.port:-80}},
+        "targetPort": {{application.targetPort:-8080}}
       }
     ],
     "selector": {

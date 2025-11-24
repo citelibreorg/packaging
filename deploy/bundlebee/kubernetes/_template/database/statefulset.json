@@ -34,6 +34,24 @@
         }
       },
       "spec": {
+        "initContainers": [
+          {
+            "name": "init-volume-permissions",
+            "image": "alpine:latest",
+            "command": [
+              "chown",
+              "-R",
+              "1000:1000",
+              "{{database.volumeMount:-/var/lib/mysql}}"
+            ],
+            "volumeMounts": [
+              {
+                "name": "pv-data",
+                "mountPath": "{{database.volumeMount:-/var/lib/mysql}}"
+              }
+            ]
+          }
+        ],
         "containers": [
           {
             "name": "{{bundlebee-lowercase:{{database.name}}}}",

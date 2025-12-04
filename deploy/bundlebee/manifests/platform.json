@@ -62,6 +62,37 @@
       }
     },
     {
+      "name": "citelibre-solr",
+      "descriptors": [
+        {
+          "name": "components/solr/configmap.json"
+        },
+        {
+          "name": "components/solr/persistencevolume.json"
+        },
+        {
+          "name": "components/solr/persistencevolumeclaim.json"
+        }
+      ],
+      "dependencies": [
+        {
+          "name": "database-template"
+        }
+      ],
+      "placeholders": {
+        "database.name": "citelibre-solr",
+        "database.component": "citelibre-solr",
+        "database.image.name": "{{citelibre.image.registry:-docker.io}}/solr",
+        "database.image.version": "{{citelibre-solr.version:-9.1.1}}",
+        "database.replicas": "{{citelibre-solr.replicas:-1}}",
+        "database.port": "8983",
+        "database.targetPort": "8983",
+        "database.volumeMount": "/usr/share/solr/data",
+        "database.resources.limits.memory": "{{citelibre-solr.resources.limits.memory:-768Mi}}",
+        "database.port.name": "solr-port"
+      }
+    },
+    {
       "//": "platform-all-in-one",
       "name": "citelibre-platform",
       "chainDependencies": true,
@@ -71,6 +102,9 @@
         },
         {
           "name": "citelibre-elasticsearch"
+        },
+        {
+          "name": "citelibre-solr"
         }
       ]
     }

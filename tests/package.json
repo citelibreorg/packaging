@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "cy:common": "cypress run --headless --browser chrome --config specPattern=**/test-common-lutece.cy.js,video=true" ,
-    "cy:clean": "rm -rf cypress/videos/ && rm -rf cypress/results/ || true"
+    "cy:common": "cypress run --headless --browser chrome --config baseUrl=http://localhost/citelibre-rendezvous/jsp/admin/AdminMessage.jsp,specPattern=**/test-common-lutece.cy.js,video=true" ,
+    "cy:clean": "rm -rf cypress/videos/ && rm -rf cypress/results/ && rm -rf cypress/screenshots/ || true"
   },
   "dependencies": {
     "mocha": "^11.7.5",

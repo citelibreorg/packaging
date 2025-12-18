@@ -16,7 +16,7 @@ To open Cypress studio, run `npx cypress open`.
 Before runnin tests, ensure that the platform and the tested packaging are running.
 Tests can be run through the npx cli or with a docker image.
 
-=== npx
+=== NPX
 
 See https://docs.cypress.io/app/references/command-line:[Cypress CLI documentation] for further information.
 
@@ -31,7 +31,7 @@ Run a specific test with a result file with junit format
  npx cypress run --runner-ui --browser chrome --spec "cypress/e2e/test-common-lutece.cy.js" --reporter junit
 ```
 
-=== npm commands defined in package.json
+=== NPM commands defined in package.json
 
 Clean results and reports
 
@@ -43,4 +43,22 @@ Run common tests
 
 ```shell
 npm run cy:common
+```
+
+=== Docker
+
+In order to avoid npm installation you can run test through a docker instance.
+
+Get your user id:
+
+```shell
+id -u
+1000
+```
+
+Put your user id in a variable, and pass it through docker command line
+
+```shell
+myid=`id -u`
+docker run -it --rm --user $myid:$myid -v $PWD:/e2e -w /e2e cypress/included:latest --browser electron --config baseUrl=http://172.19.0.1/citelibre-rendezvous/jsp/admin/AdminMessage.jsp
 ```

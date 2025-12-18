@@ -4,7 +4,7 @@ describe('Cite Libre :: Rendez Vous', () => {
       // bypass uncaught errors thrown by Lutece framework scripts
       return false
     })
-    cy.visit("http://localhost/citelibre-rendezvous/jsp/admin/AdminMessage.jsp") // get to backoffice main page
+    cy.visit(Cypress.config("baseUrl")) // get to backoffice main page
         .get('button[title="OK"]').click() // accept user warning and redirect to keycloak authent
         .get('#username').type("admin@paris.fr")
         .get('#password').type("coucou")
@@ -32,7 +32,7 @@ describe('Cite Libre :: Rendez Vous', () => {
       // bypass uncaught errors thrown by Lutece framework scripts
       return false
     })
-    cy.visit('http://localhost/citelibre-rendezvous/jsp/admin/AdminMenu.jsp')
+    cy.visit(Cypress.config("baseUrl"))
     cy.get('i.ti').click();
     cy.get('[name="username"]').click();
     cy.get('[name="username"]').type('admin@paris.fr');

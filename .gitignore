@@ -11,3 +11,9 @@ ignored.*
 generated
 generated_*
 .sdkmanrc
+**/node_modules
+**/package-lock.json
+**/result.xml
+**/test-results.xml
+**/results
+**/videos

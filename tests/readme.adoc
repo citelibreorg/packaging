@@ -8,7 +8,7 @@ In tests folder, run `npm install`.
 
 == Create tests
 
-Tests must be created in e2e directory and named `<test case>.cy.js`. You can create a new file from scratch or use the cypress studio. See https://www.cypress.io/blog/cypress-studio-a-beginners-guide:[Cypress tutorial] fore further information.
+Tests must be created in e2e directory and named `<test case>.cy.js`. You can create a new file from scratch or use the cypress studio. See https://www.cypress.io/blog/cypress-studio-a-beginners-guide[Cypress tutorial] fore further information.
 
 To open Cypress studio, run `npx cypress open`.
 

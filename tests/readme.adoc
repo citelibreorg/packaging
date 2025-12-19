@@ -16,6 +16,15 @@ To open Cypress studio, run `npx cypress open`.
 Before runnin tests, ensure that the platform and the tested packaging are running.
 Tests can be run through the npx cli or with a docker image.
 
+=== Open studio
+
+You can run and visualize tests through the Cypress Studio HMI
+
+```shell
+ npx cypress open
+```
+
+
 === NPX
 
 See https://docs.cypress.io/app/references/command-line[Cypress CLI documentation] for further information.

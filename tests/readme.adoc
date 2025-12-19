@@ -18,7 +18,7 @@ Tests can be run through the npx cli or with a docker image.
 
 === NPX
 
-See https://docs.cypress.io/app/references/command-line:[Cypress CLI documentation] for further information.
+See https://docs.cypress.io/app/references/command-line[Cypress CLI documentation] for further information.
 
 Run all tests
 ```shell

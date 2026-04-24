@@ -17,6 +17,8 @@ Thank you for contributing to our project! Please fill in the fields below to he
 <!-- Check the applications affected by this PR. -->
 
 - [ ] citelibre-rendezvous
+- [ ] citelibre-serviceez
+- [ ] citelibre-participez
 - [ ] Elasticsearch / Kibana
 - [ ] fake-smtp
 - [ ] Keycloak

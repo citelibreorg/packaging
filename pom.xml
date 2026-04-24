@@ -3,28 +3,28 @@
 
     BSD 2-Clause License
 
-    Copyright (c) 2025, CiteLibre
+                                Copyright (c) 2025, CiteLibre
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
+                                Redistribution and use in source and binary forms, with or without
+                                modification, are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice, this
-       list of conditions and the following disclaimer.
+                                1. Redistributions of source code must retain the above copyright notice, this
+                                list of conditions and the following disclaimer.
 
-    2. Redistributions in binary form must reproduce the above copyright notice,
-       this list of conditions and the following disclaimer in the documentation
-       and/or other materials provided with the distribution.
+                                2. Redistributions in binary form must reproduce the above copyright notice,
+                                this list of conditions and the following disclaimer in the documentation
+                                and/or other materials provided with the distribution.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-    DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-    SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-    OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                                THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+                                AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+                                IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+                                DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+                                FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+                                DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+                                SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+                                CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+                                OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+                                OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/maven-v4_0_0.xsd">
@@ -35,7 +35,7 @@
     <name>CiteLibre :: Parent</name>
     <version>2.0.0-SNAPSHOT</version>
     <packaging>lutece-site</packaging>
-    <description>CiteLibre is a packaged services suite made by @lutece-platform and @lutece-secteur-public software bricks</description>
+    <description>CiteLibre is a packaged services suite made by assembling @lutece-platform and @lutece-secteur-public software bricks</description>
 
     <organization>
         <name>CiteLibre</name>
@@ -107,7 +107,7 @@
 
         <!-- tools -->
         <build.config.version>2.0.0</build.config.version>
-        <maven.lutece.plugin.version>5.0.1</maven.lutece.plugin.version>
+        <maven.lutece.plugin.version>6.0.3</maven.lutece.plugin.version>
         <yupiik-bundlebee.version>1.0.31</yupiik-bundlebee.version>
 
         <!-- 3rd parties -->
@@ -117,118 +117,114 @@
         <citelibre.theme.version>[1.1.2-SNAPSHOT]</citelibre.theme.version>
 
         <!-- core -->
-        <lutece.core.version>7.1.3</lutece.core.version>
-        <library.workflow.core.version>3.0.2</library.workflow.core.version>
-        <library.jwt.version>2.0.2</library.jwt.version>
-        <library.identitystore.version>2.0.5</library.identitystore.version>
-        <library.image.version>1.0.4</library.image.version>
-        <library.blobstore.version>1.0.5</library.blobstore.version>
-        <library.elastic.version>1.1.1</library.elastic.version>
-        <library.grubusiness.version>1.1.13</library.grubusiness.version>
-        <library.httpaccess.version>3.0.1</library.httpaccess.version>
-        <library.signrequest.version>3.0.0</library.signrequest.version>
-        <library.rbac.api.version>1.0.0</library.rbac.api.version>
-        <library.workgroup.api.version>1.0.0</library.workgroup.api.version>
-        <library.notifygru.version>1.2.2</library.notifygru.version>
-        <library.freemarker.version>1.3.5</library.freemarker.version>
-        <library.user.api.version>1.0.1</library.user.api.version>
-        <library.utils.version>1.0.0</library.utils.version>
-        <library.lucene.version>5.0.3</library.lucene.version>
-        <library.jmx.api.version>1.0.0</library.jmx.api.version>
+		<commons.beanutils.version>[1.9.4]</commons.beanutils.version>
         <library.archive.version>1.0.0</library.archive.version>
-        <library.crmclient.version>2.0.4</library.crmclient.version>
+        <library.elastic.version>1.1.2</library.elastic.version>
+        <library.freemarker.version>1.3.5</library.freemarker.version>
+        <library.grubusiness.version>[1.1.20]</library.grubusiness.version>
+        <library.httpaccess.version>[3.0.4-beta-02]</library.httpaccess.version>
+        <library.image.version>1.0.4</library.image.version>
+	<library.jmx.api.version>[1.0.0]</library.jmx.api.version>
+        <library.jwt.version>[2.0.2]</library.jwt.version>
+        <library.lucene.version>[5.0.3]</library.lucene.version>
+        <library.notifygru.version>[1.3.0]</library.notifygru.version>
+        <library.rbac.api.version>[1.0.0]</library.rbac.api.version>
+        <library.signrequest.version>[3.0.1]</library.signrequest.version>
+        <library.sql.utils.version>[1.0.1]</library.sql.utils.version>
+        <library.user.api.version>1.0.1</library.user.api.version>
+        <library.utils.version>[1.0.0]</library.utils.version>
+        <library.workflow.core.version>[3.0.6]</library.workflow.core.version>
+	<library.workgroup.api.version>[1.0.0]</library.workgroup.api.version>
+        <lutece.core.version>[7.1.7-beta-01]</lutece.core.version>
 
         <!-- plugins -->
-        <plugin.genericattributes.version>2.4.5</plugin.genericattributes.version>
-        <plugin.referencelist.version>1.1.2</plugin.referencelist.version>
-        <plugin.workflow.version>6.0.2</plugin.workflow.version>
-        <plugin.regularexpression.version>4.0.1</plugin.regularexpression.version>
-        <plugin.rest.version>3.2.0</plugin.rest.version>
-        <plugin.address.version>1.1.0</plugin.address.version>
-        <plugin.identitystore.version>2.0.10</plugin.identitystore.version>
-        <plugin.filegenerator.version>2.1.4</plugin.filegenerator.version>
-        <plugin.systeminfo.version>3.1.5</plugin.systeminfo.version>
-        <plugin.crmclient.version>2.1.2</plugin.crmclient.version>
-        <plugin.swaggerui.version>1.0.2</plugin.swaggerui.version>
-        <plugin.leaflet.version>1.0.4</plugin.leaflet.version>
-        <plugin.captcha.version>2.2.0</plugin.captcha.version>
-        <plugin.sitelabels.version>2.0.1</plugin.sitelabels.version>
-        <plugin.asynchronousupload.version>1.1.10</plugin.asynchronousupload.version>
-        <plugin.matomo.version>1.0.0</plugin.matomo.version>
-        <plugin.mermaidjs.version>1.0.0</plugin.mermaidjs.version>
-        <plugin.kibana.version>2.1.0</plugin.kibana.version>
-        <plugin.elasticdata.version>2.1.1</plugin.elasticdata.version>
-        <plugin.mydashboard.version>1.3.0</plugin.mydashboard.version>
-        <plugin.solr.version>4.0.4</plugin.solr.version>
-        <plugin.modulenotifygrumappingmanager.version>2.0.2</plugin.modulenotifygrumappingmanager.version>
+        <plugin.accesscontrol.version>1.0.5</plugin.accesscontrol.version>
+        <plugin.address.version>[1.1.0]</plugin.address.version>
         <plugin.appointment.version>3.0.8</plugin.appointment.version>
-        <plugin.grusupply.version>1.2.9</plugin.grusupply.version>
-        <plugin.mylutece.version>4.0.5</plugin.mylutece.version>
-        <plugin.profiles.version>3.1.1</plugin.profiles.version>
-        <plugin.htmlpage.version>5.1.2</plugin.htmlpage.version>
-        <plugin.oauth2.version>1.1.2</plugin.oauth2.version>
-        <plugin.termofservice.version>1.0.0</plugin.termofservice.version>
-        <plugin.unittree.version>3.1.1</plugin.unittree.version>
-        <plugin.userassignment.version>1.0.1</plugin.userassignment.version>
-        <plugin.verifybackurl.version>1.0.3</plugin.verifybackurl.version>
-        <plugin.seo.version>3.3.1</plugin.seo.version>
-        <plugin.myluteceaccessrules.version>1.0.0</plugin.myluteceaccessrules.version>
-        <plugin.limitconnectedusers.version>1.1.2</plugin.limitconnectedusers.version>
-        <plugin.helpdesk.version>4.0.0</plugin.helpdesk.version>
+        <plugin.archive.version>[1.0.5]</plugin.archive.version>
+        <plugin.asynchronousupload.version>[1.1.13]</plugin.asynchronousupload.version>
+        <plugin.automaticroleprovider.version>1.0.1</plugin.automaticroleprovider.version>
+        <plugin.captcha.version>2.2.0</plugin.captcha.version>
+	<plugin.carto.version>1.0.1</plugin.carto.version>
+        <plugin.contact.version>5.1.2</plugin.contact.version>
+        <plugin.elasticdata.version>2.1.1</plugin.elasticdata.version>
+        <plugin.filegenerator.version>[2.1.6]</plugin.filegenerator.version>
+        <plugin.forms.version>[3.1.4-beta-02]</plugin.forms.version>
+	<plugin.genericattributes.version>[2.4.8]</plugin.genericattributes.version>
         <plugin.html.version>5.0.0</plugin.html.version>
-        <plugin.forms.version>3.0.0</plugin.forms.version>
-        <plugin.contact.version>5.1.0</plugin.contact.version>
-        <plugin.automaticroleprovider.version>1.0.0</plugin.automaticroleprovider.version>
-        <plugin.avatar.version>1.3.1</plugin.avatar.version>
-        <plugin.blobstore.version>2.1.1</plugin.blobstore.version>
-        <plugin.blobstoreclient.version>2.1.0</plugin.blobstoreclient.version>
-        <plugin.adminavatar.version>1.0.1</plugin.adminavatar.version>
-        <plugin.archive.version>1.0.5</plugin.archive.version>
-        <plugin.archive.client.version>1.0.4</plugin.archive.client.version>
-        <plugin.accesscontrol.version>1.0.1</plugin.accesscontrol.version>
+        <plugin.htmlpage.version>[5.1.5]</plugin.htmlpage.version>
+        <plugin.htmltopdf.version>[1.0.0]</plugin.htmltopdf.version>
+        <plugin.kibana.version>2.1.0</plugin.kibana.version>
+        <plugin.leaflet.version>1.0.4</plugin.leaflet.version>
+        <plugin.limitconnectedusers.version>1.1.2</plugin.limitconnectedusers.version>
+        <plugin.matomo.version>1.0.0</plugin.matomo.version>
+        <plugin.mermaidjs.version>1.0.1</plugin.mermaidjs.version>
+        <plugin.modulenotifygrumappingmanager.version>[2.0.3]</plugin.modulenotifygrumappingmanager.version>
+        <plugin.mydashboard.version>1.3.0</plugin.mydashboard.version>
+        <plugin.mylutece.version>4.0.5</plugin.mylutece.version>
+        <plugin.myluteceaccessrules.version>1.0.3</plugin.myluteceaccessrules.version>
+        <plugin.oauth2.version>1.1.2</plugin.oauth2.version>
+        <plugin.adminauthenticationoauth2.version>1.0.0-SNAPSHOT</plugin.adminauthenticationoauth2.version>
+        <plugin.profiles.version>4.0.2-beta-01</plugin.profiles.version>
+        <plugin.referencelist.version>[1.1.5-beta-01]</plugin.referencelist.version>
+        <plugin.regularexpression.version>4.0.3</plugin.regularexpression.version>
+        <plugin.rest.version>3.2.0</plugin.rest.version>
+        <plugin.seo.version>3.3.1</plugin.seo.version>
+        <plugin.sitelabels.version>[2.0.2-beta-01]</plugin.sitelabels.version>
+        <plugin.solr.version>4.0.5</plugin.solr.version>
+        <plugin.systeminfo.version>[3.1.6-beta-02]</plugin.systeminfo.version>
+        <plugin.swaggerui.version>1.0.2</plugin.swaggerui.version>
+        <plugin.userassignment.version>[1.0.3]</plugin.userassignment.version>
+	<plugin.termofservice.version>1.0.6</plugin.termofservice.version>
+        <plugin.unittree.version>[3.1.6-beta-01]</plugin.unittree.version>
+        <plugin.verifybackurl.version>1.0.4</plugin.verifybackurl.version>
+        <plugin.workflow.version>[6.0.9-beta-01]</plugin.workflow.version>
 
         <!-- modules -->
-        <module.genericattributes.address.version>2.0.2</module.genericattributes.address.version>
-        <module.workflow.rest.version>2.1.0</module.workflow.rest.version>
-        <module.appointment.desk.version>1.0.3</module.appointment.desk.version>
-        <module.captcha.jcaptcha.version>2.2.1</module.captcha.jcaptcha.version>
-        <module.genericattributes.googlemaps.version>2.0.1</module.genericattributes.googlemaps.version>
-        <module.workflow.notifygru.version>2.1.5</module.workflow.notifygru.version>
-        <module.workflow.notifygru.alert.version>2.2.2</module.workflow.notifygru.alert.version>
-        <module.address.autocomplete.version>1.1.4</module.address.autocomplete.version>
-        <module.appointment.solrsearchapp.version>3.0.4</module.appointment.solrsearchapp.version>
-        <module.appointment.solr.version>3.0.2</module.appointment.solr.version>
-        <module.workflow.appointment.version>3.0.3</module.workflow.appointment.version>
-        <module.appointment.alert.version>3.0.0</module.appointment.alert.version>
-        <module.appointment.filling.version>3.0.0</module.appointment.filling.version>
-        <module.notifygru.appointment.version>3.0.2</module.notifygru.appointment.version>
-        <module.elasticdata.appointment.version>3.0.2</module.elasticdata.appointment.version>
-        <module.appointmentgru.version>2.0.6</module.appointmentgru.version>
-        <module.appointment.leaflet.version>3.0.1</module.appointment.leaflet.version>
-        <module.appointment.mydashboard.version>3.0.1</module.appointment.mydashboard.version>
-        <module.appointment.management.version>1.0.4</module.appointment.management.version>
-        <module.mylutece.oauth2.version>2.1.2</module.mylutece.oauth2.version>
         <module.accesscontrol.forms.version>1.0.0</module.accesscontrol.forms.version>
-        <module.genericattributes.openstreetmap.version>1.0.4</module.genericattributes.openstreetmap.version>
-        <module.workflow.unittree.version>2.1.0</module.workflow.unittree.version>
-        <module.workflow.unittree.userassignment.version>1.0.1</module.workflow.unittree.userassignment.version>
-        <module.unittree.notification.version>1.0.1</module.unittree.notification.version>
-        <module.workflow.userassignment.version>2.1.1</module.workflow.userassignment.version>
-        <module.notifygru.forms.version>1.2.0</module.notifygru.forms.version>
-        <module.workflow.alertforms.version>2.1.2</module.workflow.alertforms.version>
-        <module.workflow.forms.version>2.3.3</module.workflow.forms.version>
-        <module.workflow.forms.automatic.assignment.version>2.1.0</module.workflow.forms.automatic.assignment.version>
-        <module.helpdesk.solr.version>2.0.0</module.helpdesk.solr.version>
-        <module.mylutece.cacheuserattribute.version>1.0.0</module.mylutece.cacheuserattribute.version>
-        <module.elasticdata.forms.version>1.0.6</module.elasticdata.forms.version>
-        <module.forms.breadcrumbaccordion.version>1.0.5</module.forms.breadcrumbaccordion.version>
-        <module.forms.documentproducer.version>1.0.3</module.forms.documentproducer.version>
+        <module.address.autocomplete.version>[1.1.4]</module.address.autocomplete.version>
+        <module.appointment.alert.version>3.0.0</module.appointment.alert.version>
+        <module.appointment.desk.version>1.0.3</module.appointment.desk.version>
+        <module.appointment.filling.version>3.0.0</module.appointment.filling.version>
+        <module.appointment.leaflet.version>3.0.1</module.appointment.leaflet.version>
+        <module.appointment.management.version>1.0.4</module.appointment.management.version>
+        <module.appointment.mydashboard.version>3.0.1</module.appointment.mydashboard.version>
+        <module.appointment.solr.version>3.0.2</module.appointment.solr.version>
+        <module.appointment.solrsearchapp.version>3.0.4</module.appointment.solrsearchapp.version>
+        <module.appointmentgru.version>2.0.6</module.appointmentgru.version>
+        <module.captcha.jcaptcha.version>2.2.1</module.captcha.jcaptcha.version>
+	<module.cartography.solr.version>1.0.1</module.cartography.solr.version>
+        <module.elasticdata.appointment.version>3.0.2</module.elasticdata.appointment.version>
+        <module.elasticdata.forms.version>1.0.8</module.elasticdata.forms.version>
+        <module.forms.breadcrumbaccordion.version>1.0.6</module.forms.breadcrumbaccordion.version>
+        <module.forms.cartography.version>1.0.1</module.forms.cartography.version>
+	<module.forms.documentproducer.version>1.0.3</module.forms.documentproducer.version>
         <module.forms.multiviewmapleaflet.version>1.0.1</module.forms.multiviewmapleaflet.version>
-        <module.forms.poll.version>1.0.3</module.forms.poll.version>
-        <module.forms.solr.version>1.0.2</module.forms.solr.version>
+        <module.forms.solr.version>1.0.3</module.forms.solr.version>
         <module.forms.template.version>1.0.3</module.forms.template.version>
-        <module.forms.unittree.version>2.0.2</module.forms.unittree.version>
-        <module.forms.userassignment.version>2.0.1</module.forms.userassignment.version>
+	<module.forms.unittree.version>[2.1.2-beta-01]</module.forms.unittree.version>
+	<module.forms.userassignment.version>[2.0.1]</module.forms.userassignment.version>
+        <module.genericattributes.address.version>[2.0.3]</module.genericattributes.address.version>
+	<module.genericattributes.cartography.version>1.0.1</module.genericattributes.cartography.version>
+        <module.genericattributes.googlemaps.version>2.0.1</module.genericattributes.googlemaps.version>
+        <module.genericattributes.openstreetmap.version>[1.0.4]</module.genericattributes.openstreetmap.version>
+        <module.mylutece.cacheuserattribute.version>1.0.1</module.mylutece.cacheuserattribute.version>
+        <module.mylutece.oauth2.version>2.1.2</module.mylutece.oauth2.version>
+        <module.notifygru.appointment.version>3.0.2</module.notifygru.appointment.version>
+        <module.notifygru.forms.version>[1.2.1]</module.notifygru.forms.version>
+        <module.unittree.notification>[1.0.2]</module.unittree.notification>
+        <module.workflow.alertforms.version>2.1.3</module.workflow.alertforms.version>
+        <module.workflow.appointment.version>3.0.3</module.workflow.appointment.version>
+	<module.workflow.forms.version>[2.3.5-beta-02]</module.workflow.forms.version>
+        <module.workflow.forms.automatic.assignment.version>[2.1.2-beta-01]</module.workflow.forms.automatic.assignment.version>
+        <module.workflow.forms.carto.unittree.version>1.0.0</module.workflow.forms.carto.unittree.version>
+        <module.workflow.formstopdf>[1.1.1-beta-01]</module.workflow.formstopdf>
+        <module.workflow.notifygru.version>[2.1.11-beta-01]</module.workflow.notifygru.version>
+        <module.workflow.notifygru.alert.version>[2.3.0-SNAPSHOT]</module.workflow.notifygru.alert.version>
+        <module.workflow.unittree.version>[2.1.2]</module.workflow.unittree.version>
+        <module.workflow.unittree.userassignment.version>[1.0.1]</module.workflow.unittree.userassignment.version>
+        <module.workflow.upload.version>[1.1.6-beta-01]</module.workflow.upload.version>
+        <module.workflow.userassignment.version>[2.1.3]</module.workflow.userassignment.version>
     </properties>
 
     <dependencies>
@@ -246,11 +242,11 @@
             <artifactId>jaxb-api</artifactId>
             <version>2.3.1</version>
         </dependency>
-        <dependency>
+        <!-- dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
             <version>1.4.01</version>
-        </dependency>
+        </dependency -->
 
         <!-- theme -->
         <dependency>
@@ -260,159 +256,36 @@
             <type>lutece-site</type>
         </dependency>
 
-        <!-- core -->
-        <dependency>
-            <groupId>fr.paris.lutece</groupId>
-            <artifactId>lutece-core</artifactId>
-            <version>${lutece.core.version}</version>
-            <type>lutece-core</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>library-workflow-core</artifactId>
-            <version>${library.workflow.core.version}</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>library-jwt</artifactId>
-            <version>${library.jwt.version}</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>library-identitystore</artifactId>
-            <version>${library.identitystore.version}</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>library-blobstore</artifactId>
-            <version>${library.blobstore.version}</version>
-            <type>jar</type>
-        </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>library-elastic</artifactId>
             <version>${library.elastic.version}</version>
             <type>jar</type>
         </dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${commons.beanutils.version}</version>
+		</dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>library-grubusiness</artifactId>
-            <version>${library.grubusiness.version}</version>
-            <type>jar</type>
-            <!-- TODO check if needed -->
-            <exclusions>
-                <exclusion>
-                    <artifactId>hibernate-validator</artifactId>
-                    <groupId>org.hibernate</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>library-httpaccess</artifactId>
-            <version>${library.httpaccess.version}</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>library-signrequest</artifactId>
-            <version>${library.signrequest.version}</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>library-rbac-api</artifactId>
-            <version>${library.rbac.api.version}</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>library-workgroup-api</artifactId>
-            <version>${library.workgroup.api.version}</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>library-notifygru</artifactId>
-            <version>${library.notifygru.version}</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>library-crmclient</artifactId>
-            <version>${library.crmclient.version}</version>
+            <artifactId>library-freemarker</artifactId>
+            <version>${library.freemarker.version}</version>
             <type>jar</type>
         </dependency>
 
         <!-- plugins -->
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-genericattributes</artifactId>
-            <version>${plugin.genericattributes.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-referencelist</artifactId>
-            <version>${plugin.referencelist.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-workflow</artifactId>
-            <version>${plugin.workflow.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-regularexpression</artifactId>
-            <version>${plugin.regularexpression.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-rest</artifactId>
             <version>${plugin.rest.version}</version>
             <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-address</artifactId>
-            <version>${plugin.address.version}</version>
-            <type>lutece-plugin</type>
             <exclusions>
-                <exclusion>
-                    <artifactId>jaxb-runtime</artifactId>
-                    <groupId>org.glassfish.jaxb</groupId>
-                </exclusion>
+            	<exclusion>
+            		<groupId>org.springframework</groupId>
+            		<artifactId>spring-web</artifactId>
+            	</exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-identitystore</artifactId>
-            <version>${plugin.identitystore.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-filegenerator</artifactId>
-            <version>${plugin.filegenerator.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-systeminfo</artifactId>
-            <version>${plugin.systeminfo.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-crmclient</artifactId>
-            <version>${plugin.crmclient.version}</version>
-            <type>lutece-plugin</type>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
@@ -428,20 +301,8 @@
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-asynchronousupload</artifactId>
-            <version>${plugin.asynchronousupload.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-matomo</artifactId>
             <version>${plugin.matomo.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-mermaidjs</artifactId>
-            <version>${plugin.mermaidjs.version}</version>
             <type>lutece-plugin</type>
         </dependency>
         <dependency>
@@ -464,32 +325,8 @@
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-modulenotifygrumappingmanager</artifactId>
-            <version>${plugin.modulenotifygrumappingmanager.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-grusupply</artifactId>
-            <version>${plugin.grusupply.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-mylutece</artifactId>
             <version>${plugin.mylutece.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-profiles</artifactId>
-            <version>${plugin.profiles.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-htmlpage</artifactId>
-            <version>${plugin.htmlpage.version}</version>
             <type>lutece-plugin</type>
         </dependency>
         <dependency>
@@ -498,18 +335,10 @@
             <version>${plugin.oauth2.version}</version>
             <type>lutece-plugin</type>
         </dependency>
-
-        <!-- modules -->
-        <dependency>
+		<dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>module-genericattributes-address</artifactId>
-            <version>${module.genericattributes.address.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>module-workflow-rest</artifactId>
-            <version>${module.workflow.rest.version}</version>
+            <artifactId>plugin-adminauthenticationoauth2</artifactId>
+            <version>${plugin.adminauthenticationoauth2.version}</version>
             <type>lutece-plugin</type>
         </dependency>
         <dependency>
@@ -520,21 +349,24 @@
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>module-workflow-notifygru</artifactId>
-            <version>${module.workflow.notifygru.version}</version>
-            <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>module-workflow-notifygru-alert</artifactId>
             <version>${module.workflow.notifygru.alert.version}</version>
             <type>lutece-plugin</type>
-        </dependency>
-        <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>module-address-autocomplete</artifactId>
-            <version>${module.address.autocomplete.version}</version>
-            <type>lutece-plugin</type>
+            <exclusions>
+               <!-- avoid to pull spring 3 dependency -->
+               <exclusion>
+               		<groupId>fr.paris.lutece</groupId>
+					<artifactId>lutece-core</artifactId>
+               </exclusion>
+                <exclusion>
+               		<groupId>fr.paris.lutece</groupId>
+					<artifactId>library-notifygru</artifactId>
+               </exclusion>
+                <exclusion>
+               		<groupId>fr.paris.lutece</groupId>
+					<artifactId>library-httpaccess</artifactId>
+               </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
@@ -565,8 +397,11 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.6.3</version>
+                                    <version>3.9</version>
                                 </requireMavenVersion>
+								<requireJavaVersion>
+                                    <version>11</version>
+                                </requireJavaVersion>
                             </rules>
                         </configuration>
                     </execution>
@@ -643,29 +478,29 @@
                         <licenseSet>
                             <inlineHeader><![CDATA[BSD 2-Clause License
 
-Copyright (c) ${project.inceptionYear}, ${project.organization.name}
+                            Copyright (c) ${project.inceptionYear}, ${project.organization.name}
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
+                            Redistribution and use in source and binary forms, with or without
+                            modification, are permitted provided that the following conditions are met:
 
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
+                            1. Redistributions of source code must retain the above copyright notice, this
+                            list of conditions and the following disclaimer.
 
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
+                            2. Redistributions in binary form must reproduce the above copyright notice,
+                            this list of conditions and the following disclaimer in the documentation
+                            and/or other materials provided with the distribution.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-]]></inlineHeader>
+                            THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+                            AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+                            IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+                            DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+                            FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+                            DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+                            SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+                            CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+                            OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+                            OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                            ]]></inlineHeader>
                             <useDefaultExcludes>true</useDefaultExcludes>
                             <includes>
                                 <include>**/*.properties</include>
@@ -768,7 +603,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                                     <goal>site-assembly</goal>
                                 </goals>
                                 <configuration>
-                                    <finalName>${citelibre.packaging.base}</finalName>
+                                    <!--<finalName>${citelibre.packaging.base}</finalName>-->
                                     <defaultConfDirectory>${citelibre.packaging.base}/webapp</defaultConfDirectory>
                                     <explodedDirectory>target/${citelibre.packaging.base}</explodedDirectory>
                                 </configuration>
@@ -817,6 +652,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 </plugins>
             </build>
         </profile>
+        
+        <!-- ************************************ rendez-vous profile ************************** -->
         <profile>
             <!-- mvn clean package -Passembly,rendezvous -->
             <id>rendezvous</id>
@@ -834,6 +671,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 </dependency>
 
                 <!-- core -->
+		<dependency>
+			<groupId>fr.paris.lutece</groupId>
+			<artifactId>lutece-core</artifactId>
+			<version>${lutece.core.version}</version>
+			<type>lutece-core</type>
+		</dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>library-image</artifactId>
@@ -841,13 +684,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <type>jar</type>
                 </dependency>
                 <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>library-freemarker</artifactId>
-                    <version>${library.freemarker.version}</version>
-                    <type>jar</type>
-                </dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>plugin-workflow</artifactId>
+			<version>${plugin.workflow.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
 
                 <!-- plugins -->
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>plugin-genericattributes</artifactId>
+			<version>${plugin.genericattributes.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>plugin-referencelist</artifactId>
+			<version>${plugin.referencelist.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>plugin-address</artifactId>
+			<version>${plugin.address.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-swaggerui</artifactId>
@@ -872,13 +733,30 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <version>${plugin.appointment.version}</version>
                     <type>lutece-plugin</type>
                 </dependency>
-<!--                TODO wait for stable version-->
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>plugin-adminauthenticationoauth2</artifactId>
-                    <version>1.0.0-SNAPSHOT</version>
-                    <type>lutece-plugin</type>
-                </dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>plugin-profiles</artifactId>
+			<version>${plugin.profiles.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>plugin-filegenerator</artifactId>
+			<version>${plugin.filegenerator.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>plugin-regularexpression</artifactId>
+			<version>${plugin.regularexpression.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>plugin-mermaidjs</artifactId>
+			<version>${plugin.mermaidjs.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
 
                 <!-- modules -->
                 <dependency>
@@ -923,12 +801,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <version>${module.appointment.filling.version}</version>
                     <type>lutece-plugin</type>
                 </dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>module-address-autocomplete</artifactId>
+			<version>${module.address.autocomplete.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-notifygru-appointment</artifactId>
                     <version>${module.notifygru.appointment.version}</version>
                     <type>lutece-plugin</type>
                 </dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>module-genericattributes-address</artifactId>
+			<version>${module.genericattributes.address.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-elasticdata-appointment</artifactId>
@@ -959,8 +849,28 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <version>${module.appointment.management.version}</version>
                     <type>lutece-plugin</type>
                 </dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>module-workflow-notifygru</artifactId>
+			<version>${module.workflow.notifygru.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>plugin-modulenotifygrumappingmanager</artifactId>
+			<version>${plugin.modulenotifygrumappingmanager.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>library-signrequest</artifactId>
+			<version>${library.signrequest.version}</version>
+			<type>jar</type>
+		</dependency>
             </dependencies>
         </profile>
+        
+        <!-- **********************************  service EZ profile ******************************* -->
         <profile>
             <id>serviceez</id>
             <properties>
@@ -968,7 +878,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 <citelibre.packaging.version>1.0.2</citelibre.packaging.version>
             </properties>
             <dependencies>
-                <!-- core -->
+                <!-- same as participEZ without the specifics mapping features -->
+                <!-- TODO when participEZ is clean -->
+            </dependencies>
+        </profile>
+        
+        <!-- ****************************************** particip EZ profile ************************** -->
+	<profile>
+            <id>participez</id>
+            <properties>
+                <citelibre.packaging.base>citelibre-participez</citelibre.packaging.base>
+                <citelibre.packaging.version>1.0.0</citelibre.packaging.version>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>fr.paris.lutece</groupId>
+                    <artifactId>lutece-core</artifactId>
+                    <version>${lutece.core.version}</version>
+                    <type>lutece-core</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>library-archive</artifactId>
+                    <version>${library.archive.version}</version>
+                    <type>jar</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.tools</groupId>
+                    <artifactId>library-sql-utils</artifactId>
+                    <version>${library.sql.utils.version}</version>
+                    <type>jar</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>library-lucene</artifactId>
+                    <version>${library.lucene.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>library-user-api</artifactId>
@@ -977,14 +923,20 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>library-utils</artifactId>
-                    <version>${library.utils.version}</version>
+                    <artifactId>library-rbac-api</artifactId>
+                    <version>${library.rbac.api.version}</version>
                     <type>jar</type>
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>library-lucene</artifactId>
-                    <version>${library.lucene.version}</version>
+                    <artifactId>library-workflow-core</artifactId>
+                    <version>${library.workflow.core.version}</version>
+                    <type>jar</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>library-workgroup-api</artifactId>
+                    <version>${library.workgroup.api.version}</version>
                     <type>jar</type>
                 </dependency>
                 <dependency>
@@ -993,30 +945,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <version>${library.jmx.api.version}</version>
                     <type>jar</type>
                 </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>library-archive</artifactId>
-                    <version>${library.archive.version}</version>
-                    <type>jar</type>
-                </dependency>
 
                 <!-- plugins -->
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-termofservice</artifactId>
                     <version>${plugin.termofservice.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>plugin-unittree</artifactId>
-                    <version>${plugin.unittree.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>plugin-userassignment</artifactId>
-                    <version>${plugin.userassignment.version}</version>
                     <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
@@ -1037,28 +971,22 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <version>${plugin.myluteceaccessrules.version}</version>
                     <type>lutece-plugin</type>
                 </dependency>
-                <dependency>
+                <!--<dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-limitconnectedusers</artifactId>
                     <version>${plugin.limitconnectedusers.version}</version>
                     <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>plugin-helpdesk</artifactId>
-                    <version>${plugin.helpdesk.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
+                </dependency>-->
+				<dependency>
+					<groupId>fr.paris.lutece.plugins</groupId>
+					<artifactId>plugin-blog</artifactId>
+					<version>3.0.6-beta-01</version>
+					<type>lutece-plugin</type>
+				</dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-html</artifactId>
                     <version>${plugin.html.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>plugin-forms</artifactId>
-                    <version>${plugin.forms.version}</version>
                     <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
@@ -1073,114 +1001,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <version>${plugin.automaticroleprovider.version}</version>
                     <type>lutece-plugin</type>
                 </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>plugin-avatar</artifactId>
-                    <version>${plugin.avatar.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>plugin-blobstore</artifactId>
-                    <version>${plugin.blobstore.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>plugin-blobstoreclient</artifactId>
-                    <version>${plugin.blobstoreclient.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>plugin-adminavatar</artifactId>
-                    <version>${plugin.adminavatar.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>plugin-archive</artifactId>
-                    <version>${plugin.archive.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>plugin-archive-client</artifactId>
-                    <version>${plugin.archive.client.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
+                <!--<dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>plugin-accesscontrol</artifactId>
                     <version>${plugin.accesscontrol.version}</version>
                     <type>lutece-plugin</type>
-                </dependency>
+                </dependency>-->
 
                 <!-- modules -->
-                <dependency>
+                <!--<dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-accesscontrol-forms</artifactId>
                     <version>${module.accesscontrol.forms.version}</version>
                     <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>module-genericattributes-openstreetmap</artifactId>
-                    <version>${module.genericattributes.openstreetmap.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>module-workflow-unittree</artifactId>
-                    <version>${module.workflow.unittree.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>module-workflow-unittree-userassignment</artifactId>
-                    <version>${module.workflow.unittree.userassignment.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>module-unittree-notification</artifactId>
-                    <type>lutece-plugin</type>
-                    <version>${module.unittree.notification.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>module-workflow-userassignment</artifactId>
-                    <version>${module.workflow.userassignment.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>module-notifygru-forms</artifactId>
-                    <version>${module.notifygru.forms.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
+                </dependency>-->
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-workflow-alertforms</artifactId>
                     <version>${module.workflow.alertforms.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>module-workflow-forms</artifactId>
-                    <version>${module.workflow.forms.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>module-workflow-forms-automatic-assignment</artifactId>
-                    <version>${module.workflow.forms.automatic.assignment.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>module-helpdesk-solr</artifactId>
-                    <version>${module.helpdesk.solr.version}</version>
                     <type>lutece-plugin</type>
                 </dependency>
                 <dependency>
@@ -1225,12 +1063,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
-                    <artifactId>module-forms-poll</artifactId>
-                    <version>${module.forms.poll.version}</version>
-                    <type>lutece-plugin</type>
-                </dependency>
-                <dependency>
-                    <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-forms-solr</artifactId>
                     <version>${module.forms.solr.version}</version>
                     <type>lutece-plugin</type>
@@ -1241,6 +1073,63 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <version>${module.forms.template.version}</version>
                     <type>lutece-plugin</type>
                 </dependency>
+				
+		<!-- Specific to Particip'EZ -->
+		<!-- Mapping features -->
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>plugin-carto</artifactId>
+			<version>${plugin.carto.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>module-cartography-solr</artifactId>
+			<version>${module.cartography.solr.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>module-genericattributes-cartography</artifactId>
+			<version>${module.genericattributes.cartography.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>module-forms-cartography</artifactId>
+			<version>${module.forms.cartography.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
+
+		<!-- auto-assignment based on a location and field value -->
+		<dependency>
+			<groupId>fr.paris.lutece.plugins</groupId>
+			<artifactId>module-workflow-forms-carto-unittree</artifactId>
+			<version>${module.workflow.forms.carto.unittree.version}</version>
+			<type>lutece-plugin</type>
+		</dependency>
+
+
+
+
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-forms</artifactId>
+                    <version>${plugin.forms.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-unittree</artifactId>
+                    <version>${plugin.unittree.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-workflow</artifactId>
+                    <version>${plugin.workflow.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-forms-unittree</artifactId>
@@ -1249,8 +1138,212 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 </dependency>
                 <dependency>
                     <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-workflow-forms</artifactId>
+                    <version>${module.workflow.forms.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-workflow-unittree</artifactId>
+                    <version>${module.workflow.unittree.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-workflow-upload</artifactId>
+                    <version>${module.workflow.upload.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-userassignment</artifactId>
+                    <version>${plugin.userassignment.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
                     <artifactId>module-forms-userassignment</artifactId>
                     <version>${module.forms.userassignment.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-workflow-forms-automatic-assignment</artifactId>
+                    <version>${module.workflow.forms.automatic.assignment.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-workflow-unittree-userassignment</artifactId>
+                    <version>${module.workflow.unittree.userassignment.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-workflow-userassignment</artifactId>
+                    <version>${module.workflow.userassignment.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-htmltopdf</artifactId>
+                    <version>${plugin.htmltopdf.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-workflow-formstopdf</artifactId>
+                    <version>${module.workflow.formstopdf}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-profiles</artifactId>
+                    <version>${plugin.profiles.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>library-utils</artifactId>
+                    <version>${library.utils.version}</version>
+                    <type>jar</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-filegenerator</artifactId>
+                    <version>${plugin.filegenerator.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-regularexpression</artifactId>
+                    <version>${plugin.regularexpression.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-genericattributes</artifactId>
+                    <version>${plugin.genericattributes.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-referencelist</artifactId>
+                    <version>${plugin.referencelist.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-asynchronousupload</artifactId>
+                    <version>${plugin.asynchronousupload.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-unittree-notification</artifactId>
+                    <version>${module.unittree.notification}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-mermaidjs</artifactId>
+                    <version>${plugin.mermaidjs.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>library-httpaccess</artifactId>
+                    <version>${library.httpaccess.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>library-signrequest</artifactId>
+                    <version>${library.signrequest.version}</version>
+                    <type>jar</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>library-jwt</artifactId>
+                    <version>${library.jwt.version}</version>
+                    <type>jar</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-htmlpage</artifactId>
+                    <version>${plugin.htmlpage.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-systeminfo</artifactId>
+                    <version>${plugin.systeminfo.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-sitelabels</artifactId>
+                    <version>${plugin.sitelabels.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>library-grubusiness</artifactId>
+                    <version>${library.grubusiness.version}</version>
+                    <type>jar</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>library-notifygru</artifactId>
+                    <version>${library.notifygru.version}</version>
+                    <type>jar</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-workflow-notifygru</artifactId>
+                    <version>${module.workflow.notifygru.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-notifygru-forms</artifactId>
+                    <version>${module.notifygru.forms.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-address</artifactId>
+                    <version>${plugin.address.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-address-autocomplete</artifactId>
+                    <version>${module.address.autocomplete.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-genericattributes-address</artifactId>
+                    <version>${module.genericattributes.address.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>module-genericattributes-openstreetmap</artifactId>
+                    <version>${module.genericattributes.openstreetmap.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>        
+                <!-- FIN TOUTES LES DEPENDANCES RAMENEES PAR LE FORMS-STARTER EN 7.1.2 -->
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-archive</artifactId>
+                    <version>${plugin.archive.version}</version>
+                    <type>lutece-plugin</type>
+                </dependency>
+                <dependency>
+                    <groupId>fr.paris.lutece.plugins</groupId>
+                    <artifactId>plugin-modulenotifygrumappingmanager</artifactId>
+                    <version>${plugin.modulenotifygrumappingmanager.version}</version>
                     <type>lutece-plugin</type>
                 </dependency>
             </dependencies>
@@ -1325,7 +1418,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 </plugins>
             </build>
         </profile>
-
         <profile>
             <id>bundlebee</id>
             <properties>
@@ -1398,3 +1490,4 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </profile>
     </profiles>
 </project>
+

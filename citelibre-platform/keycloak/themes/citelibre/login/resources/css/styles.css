@@ -1,5 +1,5 @@
 :root {
-    --keycloak-logo-url: url('../img/logo-pack-light.min.svg');
+    --keycloak-logo-url: url('../img/logo-pack-dark.min.svg');
     --keycloak-bg-logo-url: url("../img/bg.svg");
     --keycloak-logo-height: 63px;
     --keycloak-logo-width: 300px;

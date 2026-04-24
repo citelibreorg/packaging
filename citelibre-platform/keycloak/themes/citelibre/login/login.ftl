@@ -5,7 +5,7 @@
 <@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','password') displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
 
     <#if section = "header">
-    <p class="text-center mb-3"><img src="${url.resourcesPath}/img/logo-pack-light.min.svg" alt="" aria-hidden="true"></p>
+    <p class="text-center mb-3"><img src="${url.resourcesPath}/img/logo-pack-dark.min.svg" alt="" aria-hidden="true"></p>
     <#elseif section = "form">
         <div id="kc-form">
           <div id="kc-form-wrapper">

@@ -79,6 +79,8 @@ services:
       MATOMO_DATABASE_DBNAME: $MATOMO_DATABASE
       MARIADB_AUTO_UPGRADE: $MARIADB_AUTO_UPGRADE
       MARIADB_INITDB_SKIP_TZINFO: $MARIADB_INITDB_SKIP_TZINFO
+    volumes:
+      - ./matomo/config/config.ini.php:/var/www/html/config/config.ini.php
     networks:
       - citelibre-network
 
@@ -195,6 +197,20 @@ services:
       - ./httpd/doc/images/citelibre.png:/usr/local/apache2/htdocs/images/citelibre.png
     ports:
       - "80:80"
+    networks:
+      - citelibre-network
+
+  mailpit:
+    image: axllent/mailpit:v1.18.3
+    container_name: citelibre-mailpit
+    restart: unless-stopped
+    ports:
+      - "1080:8025"
+      - "1025:1025"
+    environment:
+      MP_MAX_MESSAGES: 500
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
     networks:
       - citelibre-network
 

@@ -1,7 +1,7 @@
 ; <?php exit; ?> DO NOT REMOVE THIS LINE
 ; file automatically generated or modified by Matomo; you can manually override the default values in global.ini.php by redefining them in this file.
 [database]
-host = "citelibre-db"
+host = "citelibre-platform-db"
 username = "root"
 password = "root"
 dbname = "matomo"
@@ -9,14 +9,12 @@ tables_prefix = "matomo_"
 charset = "utf8mb4"
 
 [General]
+proxy_uri_header = 1
+enable_trusted_host_check = 0
 salt = "b6519453d9ac98489c501edb0beb84ac"
 trusted_hosts[] = "localhost"
-enable_trusted_host_check=0
-force_ssl = 0
-assume_secure_protocol = 0
-proxy_client_headers[] = HTTP_X_FORWARDED_FOR
-proxy_host_headers[] = HTTP_X_FORWARDED_HOST
-proxy_uri_header = 1
+proxy_client_headers[] = "HTTP_X_FORWARDED_FOR"
+proxy_host_headers[] = "HTTP_X_FORWARDED_HOST"
 
 [PluginsInstalled]
 PluginsInstalled[] = "Diagnostics"
@@ -82,3 +80,5 @@ PluginsInstalled[] = "CustomJsTracker"
 PluginsInstalled[] = "Tour"
 PluginsInstalled[] = "PagePerformance"
 PluginsInstalled[] = "CustomDimensions"
+PluginsInstalled[] = "JsTrackerInstallCheck"
+

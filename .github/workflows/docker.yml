@@ -8,6 +8,8 @@ on:
 env:
   JAVA_VERSION: '21'
   MAVEN_VERSION: '3.6.3'
+  DOCKER_REGISTRY: docker.io
+  DOCKER_NAMESPACE: citelibre
 
 jobs:
 
@@ -66,6 +68,13 @@ jobs:
           maven-version: ${{ env.MAVEN_VERSION }}
 
       # ---------------------------------------------------------
+      # Build application
+      # ---------------------------------------------------------
+      - name: Build application
+        run: |
+          mvn --batch-mode clean package -Passembly,${APP_NAME} -Dcitelibre.packaging.version=${APP_VERSION}
+
+      # ---------------------------------------------------------
       # Docker Hub authentication
       # ---------------------------------------------------------
       - name: Login to Docker Hub
@@ -81,4 +90,8 @@ jobs:
         run: |
           echo "Building application: ${APP_NAME}"
           echo "Version: ${APP_VERSION}"
-          mvn --batch-mode package -Passembly,${APP_NAME},docker -Dcitelibre.packaging.version=${APP_VERSION}
+          
+          IMAGE="${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/packaging-${APP_NAME}:${APP_VERSION}"
+          echo "Docker image: ${IMAGE}"
+
+          mvn --batch-mode jib:build -Passembly,${APP_NAME},docker -Dcitelibre.packaging.version=${APP_VERSION} -Djib.to.image=${IMAGE}

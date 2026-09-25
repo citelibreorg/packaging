@@ -50,15 +50,20 @@ jobs:
       # ---------------------------------------------------------
       # Setup Java
       # ---------------------------------------------------------
-      - name: Setup Maven Action
-        uses: s4u/setup-maven-action@v1.19.0
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: maven
+
+      # ---------------------------------------------------------
+      # Setup Maven
+      # ---------------------------------------------------------
+      - name: Setup Maven
+        uses: stCarolas/setup-maven@v5.1
         with:
           maven-version: ${{ env.MAVEN_VERSION }}
-          java-version: ${{ env.JAVA_VERSION }}
-          java-distribution: 'zulu'
-          cache-enabled: 'true'
-          cache-path: '~/.m2/repository'
-          cache-prefix: 'citelibre'
 
       # ---------------------------------------------------------
       # Docker Hub authentication

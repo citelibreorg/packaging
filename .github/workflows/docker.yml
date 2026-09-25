@@ -81,4 +81,4 @@ jobs:
         run: |
           echo "Building application: ${APP_NAME}"
           echo "Version: ${APP_VERSION}"
-          ./mvnw --batch-mode package -Passembly,${APP_NAME},docker -Dcitelibre.packaging.version=${APP_VERSION}
+          mvn --batch-mode package -Passembly,${APP_NAME},docker -Dcitelibre.packaging.version=${APP_VERSION}

@@ -123,6 +123,7 @@
         <library.freemarker.version>1.3.5</library.freemarker.version>
         <library.grubusiness.version>[1.1.20]</library.grubusiness.version>
         <library.httpaccess.version>[3.0.4-beta-02]</library.httpaccess.version>
+        <library.identitystore.version>2.0.6</library.identitystore.version>
         <library.image.version>1.0.4</library.image.version>
 	<library.jmx.api.version>[1.0.0]</library.jmx.api.version>
         <library.jwt.version>[2.0.2]</library.jwt.version>
@@ -147,6 +148,7 @@
         <plugin.captcha.version>2.2.0</plugin.captcha.version>
 	<plugin.carto.version>1.0.1</plugin.carto.version>
         <plugin.contact.version>5.1.2</plugin.contact.version>
+        <plugin.crmclient.version>2.1.3</plugin.crmclient.version>
         <plugin.elasticdata.version>2.1.1</plugin.elasticdata.version>
         <plugin.filegenerator.version>[2.1.6]</plugin.filegenerator.version>
         <plugin.forms.version>[3.1.4-beta-02]</plugin.forms.version>
@@ -359,11 +361,11 @@
 					<artifactId>lutece-core</artifactId>
                </exclusion>
                 <exclusion>
-               		<groupId>fr.paris.lutece</groupId>
+               		<groupId>fr.paris.lutece.plugins</groupId>
 					<artifactId>library-notifygru</artifactId>
                </exclusion>
                 <exclusion>
-               		<groupId>fr.paris.lutece</groupId>
+               		<groupId>fr.paris.lutece.plugins</groupId>
 					<artifactId>library-httpaccess</artifactId>
                </exclusion>
             </exclusions>
@@ -661,6 +663,43 @@
                 <citelibre.packaging.base>citelibre-rendezvous</citelibre.packaging.base>
                 <citelibre.packaging.version>1.0.9</citelibre.packaging.version>
             </properties>
+            <dependencyManagement>
+                <!-- PATCH : prevents from carrying v8 depdencies -->
+                <!-- TODO : switch to starters cause this is not a solid workaround -->
+                <dependencies>
+                    <dependency>
+                        <groupId>fr.paris.lutece</groupId>
+                        <artifactId>lutece-core</artifactId>
+                        <version>${lutece.core.version}</version>
+                        <type>lutece-core</type>
+                    </dependency>
+                    <dependency>
+                        <groupId>fr.paris.lutece.plugins</groupId>
+                        <artifactId>library-httpaccess</artifactId>
+                        <version>${library.httpaccess.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>fr.paris.lutece.plugins</groupId>
+                        <artifactId>library-identitystore</artifactId>
+                        <version>${library.identitystore.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>fr.paris.lutece.plugins</groupId>
+                        <artifactId>library-jwt</artifactId>
+                        <version>${library.jwt.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>fr.paris.lutece.plugins</groupId>
+                        <artifactId>plugin-crmclient</artifactId>
+                        <version>${plugin.crmclient.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>fr.paris.lutece.plugins</groupId>
+                        <artifactId>plugin-solr</artifactId>
+                        <version>${plugin.solr.version}</version>
+                    </dependency>
+                </dependencies>
+            </dependencyManagement>
             <dependencies>
                 <!-- 3rd parties -->
                 <dependency>

@@ -4,11 +4,19 @@
 
 CiteLibre packaging: assembles Lutece core + plugins (from the `dev.lutece.paris.fr`
 repositories) into three deployable services — `citelibre-rendezvous`,
-`citelibre-serviceez`, `citelibre-participez` — plus a shared docker-compose platform,
-Bundlebee/K8s deployment descriptors and Cypress e2e tests. There is **no application
-source code**: no Java files, nothing here compiles app code. Changes are pom profiles,
-Lutece webapp configuration (`webapp/WEB-INF`), SQL init scripts, docker/Bundlebee
-descriptors, and documentation.
+`citelibre-serviceez`, `citelibre-participez` — and builds their Docker images (Jib).
+There is **no application source code**: no Java files, nothing here compiles app code.
+Changes are pom profiles, Lutece webapp configuration (`webapp/WEB-INF`), Tomcat runtime
+configuration, and documentation.
+
+CiteLibre is split into three sibling repositories (usually cloned side by side):
+
+- `packaging` (this one): Maven assembly + Docker image build.
+- `demo`: Docker Compose stack (shared platform + one compose per service, `.env`, SQL
+  init scripts) and Cypress e2e tests. Running an image built here happens there.
+- `ops`: Kubernetes deployment (Bundlebee descriptors, Minikube scripts).
+
+Do not add compose files, SQL init scripts, k8s descriptors or e2e tests here.
 
 ## Toolchain
 
@@ -31,8 +39,9 @@ mvn package -Passembly,rendezvous,docker  # + local docker image via Jib (no dae
   (assembly format is `dir` only — no tarball). Jib image:
   `citelibre/citelibre-<app>:<version>`.
 - The per-profile `citelibre.packaging.version` in `pom.xml` is the app/image version.
-  `CITELIBRE_IMAGE_VERSION` in each app's `docker/.env` must match it — the serviceez
-  `.env` (1.0.9) is stale vs its pom profile (1.0.2).
+  When bumping it, also bump `CITELIBRE_IMAGE_VERSION` in the app's `.env` of the `demo`
+  repository (and the image version used by `ops`) — the serviceez `.env` in `demo`
+  (1.0.9) is stale vs its pom profile (1.0.2).
 - lutece-maven-plugin logs many `[ERROR] ... SQL files are not tagged for Liquibase ...`
   lines during site-assembly. This is expected noise; the build still ends SUCCESS.
 - lutece-maven-plugin also reads local configuration from `~/lutece/conf/<artifactId>/`.
@@ -56,38 +65,10 @@ or very old versions that no longer exist:
 - Verify resolution with `mvn dependency:tree -Dverbose -Passembly,<profil>` and
   `mvn dependency:list -Passembly,<profil>`.
 
-## Local stack (order matters)
+## Running the images
 
-1. `docker compose -f citelibre-platform/docker-compose.yml up -d` — shared
-   infrastructure: MariaDB, Keycloak, Elasticsearch, Kibana, Solr, Matomo, httpd portal
-   (port 80), Mailpit. Creates the named network `citelibre-network`.
-2. `docker compose -f citelibre-rendezvous/docker/docker-compose.yml up` — app compose
-   files declare `citelibre-network` as **external**, so they fail if the platform is
-   not up first. The image must be built locally first (Jib, above).
-- All compose files take their variables from the `.env` next to them (local dev
-  credentials — never put real secrets there).
-- DB bootstrap: shared `citelibre-common/sql/init_db.sh` + each app's `docker/sql/*.sql`
-  (choose the auth provider SQL file that is mounted, not the commented one).
-- Back office: `http://localhost/citelibre-rendezvous/jsp/admin/AdminMenu.jsp`
-  (`admin@paris.fr` / `coucou`); front office: `/jsp/site/Portal.jsp`.
-
-## Kubernetes deployment (Bundlebee)
-
-- Descriptors: `deploy/bundlebee/` (`manifest.json` + `manifests/*.json`, alveolus
-  `citelibre`). Apply: `mvn -e bundlebee:apply@k8s -Pbundlebee`; delete:
-  `mvn -e bundlebee:delete@k8s -Pbundlebee`; dry-run + verbose: `-Dbundlebee.debug=true`.
-  `deploy/0_install.sh` … `7_delete.sh` wrap minikube around these commands.
-- Placeholders must be documented in
-  `deploy/bundlebee/placeholders.descriptions.properties`: with `-Pbundlebee`, the
-  `placeholder-extract` execution (`failOnInvalidDescription=true`) fails the build on
-  an undocumented placeholder.
-
-## E2E tests (Cypress)
-
-- `tests/` is a standalone npm project, not part of the Maven build:
-  `cd tests && npm install && npm run cy:common`.
-- Requires the platform and the service under test to be running first (baseUrl is the
-  rendezvous back office); login uses the local dev credentials.
+Local run (docker compose, platform first) and e2e tests live in the `demo` repository,
+Kubernetes deployment in the `ops` repository. See their `AGENTS.md`.
 
 ## Other
 
@@ -95,6 +76,15 @@ or very old versions that no longer exist:
   AsciiDoc for citelibre.org), not part of the root build.
 - Per-app layout: `webapp/` (Lutece webapp, incl. `WEB-INF` config), `runtime/conf/`
   (Tomcat `context.xml`/`server.xml` overrides), `runtime/descriptors/tomcat.xml`
-  (assembly descriptor), `docker/` (compose + `.env` + SQL).
+  (assembly descriptor).
 - Docker Hub publishing is driven by `docker.yml` on tags matching `*/x.y.z.w`
   (Jib push) — currently broken because of the missing `./mvnw`.
+
+## Community files
+
+- `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md` and `SECURITY.md` are identical copies in
+  `packaging`, `demo`, `ops` and the org `.github` repository (org-wide default). When
+  changing one, apply the same change to all four copies. Keep their links relative
+  (`CODE_OF_CONDUCT.md`, `SECURITY.md`) or absolute and repo-independent.
+- Issue and pull request templates live only in the org `.github` repository; do not add
+  a `.github/ISSUE_TEMPLATE/` here, it would replace all the org templates.

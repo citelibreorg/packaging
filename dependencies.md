@@ -22,11 +22,13 @@ Déclarer une dépendance directement dans notre pom ne suffit pas : la déclara
 
 | Profil | Plages ouvertes | Figées | Libs v8 embarquées | SNAPSHOT résolues | Pins |
 |---|---|---|---|---|---|
-| rendezvous | 46 | 46 | 0 | 4 (volontaires) | 31 |
-| participez | 38 | 38 | 0 | 4 (volontaires) | 25 |
-| serviceez | 19 | 19 | 0 | 4 (volontaires) | 18 |
+| rendezvous | 46 | 46 | 0 | 2 (volontaires) | 31 |
+| participez | 38 | 38 | 0 | 2 (volontaires) | 25 |
+| serviceez | 19 | 19 | 0 | 2 (volontaires) | 18 |
 
-Les 4 SNAPSHOT restantes sont déclarées explicitement dans notre pom, et elles n'existent qu'en SNAPSHOT : `site-theme-citelibre` / `library-theme-citelibre` 1.1.2-SNAPSHOT, `plugin-adminauthenticationoauth2` 1.0.0-SNAPSHOT et `module-workflow-notifygru-alert` 2.3.0-SNAPSHOT.
+Les 2 SNAPSHOT restantes sont déclarées explicitement dans notre pom, et elles n'existent qu'en SNAPSHOT : `plugin-adminauthenticationoauth2` 1.0.0-SNAPSHOT et `module-workflow-notifygru-alert` 2.3.0-SNAPSHOT.
+
+Les thèmes `site-theme-citelibre` / `library-theme-citelibre` utilisent la release 1.1.2 : les 1.1.2-SNAPSHOT publiées sont obsolètes et incohérentes entre elles (le site-theme n'a plus `theme_citelibre_commons.html`, exigé par le descripteur du library-theme, ce qui provoque une 500 sur toutes les pages).
 
 **Avant les correctifs :**
 

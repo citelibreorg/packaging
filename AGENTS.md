@@ -60,8 +60,14 @@ or very old versions that no longer exist:
   transitive ranges, and an exclusion only covers one graph edge.
 - The `type` in `dependencyManagement` must match the declaring pom
   (`jar`, `lutece-plugin`, `lutece-core`).
-- Four SNAPSHOTs are intentional (themes, `plugin-adminauthenticationoauth2`,
-  `module-workflow-notifygru-alert`, …) — do not "fix" them.
+- Two SNAPSHOTs are intentional (`plugin-adminauthenticationoauth2`,
+  `module-workflow-notifygru-alert`): they only exist as SNAPSHOT — do not "fix" them.
+- Themes (`site-theme-citelibre` / `library-theme-citelibre`) use the **release**
+  (`citelibre.theme.version`). Do not go back to a SNAPSHOT: the published
+  `1.1.2-SNAPSHOT`s are stale and mismatched (the site-theme one lacks
+  `skin/themes/theme_citelibre_commons.html`, required by the library-theme plugin
+  descriptor → HTTP 500 on every page). `theme-citelibre`'s `develop_core8` branch
+  (2.0.0-SNAPSHOT) targets Lutece 8, not this packaging.
 - Verify resolution with `mvn dependency:tree -Dverbose -Passembly,<profil>` and
   `mvn dependency:list -Passembly,<profil>`.
 

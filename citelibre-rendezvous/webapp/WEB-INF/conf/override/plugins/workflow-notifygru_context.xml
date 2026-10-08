@@ -39,24 +39,14 @@
        http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
-
-
-
-    <bean id="workflow-notifygru.lib-notifygru.restTransport"
-        class="fr.paris.lutece.plugins.librarynotifygru.rs.service.NotificationTransportRest">
-        <property name="notificationEndPoint">
-   
-            <value>http://localhost:8080/rendezvous/rest/grusupply/notification</value>
-       
-        </property>
-    </bean>
-    <bean id="workflow-notifygru.lib-notifygru.notificationService"
-        class="fr.paris.lutece.plugins.librarynotifygru.services.NotificationService">
-        <constructor-arg
-            ref="workflow-notifygru.lib-notifygru.restTransport" />
+	
+    <!-- Email -->
+	<bean id="workflow-notifygru.lib-notifygru.emailNotifierService" class="fr.paris.lutece.plugins.librarynotifygru.services.EmailNotifierService">
     </bean>
     
+	<!-- BroadCast Email -->
+	<bean id="workflow-notifygru.lib-notifygru.broadcastEmailNotifierService" class="fr.paris.lutece.plugins.librarynotifygru.services.BroadcastEmailNotifierService">
+    </bean>
 
-   
 </beans>
  	

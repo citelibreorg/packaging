@@ -103,7 +103,7 @@
         <image.base>eclipse-temurin:21.0.7_6-jre-noble</image.base>
         <image.workdir>/opt/applications</image.workdir>
         <image.version>${citelibre.packaging.version}</image.version>
-        <image.name>citelibre/${citelibre.packaging.base}:${image.version}</image.name>
+        <image.name>citelibre/${citelibre.image.base}:${image.version}</image.name>
 
         <!-- tools -->
         <build.config.version>2.0.0</build.config.version>
@@ -662,7 +662,8 @@
             <id>rendezvous</id>
             <properties>
                 <citelibre.packaging.base>citelibre-rendezvous</citelibre.packaging.base>
-                <citelibre.packaging.version>1.0.9</citelibre.packaging.version>
+                <citelibre.image.base>packaging-rendezvous</citelibre.image.base>
+                <citelibre.packaging.version>2.0.1</citelibre.packaging.version>
             </properties>
             <dependencyManagement>
                 <!-- PATCH : prevents from carrying v8 depdencies -->
@@ -1057,6 +1058,7 @@
             <id>serviceez</id>
             <properties>
                 <citelibre.packaging.base>citelibre-serviceez</citelibre.packaging.base>
+                <citelibre.image.base>packaging-serviceez</citelibre.image.base>
                 <citelibre.packaging.version>1.0.2</citelibre.packaging.version>
             </properties>
             <dependencyManagement>
@@ -1174,6 +1176,7 @@
             <id>participez</id>
             <properties>
                 <citelibre.packaging.base>citelibre-participez</citelibre.packaging.base>
+                <citelibre.image.base>packaging-participez</citelibre.image.base>
                 <citelibre.packaging.version>1.0.0</citelibre.packaging.version>
             </properties>
             <dependencyManagement>
@@ -1780,7 +1783,7 @@
             </dependencies>
         </profile>
         <!--
-        Build local image named citelibre/${citelibre.packaging.base}:${image.version}
+        Build local image named citelibre/${citelibre.image.base}:${image.version}
         mvn clean package -Passembly,<app (ex:rendezvous)>,docker
         -->
         <profile>

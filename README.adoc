@@ -106,7 +106,7 @@ To build the local docker image you need to run
 mvn clean package -Passembly,rendezvous,docker
 ----
 
-The image will be created in your local registry as `citelibre/citelibre-rendezvous`.
+The image will be created in your local registry as `citelibre/packaging-rendezvous` (the name published on Docker Hub by the release workflow).
 Check that it is available:
 
 [source,bash]

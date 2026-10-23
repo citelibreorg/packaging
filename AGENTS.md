@@ -37,7 +37,8 @@ mvn package -Passembly,rendezvous,docker  # + local docker image via Jib (no dae
 
 - Output is the exploded dir `target/assembly/citelibre-<app>/apache-tomcat/`
   (assembly format is `dir` only — no tarball). Jib image:
-  `citelibre/citelibre-<app>:<version>`.
+  `citelibre/packaging-<app>:<version>`, the name the tag workflow
+  (`docker.yml`, tag `<app>-<version>`) pushes to Docker Hub.
 - The per-profile `citelibre.packaging.version` in `pom.xml` is the app/image version.
   When bumping it, also bump `CITELIBRE_IMAGE_VERSION` in the app's `.env` of the `demo`
   repository (and the image version used by `ops`) — the serviceez `.env` in `demo`
